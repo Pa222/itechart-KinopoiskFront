@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import { connect } from "react-redux";
+import { moviesRequest } from "./Actions/index";
 
-function App() {
+const App = props => {
+  console.log({...props.state});
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <input type="button" onClick={props.test} value="test"></input>
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    state,
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return{
+    test: () => dispatch(moviesRequest(1)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

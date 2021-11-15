@@ -156,6 +156,24 @@ class KinopoiskApi{
         }
     }
 
+    static uploadUserAvatar = async formData => {
+        try{
+            const response = await fetch(`http://${ip}:${port}/api/User/upload-avatar`, {
+                method: "POST",
+                headers: {
+                    'Authorization': `Bearer ${getCookie("AuthToken")}`,
+                },
+                body: formData,
+            })
+            if (response.status !== 200){
+                return null;
+            }
+            return await response.json();
+        } catch(e){
+            return null;
+        }
+    }
+
     static addComment = async comment => {
         try{
             const response = await fetch(`http://${ip}:${port}/api/Comments/add-comment`, {

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 import Profile from "../Views/Profile/Profile";
 import { saveUserChangesRequest } from "../../Actions";
+import KinopoiskApi from "../../Api/KinopoiskApi";
 
 const ProfileContainer = (props) => {
     const [name, setName] = useState(props.name);
@@ -22,13 +23,20 @@ const ProfileContainer = (props) => {
         name === "gender" && setGender(value);
         name === "avatar" && setAvatar(value);
     }
-    
+
+    const handleFileUpload = async (e) => {
+        const file = e.target.files[0]
+        const formData = new FormData();
+        formData.append('avatar', file, file.name);
+        const response = await KinopoiskApi.uploadUserAvatar(formData);
+        console.log(response);
+    }
+
     const saveChanges = () => {
         props.updateUser({
             name,
             phoneNumber,
             gender, 
-            avatar, 
             creditCards: props.creditCards
         })
         setMessage('Изменения сохранены');
@@ -47,6 +55,7 @@ const ProfileContainer = (props) => {
         saveChanges,
         handleChange,
         toggleAddCreditCardContainer,
+        handleFileUpload,
     }
 
     return (

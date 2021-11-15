@@ -27,13 +27,18 @@ const Profile = (props) => {
             <div className={classes.wrapper__profileContainer}>
                 <div className={classes.profileContainer__avatarContainer}>
                     <img className={classes.profileContainer__avatar} src={props.avatar} alt="Avatar"></img>
+                    <input
+                        id="avatar"
+                        className={classes.profileContainer__editButton} 
+                        type="file" 
+                        onChange={props.handleFileUpload}
+                    />
                     <input 
                         className={classes.profileContainer__editButton} 
                         type="button" 
                         value="Сохранить изменения"
-                        onChange={props.handleChange}
                         onClick={props.saveChanges}
-                    ></input>
+                    />
                     <div className={classes.errorMessage}>
                         {props.message}
                     </div> 
@@ -150,6 +155,7 @@ Profile.propTypes = {
     saveChanges: PropTypes.func,
     handleChange: PropTypes.func,
     toggleAddCreditCardContainer: PropTypes.func,
+    handleFileUpload: PropTypes.func,
 }
 
 export default Profile;

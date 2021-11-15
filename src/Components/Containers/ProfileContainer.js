@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 import Profile from "../Views/Profile/Profile";
+import { saveUserChangesRequest } from "../../Actions";
 
 const ProfileContainer = (props) => {
     const [name, setName] = useState(props.name);
@@ -9,6 +10,7 @@ const ProfileContainer = (props) => {
     const [gender, setGender] = useState(props.gender);
     const [avatar, setAvatar] = useState(props.avatar);
     const [showAddCreditCard, setShowAddCreditCard] = useState(false);
+    const [message, setMessage] = useState('');
 
     
     const handleChange = (e) => {
@@ -22,6 +24,14 @@ const ProfileContainer = (props) => {
     }
     
     const saveChanges = () => {
+        props.updateUser({
+            name,
+            phoneNumber,
+            gender, 
+            avatar, 
+            creditCards: props.creditCards
+        })
+        setMessage('Изменения сохранены');
     }
     
     const toggleAddCreditCardContainer = () => setShowAddCreditCard(!showAddCreditCard);
@@ -33,6 +43,7 @@ const ProfileContainer = (props) => {
         gender,
         avatar,
         showAddCreditCard,
+        message,
         saveChanges,
         handleChange,
         toggleAddCreditCardContainer,
@@ -55,7 +66,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        // updateUser: (user) => dispatch(updateUser(user)),
+        updateUser: (user) => dispatch(saveUserChangesRequest(user)),
     }
 }
 

@@ -36,3 +36,9 @@ export function* deleteCreditCardRequest(payload){
         return KinopoiskApi.deleteCreditCard(payload);
     })
 }
+
+export function* saveUserChangesRequest(payload){
+    return yield call(() => {
+        return KinopoiskApi.saveUserChanges(payload);
+    })
+}

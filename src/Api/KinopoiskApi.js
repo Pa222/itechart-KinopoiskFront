@@ -99,6 +99,25 @@ class KinopoiskApi{
         }
     }
 
+    static saveUserChanges = async user => {
+        try{
+            const response = await fetch(`http://${ip}:${port}/api/Profile/update-user-profile`, {
+                method: "PUT",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${getCookie("AuthToken")}`
+                },
+                body: JSON.stringify(user),
+            });
+            if (response.status !== 200){
+                return null;
+            }
+            return await response.json();
+        } catch(e){
+            return null;
+        }
+    }
+
     static addCreditCard = async card => {
         try{
             const response = await fetch(`http://${ip}:${port}/api/Profile/add-credit-card`, {

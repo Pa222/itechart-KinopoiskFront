@@ -35,6 +35,8 @@ const UserReducer = handleActions(
       [actions.addCreditCard]: changeCreditCard,
       [actions.deleteCreditCardRequest]: (state, action) => state,
       [actions.deleteCreditCard]: changeCreditCard,
+      [actions.saveUserChangesRequest]: (state, action) => state,
+      [actions.saveUserChanges]: (state, action) => {return {authorized: true, ...action.payload}}
     },
     initialState
 );

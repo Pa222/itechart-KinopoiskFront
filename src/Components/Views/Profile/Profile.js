@@ -34,6 +34,9 @@ const Profile = (props) => {
                         onChange={props.handleChange}
                         onClick={props.saveChanges}
                     ></input>
+                    <div className={classes.errorMessage}>
+                        {props.message}
+                    </div> 
                 </div>
                 <Formik
                     validationSchema={validationSchema}
@@ -143,6 +146,7 @@ Profile.propTypes = {
     gender: PropTypes.string,
     avatar: PropTypes.string,
     showAddCreditCard: PropTypes.bool,
+    message: PropTypes.string,
     saveChanges: PropTypes.func,
     handleChange: PropTypes.func,
     toggleAddCreditCardContainer: PropTypes.func,

@@ -18,12 +18,19 @@ const cleanUser = (state, action) => {
     return {...initialState};
 }
 
+const addCreditCard = (state, action) => {
+    state.creditCards = action.payload;
+    return {...state};
+}
+
 const UserReducer = handleActions(
     {
       [actions.userRequest]: (state, action) => state,
       [actions.getUser]: (state, action) => {return {authorized: true, ...action.payload}},
       [actions.getUserFail]: (state, action) => {return {...initialState}},
       [actions.cleanUser]: cleanUser,
+      [actions.addCreditCardRequest]: (state, action) => state,
+      [actions.addCreditCard]: addCreditCard,
     },
     initialState
 );

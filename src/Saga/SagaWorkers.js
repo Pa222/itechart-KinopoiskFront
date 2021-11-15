@@ -24,3 +24,9 @@ export function* userRequest(payload){
         return KinopoiskApi.getUser();
     })
 }
+
+export function* addCreditCardRequest(payload){
+    return yield call(() => {
+        return KinopoiskApi.addCreditCard(payload);
+    })
+}

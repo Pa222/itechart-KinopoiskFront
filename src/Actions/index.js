@@ -10,3 +10,5 @@ export const userRequest = createAction("USER_REQUEST");
 export const getUser = createAction("USER_SUCCESS");
 export const getUserFail = createAction("USER_FAIL");
 export const cleanUser = createAction("CLEAN_USER");
+export const addCreditCardRequest = createAction("ADD_CREDIT_CARD_REQUEST");
+export const addCreditCard = createAction("ADD_CREDIT_CARD_SUCCESS");

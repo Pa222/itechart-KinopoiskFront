@@ -1,11 +1,13 @@
 import React from "react";
 import {Switch, Route} from 'react-router-dom';
+import ProtectedRoute from "./Components/ProtectedRoute";
 import HeaderContainer from "./Components/Containers/HeaderContainer";
 import CatalogContainer from "./Components/Containers/CatalogContainer";
 import MoviePageContainer from "./Components/Containers/MoviePageContainer";
 import FaqContainer from "./Components/Containers/FaqContainer";
 import LoginContainer from "./Components/Containers/LoginContainer";
 import RegistrationContainer from "./Components/Containers/RegistrationContainer";
+import ProfileContainer from "./Components/Containers/ProfileContainer";
 import ErrorPage from './Components/Views/ErrorPage/ErrorPage';
 
 const App = () => {
@@ -44,19 +46,15 @@ const App = () => {
                         <RegistrationContainer/>
                     }
                 />
+                <ProtectedRoute
+                    path={'/profile'}
+                    component={ProfileContainer}
+                />
                 <Route 
                     render={() =>
                         <ErrorPage/>
                     }
                 />
-              {/* 
-              
-              
-              <ProtectedRoute
-                  path={'/profile'}
-                  component={ProfileContainer}
-              />
-               */}
           </Switch>
       </div>
   );

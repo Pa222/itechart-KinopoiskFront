@@ -93,11 +93,11 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-// HeaderContainer.propTypes = {
-//     avatar: PropTypes.string,
-//     getMovie: PropTypes.func,
-//     logout: PropTypes.func,
-//     authorized: PropTypes.bool,
-// }
+HeaderContainer.propTypes = {
+    avatar: PropTypes.string,
+    authorized: PropTypes.bool,
+    getMovie: PropTypes.func,
+    logout: PropTypes.func,
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer);

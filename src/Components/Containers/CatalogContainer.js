@@ -52,6 +52,7 @@ const mapDispatchToProps = dispatch => {
 CatalogContainer.propTypes = {
     getMovies: PropTypes.func,
     movies: PropTypes.array,
+    totalPages: PropTypes.number,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CatalogContainer);

@@ -21,16 +21,18 @@ const CreditCardContainer = (props) => {
     );
 }
 
-CreditCardContainer.propTypes = {
-    number: PropTypes.string,
-    expiry: PropTypes.string,
-    image: PropTypes.string,
-}
 
 const mapDispatchToProps = dispatch => {
     return {
         deleteCard: (number) => dispatch(deleteCreditCardRequest(number)),
     }
+}
+
+CreditCardContainer.propTypes = {
+    number: PropTypes.string,
+    expiry: PropTypes.string,
+    image: PropTypes.string,
+    deleteCard: PropTypes.func
 }
 
 export default connect(null, mapDispatchToProps)(CreditCardContainer);

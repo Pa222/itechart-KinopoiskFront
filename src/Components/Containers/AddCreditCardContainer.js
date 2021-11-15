@@ -118,14 +118,15 @@ const AddCreditCardContainer = (props) => {
     );
 }
 
-AddCreditCardContainer.propTypes = {
-    addCreditCard: PropTypes.func,
-}
-
 const mapDispatchToProps = (dispatch) => {
     return {
         addCreditCard: (card) => dispatch(addCreditCardRequest(card)),
     }
 }
+
+AddCreditCardContainer.propTypes = {
+    addCreditCard: PropTypes.func,
+}
+
 
 export default connect(null, mapDispatchToProps)(AddCreditCardContainer);

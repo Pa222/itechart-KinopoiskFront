@@ -51,7 +51,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 LoginContainer.propTypes = {
-    cleanUser: PropTypes.func,
     updateUser: PropTypes.func,
 }
 

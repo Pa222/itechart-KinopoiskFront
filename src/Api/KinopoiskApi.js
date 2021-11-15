@@ -23,7 +23,7 @@ class KinopoiskApi{
         }
     }
 
-    static getMovieById = async (id) => {
+    static getMovieById = async id => {
         try{
             const response = await fetch(`http://${ip}:${port}/api/Catalog/get?id=${id}`);
             return await response.json();
@@ -32,7 +32,7 @@ class KinopoiskApi{
         }
     }
 
-    static getMoviesByTitle = async (title) => {
+    static getMoviesByTitle = async title => {
         try{
             if (typeof title === "string"){
                 const response = await fetch(`http://${ip}:${port}/api/Catalog/get-by-title?title=${title}`);
@@ -67,7 +67,7 @@ class KinopoiskApi{
         removeCookie("AuthToken");
     }
 
-    static register = async (user) => {
+    static register = async user => {
         try{
             const response = await fetch(`http://${ip}:${port}/api/User/register`, {
                 method: "POST",
@@ -99,7 +99,7 @@ class KinopoiskApi{
         }
     }
 
-    static addCreditCard = async (card) => {
+    static addCreditCard = async card => {
         try{
             const response = await fetch(`http://${ip}:${port}/api/Profile/add-credit-card`, {
                 method: "POST",
@@ -109,6 +109,28 @@ class KinopoiskApi{
                 },
                 body: JSON.stringify(card),
             })
+            if (response.status !== 200){
+                return null;
+            }
+            return await response.json();
+        } catch(e){
+            return null;
+        }
+    }
+
+    static deleteCreditCard = async number => {
+        try{
+            const response = await fetch(`http://${ip}:${port}/api/Profile/delete-credit-card`, {
+                method: "DELETE",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${getCookie("AuthToken")}`,
+                },
+                body: JSON.stringify({number}),
+            })
+            if (response.status !== 200){
+                return null;
+            }
             return await response.json();
         } catch(e){
             return null;

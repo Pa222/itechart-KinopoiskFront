@@ -12,3 +12,5 @@ export const getUserFail = createAction("USER_FAIL");
 export const cleanUser = createAction("CLEAN_USER");
 export const addCreditCardRequest = createAction("ADD_CREDIT_CARD_REQUEST");
 export const addCreditCard = createAction("ADD_CREDIT_CARD_SUCCESS");
+export const deleteCreditCardRequest = createAction("DELETE_CREDIT_CARD_REQUEST");
+export const deleteCreditCard = createAction("DELETE_CREDIT_CARD_SUCCESS");

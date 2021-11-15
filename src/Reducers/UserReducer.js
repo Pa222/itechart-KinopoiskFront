@@ -18,7 +18,9 @@ const cleanUser = (state, action) => {
     return {...initialState};
 }
 
-const addCreditCard = (state, action) => {
+const changeCreditCard = (state, action) => {
+    console.log('change');
+    console.log({...action.payload});
     state.creditCards = action.payload;
     return {...state};
 }
@@ -30,7 +32,9 @@ const UserReducer = handleActions(
       [actions.getUserFail]: (state, action) => {return {...initialState}},
       [actions.cleanUser]: cleanUser,
       [actions.addCreditCardRequest]: (state, action) => state,
-      [actions.addCreditCard]: addCreditCard,
+      [actions.addCreditCard]: changeCreditCard,
+      [actions.deleteCreditCardRequest]: (state, action) => state,
+      [actions.deleteCreditCard]: changeCreditCard,
     },
     initialState
 );

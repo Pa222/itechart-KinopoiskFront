@@ -30,3 +30,9 @@ export function* addCreditCardRequest(payload){
         return KinopoiskApi.addCreditCard(payload);
     })
 }
+
+export function* deleteCreditCardRequest(payload){
+    return yield call(() => {
+        return KinopoiskApi.deleteCreditCard(payload);
+    })
+}

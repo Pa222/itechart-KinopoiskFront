@@ -19,6 +19,7 @@ const AddCreditCard = (props) => {
                         number={props.number}
                         callback={(info, isValid) => {
                             props.setNumberMaxLength(info.maxLength);
+                            console.log(isValid);
                         }}
                     />
                 </div>

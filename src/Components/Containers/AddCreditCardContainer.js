@@ -75,6 +75,12 @@ const AddCreditCardContainer = (props) => {
                 cvc,
                 issuer,
             })
+            setNumber('');
+            setExpiry('');
+            setCardHolderName('');
+            setCvc('');
+            setFocus('number')
+            document.querySelector("input").value = "";
             return;
         }
         setMessage("Проверьте номер карты");

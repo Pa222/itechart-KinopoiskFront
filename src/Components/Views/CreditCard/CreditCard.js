@@ -18,7 +18,8 @@ const CreditCard = (props) => {
                     props.number.substring(props.number.length - 4)
                 }
             </p>
-            <p className={classes.container__info}>{props.expiration}</p>
+            <p className={classes.container__info}>{props.expiry}</p>
+            <input className={classes.container__deleteButton} type="button" onClick={props.handleDeleteCreditCard} value="Удалить карту"/>
         </div>
     );
 }

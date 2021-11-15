@@ -13,6 +13,10 @@ const useStyles = makeStyles({
     container__creditCardImage:{
         maxWidth: "50px",
     },
+    container__deleteButton: {
+        marginLeft: "20px",
+        height: "30px",
+    },
 });
 
 export default useStyles;

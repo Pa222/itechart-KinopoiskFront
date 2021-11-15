@@ -16,3 +16,5 @@ export const addCreditCardRequest = createAction("ADD_CREDIT_CARD_REQUEST");
 export const addCreditCard = createAction("ADD_CREDIT_CARD_SUCCESS");
 export const deleteCreditCardRequest = createAction("DELETE_CREDIT_CARD_REQUEST");
 export const deleteCreditCard = createAction("DELETE_CREDIT_CARD_SUCCESS");
+export const addCommentRequest = createAction("ADD_COMMENT_REQUEST");
+export const addComment = createAction("ADD_COMMENT_SUCCESS");

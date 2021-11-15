@@ -1,5 +1,6 @@
 import React from "react";
 import {Switch, Route} from 'react-router-dom';
+import Footer from './Components/Views/Footer/Footer';
 import ProtectedRoute from "./Components/ProtectedRoute";
 import HeaderContainer from "./Components/Containers/HeaderContainer";
 import CatalogContainer from "./Components/Containers/CatalogContainer";
@@ -56,6 +57,7 @@ const App = () => {
                     }
                 />
           </Switch>
+          <Footer/>
       </div>
   );
 }

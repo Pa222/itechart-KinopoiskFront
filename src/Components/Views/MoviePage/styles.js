@@ -19,7 +19,24 @@ const useStyles = makeStyles({
     movie: {
         padding: "40px 20px",
         display: "flex",
+        flexDirection: "column",
+    },
+    movie__main: {
+        display: "flex",
         flexDirection: "row",
+    },
+    movie__comments:{
+        display: "flex",
+        flexDirection: "column",
+    },
+    movie__commentForm:{
+        marginTop: "50px",
+    },
+    movie__commentInput:{
+        width: "100%",
+        height: "100px",
+        fontSize: "14px",
+        resize: "none",
     },
     movie__poster: {
         maxWidth: "300px",

@@ -42,3 +42,9 @@ export function* saveUserChangesRequest(payload){
         return KinopoiskApi.saveUserChanges(payload);
     })
 }
+
+export function* addCommentRequest(payload){
+    return yield call(() => {
+        
+    })
+}

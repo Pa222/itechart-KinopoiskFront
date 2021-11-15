@@ -5,6 +5,7 @@ const emptyCurrentMovie = {
   id: 0,
   title: 'Empty',
   genreMovies: [],
+  comments: [],
   description: 'Empty',
   createYear: 'Empty',
   image: 'Empty',
@@ -16,22 +17,24 @@ const initialState = {
   currentMovie: emptyCurrentMovie,
 };
 
-
-const getMovies = (state, action) => {
-    return {currentMovie: emptyCurrentMovie, ...action.payload}
-}
-
 const getMovie = (state, action) => {
     state.currentMovie = {...action.payload};
     return {...state};
 }
 
+const addComment = (state, action) => {
+  state.currentMovie.comments = action.payload;
+  return {...state};
+}
+
 const MovieReducer = handleActions(
   {
     [actions.moviesRequest]: (state, action) => state,
-    [actions.getMovies]: getMovies,
+    [actions.getMovies]: (state, action) => { return {currentMovie: emptyCurrentMovie, ...action.payload} },
     [actions.movieRequest]: (state, action) => state,
     [actions.getMovie]: getMovie,
+    [actions.addCommentRequest]: (state, action) => state,
+    [actions.addComment]: addComment,
   },
   initialState
 );

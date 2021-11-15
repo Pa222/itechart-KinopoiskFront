@@ -1,8 +1,8 @@
-import * as genericMovieSaga from "./GenericMovieSaga";
+import * as genericSaga from "./GenericSaga";
 import {all, fork} from 'redux-saga/effects';
 
 export function* rootSaga() {
     yield all([
-        ...Object.values(genericMovieSaga),
+        ...Object.values(genericSaga),
     ].map(fork));
 }

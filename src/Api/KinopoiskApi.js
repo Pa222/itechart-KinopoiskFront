@@ -1,4 +1,4 @@
-import { getCookie } from "../Utils/Cookies";
+import { addCookie, getCookie, removeCookie } from "../Utils/Cookies";
 
 const ip = "localhost";
 const port = 4000;
@@ -53,13 +53,18 @@ class KinopoiskApi{
                     body: JSON.stringify({email, password}),
                 });
             if (response.status !== 200){
-                return null;
+                return false;
             }
             const token = await response.text();
-            return token;
+            addCookie("AuthToken", token);
+            return true;
         } catch(e){
             return null;
         }
+    }
+    
+    static logout = () => {
+        removeCookie("AuthToken");
     }
 
     static register = async (user) => {
@@ -92,9 +97,6 @@ class KinopoiskApi{
         } catch(e){
             return null;
         }
-    }
-
-    static updateUser = async (user) => {
     }
 
     static addCreditCard = async (card) => {

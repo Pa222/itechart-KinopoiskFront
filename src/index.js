@@ -7,9 +7,14 @@ import MovieReducer from './Reducers/MovieReducer';
 import createSagaMiddleware from 'redux-saga';
 import { rootSaga } from './Saga';
 import App from './App';
+import UserReducer from './Reducers/UserReducer';
+import FaqReducer from './Reducers/FaqReducer';
+import { userRequest } from './Actions';
 
 const rootReducer = combineReducers({
   movieState: MovieReducer,
+  userState: UserReducer,
+  faqState: FaqReducer,
 });
 
 const saga = createSagaMiddleware();
@@ -18,7 +23,7 @@ const store = createStore(rootReducer, applyMiddleware(saga));
 
 saga.run(rootSaga);
 
-window.store = store;
+store.dispatch(userRequest());
 
 ReactDOM.render(
   <React.StrictMode>

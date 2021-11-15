@@ -1,21 +1,23 @@
 import { takeEvery, put } from 'redux-saga/effects';
 import lodash from 'lodash';
-import * as workers from './MovieSagaWorkers';
+import * as workers from './SagaWorkers';
 
-function* movieSaga(action) {
+function* saga(action) {
   const { payload, type } = action;
   const method = lodash.camelCase(type);
   const request = workers[method](payload);
-  try {
-    const response = yield request;
+
+  const response = yield request;
+  if (response !== null){
     const successType = action.type.replace('_REQUEST', '_SUCCESS');
     yield put({ type: successType, payload: response });
-  } catch (err) {
+  }
+  else{
     const failedType = action.type.replace('_REQUEST', '_FAIL');
-    yield put({ type: failedType, payload: err.response, err });
+    yield put({ type: failedType, payload: {} });
   }
 }
 
-export function* genericMovieSaga(action) {
-    yield takeEvery(({ type }) => /_REQUEST$/g.test(type), movieSaga);
+export function* genericSaga(action) {
+    yield takeEvery(({ type }) => /_REQUEST$/g.test(type), saga);
 }

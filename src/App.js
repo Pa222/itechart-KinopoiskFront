@@ -1,25 +1,65 @@
-import { connect } from "react-redux";
-import { moviesRequest } from "./Actions/index";
+import React from "react";
+import {Switch, Route} from 'react-router-dom';
+import HeaderContainer from "./Components/Containers/HeaderContainer";
+import CatalogContainer from "./Components/Containers/CatalogContainer";
+import MoviePageContainer from "./Components/Containers/MoviePageContainer";
+import FaqContainer from "./Components/Containers/FaqContainer";
+import LoginContainer from "./Components/Containers/LoginContainer";
+import RegistrationContainer from "./Components/Containers/RegistrationContainer";
+import ErrorPage from './Components/Views/ErrorPage/ErrorPage';
 
-const App = props => {
-  console.log({...props.state});
+const App = () => {
   return (
-    <div>
-      <input type="button" onClick={props.test} value="test"></input>
-    </div>
+      <div>
+          <HeaderContainer/>
+          <Switch>
+                <Route 
+                    exact
+                    path={['/', '/index']}
+                    render={() =>
+                        <CatalogContainer/>
+                    }
+                />
+                <Route 
+                    path={'/movie'}
+                    render={() =>
+                        <MoviePageContainer/>
+                    }
+                />
+                <Route 
+                    path={'/faq'}
+                    render={() =>
+                        <FaqContainer/>
+                    }
+                />
+                <Route
+                    path={'/login'}
+                    render={() => 
+                        <LoginContainer/>
+                    }
+                />
+                <Route
+                    path={'/register'}
+                    render={() => 
+                        <RegistrationContainer/>
+                    }
+                />
+                <Route 
+                    render={() =>
+                        <ErrorPage/>
+                    }
+                />
+              {/* 
+              
+              
+              <ProtectedRoute
+                  path={'/profile'}
+                  component={ProfileContainer}
+              />
+               */}
+          </Switch>
+      </div>
   );
 }
 
-const mapStateToProps = state => {
-  return {
-    state,
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return{
-    test: () => dispatch(moviesRequest(1)),
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;

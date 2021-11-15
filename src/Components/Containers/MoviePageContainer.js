@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import { useHistory } from "react-router";
 import MoviePage from "../Views/MoviePage/MoviePage";
-import { movieRequest } from "../../Actions";
+import { addCommentRequest, deleteCommentRequest, movieRequest } from "../../Actions";
 
 const MoviePageContainer = (props) => {
     const [comment, setComment] = useState('');
@@ -17,7 +17,11 @@ const MoviePageContainer = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(JSON.stringify({description: comment, movieId: props.id}));
+        props.addComment({description: comment, movieId: props.id})
+    }
+
+    const deleteComment = (id) => {
+        props.deleteComment({id, movieId: props.id})
     }
 
     const handleChange = (e) => {
@@ -35,6 +39,7 @@ const MoviePageContainer = (props) => {
         comment,
         handleSubmit,
         handleChange,
+        deleteComment,
     }
 
     return(
@@ -58,6 +63,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getMovie: id => dispatch(movieRequest(id)),
+        addComment: comment => dispatch(addCommentRequest(comment)),
+        deleteComment: comment => dispatch(deleteCommentRequest(comment)),
     }
 }
 
@@ -70,6 +77,8 @@ MoviePageContainer.propTypes = {
     genres: PropTypes.arrayOf(PropTypes.string),
     commets: PropTypes.arrayOf(PropTypes.object),
     getMovie: PropTypes.func,
+    addComment: PropTypes.func,
+    deleteComment: PropTypes.func,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MoviePageContainer);

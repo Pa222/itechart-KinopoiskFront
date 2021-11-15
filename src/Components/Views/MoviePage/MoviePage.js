@@ -29,7 +29,7 @@ const MoviePage = (props) => {
                     <h1>Комментарии:</h1>
                     {
                         props.comments.length > 0 &&
-                        props.comments.map(comment => <Comment key={comment.id} {...comment} />)
+                        props.comments.map(comment => <Comment key={comment.id} deleteComment={props.deleteComment} {...comment} />)
                     }
                     {
                         props.comments.length === 0 &&
@@ -67,6 +67,7 @@ MoviePage.propTypes = {
     loading: PropTypes.bool,
     handleSubmit: PropTypes.func,
     handleChange: PropTypes.func,
+    deleteComment: PropTypes.func,
     comments: PropTypes.arrayOf(PropTypes.object)
 }
 

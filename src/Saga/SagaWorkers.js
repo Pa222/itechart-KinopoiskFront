@@ -45,6 +45,12 @@ export function* saveUserChangesRequest(payload){
 
 export function* addCommentRequest(payload){
     return yield call(() => {
-        
+        return KinopoiskApi.addComment(payload);
+    })
+}
+
+export function* deleteCommentRequest(payload){
+    return yield call(() => {
+        return KinopoiskApi.deleteComment(payload);
     })
 }

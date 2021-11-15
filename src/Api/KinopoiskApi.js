@@ -155,6 +155,44 @@ class KinopoiskApi{
             return null;
         }
     }
+
+    static addComment = async comment => {
+        try{
+            const response = await fetch(`http://${ip}:${port}/api/Comments/add-comment`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${getCookie("AuthToken")}`,
+                },
+                body: JSON.stringify(comment),
+            })
+            if (response.status !== 200){
+                return null;
+            }
+            return await response.json();
+        } catch(e){
+            return null;
+        }
+    }
+
+    static deleteComment = async comment => {
+        try{
+            const response = await fetch(`http://${ip}:${port}/api/Comments/delete-comment`, {
+                method: "DELETE",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${getCookie("AuthToken")}`,
+                },
+                body: JSON.stringify(comment),
+            })
+            if (response.status !== 200){
+                return null;
+            }
+            return await response.json();
+        } catch(e){
+            return null;
+        }
+    }
 }
 
 export default KinopoiskApi;

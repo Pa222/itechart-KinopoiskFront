@@ -13,6 +13,18 @@ const useStyles = makeStyles({
         display: "flex",
         flexDirection: "column",
     },
+    container__commentHeader: {
+        display: "flex",
+        flexDirection: "row",
+    },
+    conatiner__deleteCommentButton: {
+        marginLeft: "20px",
+        fontSize: "12px",
+        backgroundColor: "transparent",
+        border: "1px solid gray",
+        borderRadius: "5px",
+        cursor: "pointer"
+    },
     container__commentName:{
         margin: "0 0 0 10px",
     },

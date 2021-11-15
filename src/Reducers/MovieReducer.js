@@ -22,7 +22,7 @@ const getMovie = (state, action) => {
     return {...state};
 }
 
-const addComment = (state, action) => {
+const changeComment = (state, action) => {
   state.currentMovie.comments = action.payload;
   return {...state};
 }
@@ -34,7 +34,9 @@ const MovieReducer = handleActions(
     [actions.movieRequest]: (state, action) => state,
     [actions.getMovie]: getMovie,
     [actions.addCommentRequest]: (state, action) => state,
-    [actions.addComment]: addComment,
+    [actions.addComment]: changeComment,
+    [actions.deleteCommentRequest]: (state, action) => state,
+    [actions.deleteComment]: changeComment,
   },
   initialState
 );

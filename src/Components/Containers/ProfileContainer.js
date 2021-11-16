@@ -2,14 +2,12 @@ import React, {useState} from "react";
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 import Profile from "../Views/Profile/Profile";
-import { saveUserChangesRequest } from "../../Actions";
-import KinopoiskApi from "../../Api/KinopoiskApi";
+import { saveUserChangesRequest, uploadAvatarRequest } from "../../Actions";
 
 const ProfileContainer = (props) => {
     const [name, setName] = useState(props.name);
     const [phoneNumber, setPhoneNumber] = useState(props.phoneNumber);
     const [gender, setGender] = useState(props.gender);
-    const [avatar, setAvatar] = useState(props.avatar);
     const [showAddCreditCard, setShowAddCreditCard] = useState(false);
     const [message, setMessage] = useState('');
 
@@ -21,15 +19,17 @@ const ProfileContainer = (props) => {
         name === "name" && setName(value);
         name === "phoneNumber" && setPhoneNumber(value);
         name === "gender" && setGender(value);
-        name === "avatar" && setAvatar(value);
     }
 
     const handleFileUpload = async (e) => {
         const file = e.target.files[0]
+
         const formData = new FormData();
         formData.append('avatar', file, file.name);
-        const response = await KinopoiskApi.uploadUserAvatar(formData);
-        console.log(response);
+
+        props.uploadAvatar(formData);
+
+        e.target.files = null;
     }
 
     const saveChanges = () => {
@@ -49,7 +49,7 @@ const ProfileContainer = (props) => {
         phoneNumber,
         creditCards: props.creditCards,
         gender,
-        avatar,
+        avatar: props.avatar,
         showAddCreditCard,
         message,
         saveChanges,
@@ -76,6 +76,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         updateUser: (user) => dispatch(saveUserChangesRequest(user)),
+        uploadAvatar: (data) => dispatch(uploadAvatarRequest(data)),
     }
 }
 
@@ -86,6 +87,7 @@ ProfileContainer.propTypes = {
     gender: PropTypes.string,
     avatar: PropTypes.string,
     updateUser: PropTypes.func,
+    uploadAvatar: PropTypes.func,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainer);

@@ -31,6 +31,12 @@ export function* addCreditCardRequest(payload){
     })
 }
 
+export function* uploadAvatarRequest(payload){
+    return yield call(() => {
+        return KinopoiskApi.uploadUserAvatar(payload);
+    })
+}
+
 export function* deleteCreditCardRequest(payload){
     return yield call(() => {
         return KinopoiskApi.deleteCreditCard(payload);

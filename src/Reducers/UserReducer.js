@@ -8,7 +8,6 @@ const initialState = {
     name: '',
     phoneNumber: '',
     gender: '',
-    email: '',
     creditCards: [],
     avatar: 'https://res.cloudinary.com/pa2/image/upload/v1636535929/UserAvatars/user_fhguim.png',
 }
@@ -19,9 +18,12 @@ const cleanUser = (state, action) => {
 }
 
 const changeCreditCard = (state, action) => {
-    console.log('change');
-    console.log({...action.payload});
     state.creditCards = action.payload;
+    return {...state};
+}
+
+const uploadAvatar = (state, action) => {
+    state.avatar = action.payload;
     return {...state};
 }
 
@@ -36,7 +38,9 @@ const UserReducer = handleActions(
       [actions.deleteCreditCardRequest]: (state, action) => state,
       [actions.deleteCreditCard]: changeCreditCard,
       [actions.saveUserChangesRequest]: (state, action) => state,
-      [actions.saveUserChanges]: (state, action) => {return {authorized: true, ...action.payload}}
+      [actions.saveUserChanges]: (state, action) => {return {authorized: true, ...action.payload}},
+      [actions.uploadAvatarRequest]: (state, action) => state,
+      [actions.uploadAvatar]: (state, action) => {return {authorized: true, ...action.payload}},
     },
     initialState
 );

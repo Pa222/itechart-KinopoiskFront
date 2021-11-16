@@ -10,6 +10,8 @@ import LoginContainer from "./Components/Containers/LoginContainer";
 import RegistrationContainer from "./Components/Containers/RegistrationContainer";
 import ProfileContainer from "./Components/Containers/ProfileContainer";
 import ErrorPage from './Components/Views/ErrorPage/ErrorPage';
+import AdminRoute from "./Components/AdminRoute";
+import AdminPageContainer from "./Components/Containers/AdminPageContainer";
 
 const App = () => {
   return (
@@ -50,6 +52,10 @@ const App = () => {
                 <ProtectedRoute
                     path={'/profile'}
                     component={ProfileContainer}
+                />
+                <AdminRoute
+                    path={'/admin'}
+                    component={AdminPageContainer}
                 />
                 <Route 
                     render={() =>

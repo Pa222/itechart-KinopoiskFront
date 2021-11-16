@@ -18,6 +18,7 @@ const useStyles = makeStyles({
     header__userImage: {
         marginRight: "20px",
         width: "50px",
+        borderRadius: "50%",
         cursor: "pointer",
     },
     header__title: {

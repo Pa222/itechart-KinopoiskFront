@@ -8,7 +8,6 @@ function* saga(action) {
   const request = workers[method](payload);
 
   const response = yield request;
-  console.log(response);
   if (response !== null){
     const successType = action.type.replace('_REQUEST', '_SUCCESS');
     yield put({ type: successType, payload: response });

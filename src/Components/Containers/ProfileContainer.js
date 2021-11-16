@@ -36,6 +36,7 @@ const ProfileContainer = (props) => {
         props.updateUser({
             name,
             phoneNumber,
+            gender,
             creditCards: props.creditCards
         })
         setMessage('Изменения сохранены');

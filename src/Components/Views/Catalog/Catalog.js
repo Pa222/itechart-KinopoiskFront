@@ -33,7 +33,6 @@ const Catalog = (props) => {
                     onChange={props.changePage}
                 />
             </div>
-        
         </div>
     );
 }

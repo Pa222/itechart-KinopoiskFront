@@ -60,3 +60,9 @@ export function* deleteCommentRequest(payload){
         return KinopoiskApi.deleteComment(payload);
     })
 }
+
+export function* updateRatingRequest(payload){
+    return yield call(() => {
+        return KinopoiskApi.updateRating(payload);
+    })
+}

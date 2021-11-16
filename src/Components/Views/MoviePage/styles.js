@@ -46,6 +46,16 @@ const useStyles = makeStyles({
         display: "flex",
         flexDirection: "column",
     },
+    movie__titleContainer: {
+        display: "flex",
+        flexDirection: "row",
+    },
+    movie__ratingStarContainer: {
+        margin: "0 10px",
+    },
+    movie__ratingStar: {
+        maxWidth: "30px",
+    },
     movie__title:{
         marginTop: "0",
         marginBottom: "0",

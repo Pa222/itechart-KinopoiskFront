@@ -211,6 +211,25 @@ class KinopoiskApi{
             return null;
         }
     }
+
+    static updateRating = async rating => {
+        try{
+            const response = await fetch(`http://${ip}:${port}/api/Rating/update-rating`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${getCookie("AuthToken")}`,
+                },
+                body: JSON.stringify(rating),
+            })
+            if (response.status !== 200){
+                return null;
+            }
+            return await response.json();
+        } catch(e){
+            return null;
+        }
+    }
 }
 
 export default KinopoiskApi;

@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 import useStyles from "./styles";
 import Comment from "../Comment/Comment";
+import { Rating } from '@mui/material';
 
 const MoviePage = (props) => {
     const classes = useStyles();
@@ -12,7 +13,24 @@ const MoviePage = (props) => {
                 <div className={classes.movie__main}>
                     <img className={classes.movie__poster} src={props.image} alt="poster"></img>
                     <div className={classes.movie__info}>
-                        <p className={classes.movie__title}>{props.title} ({props.createYear})</p>
+                        <div className={classes.movie__titleContainer}>
+                            <p className={classes.movie__title}>{props.title} ({props.createYear})</p>
+                            {
+                                props.authorized &&
+                                <Rating 
+                                    name="simple-controlled"
+                                    value={props.rating}
+                                    onChange={props.handleRatingChange}
+                                />
+                            }
+                            {
+                                !props.authorized &&
+                                <Rating 
+                                    readOnly
+                                    value={props.rating}
+                                />
+                            }
+                        </div>
                         <p className={classes.movie__genres}>
                             {
                                 props.genres.map((genre, i, arr) => {
@@ -64,10 +82,12 @@ MoviePage.propTypes = {
     createYear: PropTypes.string,
     description: PropTypes.string,
     comment: PropTypes.string,
+    calcRating: PropTypes.number,
     loading: PropTypes.bool,
     handleSubmit: PropTypes.func,
     handleChange: PropTypes.func,
     deleteComment: PropTypes.func,
+    handleRatingChange: PropTypes.func,
     comments: PropTypes.arrayOf(PropTypes.object)
 }
 

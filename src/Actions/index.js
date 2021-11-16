@@ -22,3 +22,5 @@ export const addCommentRequest = createAction("ADD_COMMENT_REQUEST");
 export const addComment = createAction("ADD_COMMENT_SUCCESS");
 export const deleteCommentRequest = createAction("DELETE_COMMENT_REQUEST");
 export const deleteComment = createAction("DELETE_COMMENT_SUCCESS");
+export const updateRatingRequest = createAction("UPDATE_RATING_REQUEST");
+export const updateRating = createAction("UPDATE_RATING_SUCCESS");

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from "react-redux";
 import { useHistory } from "react-router";
 import MoviePage from "../Views/MoviePage/MoviePage";
-import { addCommentRequest, deleteCommentRequest, movieRequest } from "../../Actions";
+import { addCommentRequest, deleteCommentRequest, movieRequest, updateRatingRequest } from "../../Actions";
 
 const MoviePageContainer = (props) => {
     const [comment, setComment] = useState('');
@@ -19,13 +19,17 @@ const MoviePageContainer = (props) => {
         e.preventDefault();
         props.addComment({description: comment, movieId: props.id})
     }
+    
+    const handleChange = (e) => {
+        setComment(e.target.value);
+    }
 
     const deleteComment = (id) => {
         props.deleteComment({id, movieId: props.id})
     }
 
-    const handleChange = (e) => {
-        setComment(e.target.value);
+    const handleRatingChange = (e) => {
+        props.updateRating({value: e.target.value, movieId: props.id})
     }
 
     const moviePageProps = {
@@ -37,9 +41,11 @@ const MoviePageContainer = (props) => {
         genres: props.genres,
         comments: props.comments,
         comment,
+        rating: props.rating,
         handleSubmit,
         handleChange,
         deleteComment,
+        handleRatingChange,
     }
 
     return(
@@ -57,6 +63,7 @@ const mapStateToProps = (state) => {
         description: state.movieState.currentMovie.description,
         genres: state.movieState.currentMovie.genreMovies,
         comments: state.movieState.currentMovie.comments,
+        rating: state.movieState.currentMovie.rating,
     }
 }
 
@@ -65,6 +72,7 @@ const mapDispatchToProps = (dispatch) => {
         getMovie: id => dispatch(movieRequest(id)),
         addComment: comment => dispatch(addCommentRequest(comment)),
         deleteComment: comment => dispatch(deleteCommentRequest(comment)),
+        updateRating: rating => dispatch(updateRatingRequest(rating)),
     }
 }
 
@@ -76,9 +84,11 @@ MoviePageContainer.propTypes = {
     description: PropTypes.string,
     genres: PropTypes.arrayOf(PropTypes.string),
     commets: PropTypes.arrayOf(PropTypes.object),
+    rating: PropTypes.number,
     getMovie: PropTypes.func,
     addComment: PropTypes.func,
     deleteComment: PropTypes.func,
+    updateRating: PropTypes.func,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MoviePageContainer);

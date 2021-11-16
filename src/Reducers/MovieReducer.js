@@ -6,6 +6,7 @@ const emptyCurrentMovie = {
   title: 'Empty',
   genreMovies: [],
   comments: [],
+  rating: 0,
   description: 'Empty',
   createYear: 'Empty',
   image: 'Empty',
@@ -18,7 +19,10 @@ const initialState = {
 };
 
 const getMovie = (state, action) => {
-    state.currentMovie = {...action.payload};
+    const ratings = action.payload.ratings;
+    const rating = ratings.reduce((prev, curr) => prev + curr) / ratings.length;
+    state.currentMovie = {rating, ...action.payload};
+    console.log({...state.currentMovie});
     return {...state};
 }
 
@@ -37,6 +41,8 @@ const MovieReducer = handleActions(
     [actions.addComment]: changeComment,
     [actions.deleteCommentRequest]: (state, action) => state,
     [actions.deleteComment]: changeComment,
+    [actions.updateRatingRequest]: (state, action) => state,
+    [actions.updateRating]: getMovie,
   },
   initialState
 );

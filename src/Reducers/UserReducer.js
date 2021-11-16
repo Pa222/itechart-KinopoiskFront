@@ -22,11 +22,6 @@ const changeCreditCard = (state, action) => {
     return {...state};
 }
 
-const uploadAvatar = (state, action) => {
-    state.avatar = action.payload;
-    return {...state};
-}
-
 const UserReducer = handleActions(
     {
       [actions.userRequest]: (state, action) => state,

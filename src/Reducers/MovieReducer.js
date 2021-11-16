@@ -20,9 +20,11 @@ const initialState = {
 
 const getMovie = (state, action) => {
     const ratings = action.payload.ratings;
-    const rating = ratings.reduce((prev, curr) => prev + curr) / ratings.length;
+    let rating = 0;
+    if (ratings.length > 0){
+      rating = ratings.reduce((prev, curr) => prev + curr) / ratings.length;
+    }
     state.currentMovie = {rating, ...action.payload};
-    console.log({...state.currentMovie});
     return {...state};
 }
 

@@ -12,16 +12,18 @@ import ProfileContainer from "./Components/Containers/ProfileContainer";
 import ErrorPage from './Components/Views/ErrorPage/ErrorPage';
 import AdminRoute from "./Components/AdminRoute";
 import AdminPageContainer from "./Components/Containers/AdminPageContainer";
+import ChatContainer from "./Components/Containers/ChatContainer";
 
 const App = () => {
   return (
       <div>
           <HeaderContainer/>
+          <ChatContainer/>
           <Switch>
                 <Route 
                     exact
                     path={['/', '/index']}
-                    render={() =>
+                    render={() => 
                         <CatalogContainer/>
                     }
                 />

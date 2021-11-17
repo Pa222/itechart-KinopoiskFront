@@ -7,7 +7,8 @@ const useStyles = makeStyles({
         flexDirection: "row"
     },
     container__image: {
-        maxWidth: "70px"
+        maxWidth: "70px",
+        borderRadius: "50%",
     },
     container__comment: {
         display: "flex",

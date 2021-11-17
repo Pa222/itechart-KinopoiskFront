@@ -5,6 +5,25 @@ const port = 4000;
 
 class KinopoiskApi{
 
+    static getHubConnectionString = () => {
+        return `http://${ip}:${port}/hubs/chat`;
+    }
+
+    static sendMessage = async message => {
+        try{
+            const response = await fetch(`http://${ip}:${port}/api/Chat/message`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(message),
+            })
+            return response.status === 200;
+        } catch(e){
+            return null;
+        }
+    }
+
     static getMoviesPage = async (page, size = 8) => {
         try{
             const response = await fetch(`http://${ip}:${port}/api/Catalog/get-page?page=${page}&size=${size}`);

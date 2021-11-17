@@ -7,7 +7,8 @@ const useStyles = makeStyles({
         backgroundColor: "#f4f4f4",
     },
     wrapper__adminPanelContainer: {
-        minHeight: "900px",
+        padding: "10px 10px",
+        minHeight: "832px",
         display: "flex",
         flexDirection: "column",
     },
@@ -18,6 +19,17 @@ const useStyles = makeStyles({
         flexDirection: "row",
         flexWrap: "wrap",
         justifyContent: "space-between",
+    },
+    adminPanel__chats: {
+        width: "200px",
+        display: "flex",
+        flexDirection: "column",
+        borderRight: "1px solid gray",
+    },
+    adminPanel__currentChat: {
+        width: "1000px",
+        display: "flex",
+        flexDirection: "column",
     },
 });
 

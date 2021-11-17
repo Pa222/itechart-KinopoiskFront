@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import useStyles from "./styles";
+import Message from "./Message/Message";
 
 const Chat = props => {
     const classes = useStyles();
@@ -13,8 +14,11 @@ const Chat = props => {
                     <div className={classes.chat__header}>
                         <p className={classes.chat__headerText}>Чат с администрацией</p>
                     </div>
-                    <div className={classes.chat__messagesContainer}>
-                        
+                    <div id="messages" className={classes.chat__messagesContainer}>
+                        {
+                            props.messages.length > 0 &&
+                            props.messages.map((message, i) => <Message key={Date.now() * Math.random()} {...message}/>)
+                        }
                     </div>
                     <div className={classes.chat__inputContainer}>
                         <input 
@@ -31,6 +35,7 @@ const Chat = props => {
                                 className={classes.chat__sendImg}
                                 src="https://res.cloudinary.com/pa2/image/upload/v1637150966/Static/send_fus324.png" 
                                 alt="Send"
+                                onClick={props.sendMessage}
                             />
                         </div>
                     </div>
@@ -51,8 +56,10 @@ const Chat = props => {
 Chat.propTypes = {
     opened: PropTypes.bool,
     message: PropTypes.string,
+    messages: PropTypes.arrayOf(PropTypes.object),
     toggleChat: PropTypes.func,
     handleChange: PropTypes.func,
+    sendMessage: PropTypes.func,
 }
 
 export default Chat;

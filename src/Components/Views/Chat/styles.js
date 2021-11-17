@@ -43,6 +43,7 @@ const useStyles = makeStyles({
     chat__messagesContainer: {
         height: "330px",
         backgroundColor: "white",
+        overflow: "auto"
     },
     chat__inputContainer: {
         height: "50px",

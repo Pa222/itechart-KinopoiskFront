@@ -4,6 +4,7 @@ import { Pagination } from "@mui/material";
 import { ClipLoader } from 'react-spinners';
 import useStyles from "./styles";
 import Movie from "../Movie/Movie";
+import ChatContainer from '../../Containers/ChatContainer';
 
 const Catalog = (props) => {
     const classes = useStyles();
@@ -33,6 +34,10 @@ const Catalog = (props) => {
                     onChange={props.changePage}
                 />
             </div>
+            {
+                props.userRole !== "Admin" &&
+                <ChatContainer/>
+            }
         </div>
     );
 }
@@ -43,6 +48,7 @@ Catalog.propTypes = {
     page: PropTypes.number,
     totalPages: PropTypes.number,
     changePage: PropTypes.func,
+    userRole: PropTypes.string,
 }
 
 export default Catalog;

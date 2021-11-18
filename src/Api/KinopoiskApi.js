@@ -9,6 +9,10 @@ class KinopoiskApi{
         return `http://${ip}:${port}/hubs/chat`;
     }
 
+    static getToken = () => {
+        return `Bearer ${getCookie("AuthToken")}`;
+    }
+
     static sendMessage = async message => {
         try{
             const response = await fetch(`http://${ip}:${port}/api/Chat/message`, {

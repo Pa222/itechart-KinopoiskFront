@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import AdminPage from '../Views/AdminPage/AdminPage';
 import {HubConnectionBuilder} from '@microsoft/signalr';
+import { connect } from "react-redux";
 import KinopoiskApi from "../../Api/KinopoiskApi";
 
 const AdminPageContainer = props => {
@@ -21,8 +22,24 @@ const AdminPageContainer = props => {
         if (connection){
             connection.start()
                 .then(() => {
+                    connection.send('ConnectAsAdmin', {token: KinopoiskApi.getToken()});
+
+                    connection.send('GetAdminInformation');
+
                     connection.on('ReceiveMessage', message => {
-                        
+                        console.log('Message received: ', message);
+                    })
+
+                    connection.on('ReceiveAdminInformation', info => {
+                        const updatedChats = [];
+                        info.forEach(chat => updatedChats.push(chat));
+
+                        setChats(updatedChats);
+                    })
+
+                    connection.on('UpdateAdminInformation', () => {
+                        console.log('update requested');
+                        connection.send('GetAdminInformation');
                     })
                 })
                 .catch(e => {
@@ -51,4 +68,10 @@ const AdminPageContainer = props => {
     return (<AdminPage {...pageProps} />)
 }
 
-export default AdminPageContainer;
+const mapStateToProps = state => {
+    return {
+        email: state.userState.email,
+    }
+}
+
+export default connect(mapStateToProps, null)(AdminPageContainer);

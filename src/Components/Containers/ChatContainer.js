@@ -36,7 +36,7 @@ const ChatContainer = props => {
 
                         const messagesBlock = document.querySelector("#messages");
                         messagesBlock.scrollTop = messagesBlock.scrollHeight;
-                    })
+                    });
                 })
                 .catch(e => {
                     console.log('Connection failed: ', e);
@@ -83,7 +83,7 @@ const ChatContainer = props => {
     }
 
     return (
-        <Chat {...chatProps}/> 
+            <Chat {...chatProps}/> 
     );
 }
 

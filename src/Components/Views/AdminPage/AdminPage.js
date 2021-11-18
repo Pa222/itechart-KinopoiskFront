@@ -1,6 +1,7 @@
 import React from "react";
 import useStyles from "./styles";
 import PropTypes from 'prop-types';
+import Chat from "./Chat/Chat";
 
 const AdminPage = props => {
     const classes = useStyles();
@@ -12,9 +13,12 @@ const AdminPage = props => {
                     <div className={classes.adminPanel__chats}>
                         {
                             props.chats.length === 0 &&
-                            <h2>Нет новых сообщений</h2>
+                            <h2>Нет активных пользователей</h2>
                         }
-                        <input type="button" value="test" onClick={props.sendMessage}/>
+                        {
+                            props.chats.length > 0 &&
+                            props.chats.map(chat => <Chat key={Date.now() * Math.random()} {...chat} />)
+                        }
                     </div>
                     <div className={classes.adminPanel__currentChat}>
                         {

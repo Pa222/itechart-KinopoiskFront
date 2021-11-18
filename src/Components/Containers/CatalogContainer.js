@@ -25,9 +25,10 @@ const CatalogContainer = (props) => {
 
     const catalogProps = {
         movies: props.movies,
+        userRole: props.userRole,
+        totalPages: props.totalPages,
         page,
         changePage,
-        totalPages: props.totalPages,
         openMoviePage,
     };
 
@@ -40,6 +41,7 @@ const mapStateToProps = state => {
     return {
         movies: state.movieState.movies,
         totalPages: state.movieState.totalPages,
+        userRole: state.userState.role,
     }
 }
 
@@ -53,6 +55,7 @@ CatalogContainer.propTypes = {
     getMovies: PropTypes.func,
     movies: PropTypes.array,
     totalPages: PropTypes.number,
+    userRole: PropTypes.string,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CatalogContainer);

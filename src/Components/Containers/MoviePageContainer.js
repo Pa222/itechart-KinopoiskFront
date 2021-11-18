@@ -17,6 +17,8 @@ const MoviePageContainer = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        setComment('');
+        document.querySelector('textarea').value = "";
         props.addComment({description: comment, movieId: props.id})
     }
     

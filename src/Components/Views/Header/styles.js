@@ -43,6 +43,7 @@ const useStyles = makeStyles({
         position: "absolute",
         width: "100%",
         backgroundColor: "white",
+        zIndex: "10",
     },
     header__searchBox: {
         padding: "5px",

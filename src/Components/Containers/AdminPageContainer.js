@@ -52,11 +52,6 @@ const AdminPageContainer = props => {
 
     const sendMessage = async () => {
         if (connection.connection._connectionStarted){
-            try{
-                await KinopoiskApi.sendMessage({receiverId: 1, senderId: connection.connection.connectionId, message: "Test"});
-            } catch(e){
-                console.log(e);
-            }
         } else{
             alert('Нет подключения к серверу');
         }

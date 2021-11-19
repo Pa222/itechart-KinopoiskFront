@@ -24,3 +24,6 @@ export const deleteCommentRequest = createAction("DELETE_COMMENT_REQUEST");
 export const deleteComment = createAction("DELETE_COMMENT_SUCCESS");
 export const updateRatingRequest = createAction("UPDATE_RATING_REQUEST");
 export const updateRating = createAction("UPDATE_RATING_SUCCESS");
+export const setCurrentChat = createAction("SET_CURRENT_CHAT");
+export const cleanCurrentChat = createAction("CLEAN_CURRENT_CHAT");
+export const setChats = createAction("SET_CHATS");

@@ -10,11 +10,13 @@ import App from './App';
 import UserReducer from './Reducers/UserReducer';
 import FaqReducer from './Reducers/FaqReducer';
 import { userRequest } from './Actions';
+import AdminChatsReducer from './Reducers/AdminChatsReducer';
 
 const rootReducer = combineReducers({
   movieState: MovieReducer,
   userState: UserReducer,
   faqState: FaqReducer,
+  adminChatsState: AdminChatsReducer,
 });
 
 const saga = createSagaMiddleware();

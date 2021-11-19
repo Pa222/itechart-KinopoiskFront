@@ -34,7 +34,7 @@ const AdminPageContainer = props => {
 
                     connection.on('ReceiveAdminInformation', info => {
                         const updatedChats = [];
-                        info.forEach(chat => {updatedChats.push(chat)});
+                        info.forEach(chat => updatedChats.push(chat));
 
                         if (info.length === 0){
                             props.cleanCurrentChat();

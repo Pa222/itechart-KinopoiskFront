@@ -104,6 +104,7 @@ const AdminPageContainer = props => {
 }
 
 const mapStateToProps = state => {
+    console.log({...state.adminChatsState.chats});
     return {
         name: state.userState.name,
         chats: state.adminChatsState.chats,

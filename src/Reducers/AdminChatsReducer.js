@@ -14,7 +14,9 @@ const initialState = {
 };
 
 const updateChatMessages = (state, action) => {
-    state.currentChat.messages = [...action.payload];
+    if (action.payload[0].sender === state.currentChat.sender){
+        state.currentChat.messages = [...action.payload];
+    }
     return {...state};
 }
 

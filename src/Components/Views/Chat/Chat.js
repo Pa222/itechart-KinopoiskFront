@@ -30,6 +30,7 @@ const Chat = props => {
                             onKeyUp={props.handleKeyUp}
                             autoComplete="off"
                             placeholder="Введите сообщение"
+                            maxLength="255"
                         />
                         <div className={classes.chat__sendImgContainer}>
                             <img

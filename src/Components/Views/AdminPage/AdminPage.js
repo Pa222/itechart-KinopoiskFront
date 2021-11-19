@@ -48,6 +48,7 @@ const AdminPage = props => {
                                         name="message" 
                                         autoComplete="off"
                                         placeholder="Введите сообщение"
+                                        maxLength="255"
                                         value={props.message}
                                         onChange={props.handleChange}
                                         onKeyUp={props.handleKeyUp}

@@ -16,6 +16,7 @@ const useStyles = makeStyles({
     container__message: {
         margin: "0 0 5px 10px",
         fontSize: "20px",
+        wordBreak: "break-word",
     },
 });
 

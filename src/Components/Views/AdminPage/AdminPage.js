@@ -27,11 +27,11 @@ const AdminPage = props => {
                     </div>
                     <div className={classes.adminPanel__currentChatContainer}>
                         {
-                            props.currentChat === undefined &&
+                            props.currentChat.sender === '' &&
                             <h3>Выберите чат из списка</h3>
                         }
                         {
-                            props.currentChat !== undefined &&
+                            props.currentChat.sender !== '' &&
                             <div className={classes.currentChat}>
                                 <div className={classes.currentChat__headerContainer}>
                                     <p className={classes.currentChat__header}>{props.currentChat.sender}</p>
@@ -48,12 +48,15 @@ const AdminPage = props => {
                                         name="message" 
                                         autoComplete="off"
                                         placeholder="Введите сообщение"
+                                        value={props.message}
+                                        onChange={props.handleChange}
                                     />
                                     <div className={classes.currentChat__sendImgContainer}>
                                         <img
                                             className={classes.currentChat__sendImg}
                                             src="https://res.cloudinary.com/pa2/image/upload/v1637150966/Static/send_fus324.png" 
                                             alt="Send"
+                                            onClick={props.sendMessage}
                                         />
                                     </div>
                                 </div>
@@ -69,6 +72,8 @@ const AdminPage = props => {
 AdminPage.propTypes = {
     sendMessage: PropTypes.func,
     pickChat: PropTypes.func,
+    handleChange: PropTypes.func,
+    message: PropTypes.string,
     chats: PropTypes.arrayOf(PropTypes.object),
     currentChat: PropTypes.object,
 }

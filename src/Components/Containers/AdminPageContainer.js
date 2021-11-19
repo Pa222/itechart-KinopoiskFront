@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 
 const AdminPageContainer = props => {
     const [connection, setConnection] = useState(null);
+    const [message, setMessage] = useState('');
 
     useEffect(() => {
         const newConnection = new HubConnectionBuilder()
@@ -16,7 +17,6 @@ const AdminPageContainer = props => {
             .build();
 
         setConnection(newConnection);
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -36,6 +36,10 @@ const AdminPageContainer = props => {
                         const updatedChats = [];
                         info.forEach(chat => {updatedChats.push(chat)});
 
+                        if (info.length === 0){
+                            props.cleanCurrentChat();
+                        }
+
                         props.setChats(updatedChats);
                     })
 
@@ -50,11 +54,32 @@ const AdminPageContainer = props => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [connection])
 
+    const handleChange = (e) => {
+        setMessage(e.target.value);
+    }
+
     const sendMessage = async () => {
-        if (connection.connection._connectionStarted){
-        } else{
-            alert('Нет подключения к серверу');
+        const conn = connection.connection;
+        const newMessage = {
+            sender: props.name,
+            receiver: props.currentChat.sender,
+            message,
         }
+
+        if(message !== '' && conn._connectionStarted){
+            await connection.send('SendMessageToUser', newMessage);
+
+            const updatedCurrentChat = props.currentChat;
+            updatedCurrentChat.messages.push(newMessage);
+
+            props.setCurrentChat(updatedCurrentChat);
+
+            const messagesBlock = document.querySelector("#adminMessages");
+            messagesBlock.scrollTop = messagesBlock.scrollHeight;
+        }
+
+        document.querySelector('input[name="message"]').value = '';
+        setMessage('');
     }
 
     const pickChat = (sender) => {
@@ -69,6 +94,8 @@ const AdminPageContainer = props => {
     const pageProps = {
         sendMessage,
         pickChat,
+        handleChange,
+        message,
         chats: props.chats,
         currentChat: props.currentChat,
     }
@@ -78,6 +105,7 @@ const AdminPageContainer = props => {
 
 const mapStateToProps = state => {
     return {
+        name: state.userState.name,
         chats: state.adminChatsState.chats,
         currentChat: state.adminChatsState.currentChat,
     }
@@ -93,6 +121,7 @@ const mapDispatchToProps = dispatch => {
 }
 
 AdminPageContainer.propTypes = {
+    name: PropTypes.string,
     chats: PropTypes.arrayOf(PropTypes.object),
     currentChat: PropTypes.object,
     setChats: PropTypes.func,

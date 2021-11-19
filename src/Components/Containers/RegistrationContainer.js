@@ -5,7 +5,7 @@ import KinopoiskApi from '../../Api/KinopoiskApi';
 import PropTypes from 'prop-types';
 import Registration from '../Views/Registration/Registration';
 
-const RegistrationContainer = (props) => {
+const RegistrationContainer = props => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [repeatPassword, setRepeatPassword] = useState('');

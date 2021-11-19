@@ -5,7 +5,7 @@ import { faqRequest } from "../../Actions";
 import PropTypes from 'prop-types';
 import Faq from "../Views/Faq/Faq";
 
-const FaqContainer = (props) => {
+const FaqContainer = props => {
     useEffect(() => {
         props.getFaq()
     // eslint-disable-next-line react-hooks/exhaustive-deps

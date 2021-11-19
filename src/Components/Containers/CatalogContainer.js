@@ -5,7 +5,7 @@ import { moviesRequest } from "../../Actions";
 import PropTypes from 'prop-types';
 import Catalog from "../Views/Catalog/Catalog";
 
-const CatalogContainer = (props) => {
+const CatalogContainer = props => {
     const [page, setPage] = useState(1);
     const history = useHistory();
 

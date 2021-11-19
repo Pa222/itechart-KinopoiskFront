@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Profile from "../Views/Profile/Profile";
 import { saveUserChangesRequest, uploadAvatarRequest } from "../../Actions";
 
-const ProfileContainer = (props) => {
+const ProfileContainer = props => {
     const [name, setName] = useState(props.name);
     const [phoneNumber, setPhoneNumber] = useState(props.phoneNumber);
     const [gender, setGender] = useState(props.gender);

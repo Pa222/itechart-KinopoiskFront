@@ -5,7 +5,7 @@ import { useHistory } from "react-router";
 import MoviePage from "../Views/MoviePage/MoviePage";
 import { addCommentRequest, deleteCommentRequest, movieRequest, updateRatingRequest } from "../../Actions";
 
-const MoviePageContainer = (props) => {
+const MoviePageContainer = props => {
     const [comment, setComment] = useState('');
     const history = useHistory();
 
@@ -80,6 +80,7 @@ const mapDispatchToProps = (dispatch) => {
 
 MoviePageContainer.propTypes = {
     authorized: PropTypes.bool,
+    id: PropTypes.number,
     title: PropTypes.string,
     image: PropTypes.string,
     createYear: PropTypes.string,

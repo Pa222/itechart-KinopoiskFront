@@ -6,7 +6,7 @@ import KinopoiskApi from "../../Api/KinopoiskApi";
 import Header from '../Views/Header/Header';
 import { cleanUser, movieRequest } from "../../Actions";
 
-const HeaderContainer = (props) => {
+const HeaderContainer = props => {
     const [menuOpened, setMenuOpened] = useState(false);
     const [searchText, setSearchText] = useState('');
     const [searchResults, setSearchResults] = useState([]);

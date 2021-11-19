@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import Login from "../Views/Login/Login";
 import { userRequest } from "../../Actions";
 
-const LoginContainer = (props) => {
+const LoginContainer = props => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');

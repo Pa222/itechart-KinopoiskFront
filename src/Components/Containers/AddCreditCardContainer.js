@@ -17,7 +17,7 @@ const validationSchema = Yup.object().shape({
         .required('Необходим cvc-код'),
 });
 
-const AddCreditCardContainer = (props) => {
+const AddCreditCardContainer = props => {
     const [number, setNumber] = useState('');
     const [expiry, setExpiry] = useState('');
     const [cardHolderName, setCardHolderName] = useState('');

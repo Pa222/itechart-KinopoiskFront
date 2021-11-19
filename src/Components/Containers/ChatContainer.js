@@ -68,7 +68,7 @@ const ChatContainer = props => {
             messages.push(newMessage);
             setMessages([...messages]);
 
-            await connection.send("SendMessage", newMessage);
+            await connection.send("SendMessageToAdmin", newMessage);
 
             const messagesBlock = document.querySelector("#messages");
             messagesBlock.scrollTop = messagesBlock.scrollHeight;

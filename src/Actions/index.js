@@ -27,3 +27,4 @@ export const updateRating = createAction("UPDATE_RATING_SUCCESS");
 export const setCurrentChat = createAction("SET_CURRENT_CHAT");
 export const cleanCurrentChat = createAction("CLEAN_CURRENT_CHAT");
 export const setChats = createAction("SET_CHATS");
+export const updateChatMessages = createAction("UPDATE_CHAT_MESSAGES");

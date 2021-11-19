@@ -2,11 +2,12 @@ import React, {useState, useEffect} from "react";
 import AdminPage from '../Views/AdminPage/AdminPage';
 import {HubConnectionBuilder} from '@microsoft/signalr';
 import KinopoiskApi from "../../Api/KinopoiskApi";
+import { connect } from "react-redux";
+import { cleanCurrentChat, setChats, setCurrentChat, updateChatMessages } from "../../Actions";
+import PropTypes from 'prop-types';
 
 const AdminPageContainer = props => {
     const [connection, setConnection] = useState(null);
-    const [chats, setChats] = useState([]);
-    const [currentChat, setCurrentChat] = useState();
 
     useEffect(() => {
         const newConnection = new HubConnectionBuilder()
@@ -15,6 +16,8 @@ const AdminPageContainer = props => {
             .build();
 
         setConnection(newConnection);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     useEffect(() => {
@@ -25,15 +28,15 @@ const AdminPageContainer = props => {
 
                     connection.send('GetAdminInformation');
 
-                    connection.on('ReceiveMessage', message => {
-                        console.log('Message received: ', message);
+                    connection.on('ReceiveMessages', messages => {
+                        props.updateMessages(messages);
                     })
 
                     connection.on('ReceiveAdminInformation', info => {
                         const updatedChats = [];
-                        info.forEach(chat => updatedChats.push(chat));
+                        info.forEach(chat => {updatedChats.push(chat)});
 
-                        setChats(updatedChats);
+                        props.setChats(updatedChats);
                     })
 
                     connection.on('UpdateAdminInformation', () => {
@@ -44,6 +47,7 @@ const AdminPageContainer = props => {
                     console.log('Connection failed: ', e);
                 })
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [connection])
 
     const sendMessage = async () => {
@@ -59,8 +63,9 @@ const AdminPageContainer = props => {
     }
 
     const pickChat = (sender) => {
-        chats.forEach(chat => {
+        props.chats.forEach(chat => {
             if (chat.sender === sender){
+                props.setCurrentChat(chat);
                 setCurrentChat(chat);
             }
         })
@@ -69,11 +74,36 @@ const AdminPageContainer = props => {
     const pageProps = {
         sendMessage,
         pickChat,
-        chats,
-        currentChat,
+        chats: props.chats,
+        currentChat: props.currentChat,
     }
 
     return (<AdminPage {...pageProps} />)
 }
 
-export default AdminPageContainer;
+const mapStateToProps = state => {
+    return {
+        chats: state.adminChatsState.chats,
+        currentChat: state.adminChatsState.currentChat,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        setChats: chats => dispatch(setChats(chats)),
+        setCurrentChat: chat => dispatch(setCurrentChat(chat)),
+        cleanCurrentChat: () => dispatch(cleanCurrentChat()),
+        updateMessages: (messages) => dispatch(updateChatMessages(messages)),
+    }
+}
+
+AdminPageContainer.propTypes = {
+    chats: PropTypes.arrayOf(PropTypes.object),
+    currentChat: PropTypes.object,
+    setChats: PropTypes.func,
+    setCurrentChat: PropTypes.func,
+    cleanCurrentChat: PropTypes.func,
+    updateMessages: PropTypes.func,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AdminPageContainer);

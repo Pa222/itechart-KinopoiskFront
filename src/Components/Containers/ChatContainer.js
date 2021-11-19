@@ -42,6 +42,11 @@ const ChatContainer = props => {
                     console.log('Connection failed: ', e);
                 })
         }
+        return () => {
+            if(connection){
+                connection.stop();
+            }
+        }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [connection])
 

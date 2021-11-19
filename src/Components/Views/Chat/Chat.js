@@ -27,6 +27,7 @@ const Chat = props => {
                             name="message" 
                             value={props.message}
                             onChange={props.handleChange}
+                            onKeyUp={props.handleKeyUp}
                             autoComplete="off"
                             placeholder="Введите сообщение"
                         />
@@ -60,6 +61,7 @@ Chat.propTypes = {
     toggleChat: PropTypes.func,
     handleChange: PropTypes.func,
     sendMessage: PropTypes.func,
+    handleKeyUp: PropTypes.func,
 }
 
 export default Chat;

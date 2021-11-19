@@ -54,8 +54,14 @@ const AdminPageContainer = props => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [connection])
 
-    const handleChange = (e) => {
+    const handleChange = e => {
         setMessage(e.target.value);
+    }
+
+    const handleKeyUp = e => {
+        if (e.code === "Enter"){
+            sendMessage();
+        }
     }
 
     const sendMessage = async () => {
@@ -95,6 +101,7 @@ const AdminPageContainer = props => {
         sendMessage,
         pickChat,
         handleChange,
+        handleKeyUp,
         message,
         chats: props.chats,
         currentChat: props.currentChat,

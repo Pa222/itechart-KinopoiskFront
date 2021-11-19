@@ -50,6 +50,7 @@ const AdminPage = props => {
                                         placeholder="Введите сообщение"
                                         value={props.message}
                                         onChange={props.handleChange}
+                                        onKeyUp={props.handleKeyUp}
                                     />
                                     <div className={classes.currentChat__sendImgContainer}>
                                         <img
@@ -73,6 +74,7 @@ AdminPage.propTypes = {
     sendMessage: PropTypes.func,
     pickChat: PropTypes.func,
     handleChange: PropTypes.func,
+    handleKeyUp: PropTypes.func,
     message: PropTypes.string,
     chats: PropTypes.arrayOf(PropTypes.object),
     currentChat: PropTypes.object,

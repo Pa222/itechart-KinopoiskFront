@@ -56,7 +56,13 @@ const ChatContainer = props => {
 
     const handleChange = e => setMessage(e.target.value);
 
-    const sendMessage = async (e) => {
+    const handleKeyUp = e => {
+        if (e.code === "Enter"){
+            sendMessage();
+        }
+    }
+
+    const sendMessage = async () => {
         const conn = connection.connection;
         const newMessage = {
             sender: '',
@@ -75,7 +81,6 @@ const ChatContainer = props => {
         }
 
         setMessage('');
-        e.target.value = '';
     }
 
     const chatProps = {
@@ -85,6 +90,7 @@ const ChatContainer = props => {
         toggleChat,
         handleChange,
         sendMessage,
+        handleKeyUp,
     }
 
     return (

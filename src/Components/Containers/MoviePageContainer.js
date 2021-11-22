@@ -10,8 +10,9 @@ const MoviePageContainer = props => {
     const history = useHistory();
 
     useEffect(() => {
-        const id = history.location.pathname.match(/(\d+)/)[0];
-        props.getMovie(id);
+        const id = history.location.pathname.match(/(\d+)/);
+        if (id !== null)
+            props.getMovie(id[0]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

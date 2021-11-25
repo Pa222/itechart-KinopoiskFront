@@ -17,7 +17,6 @@ const AdminPageContainer = props => {
             .build();
 
         setConnection(newConnection);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     useEffect(() => {

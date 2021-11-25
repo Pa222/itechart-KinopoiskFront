@@ -8,7 +8,6 @@ import Faq from "../Views/Faq/Faq";
 const FaqContainer = props => {
     useEffect(() => {
         props.getFaq()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     
     return (

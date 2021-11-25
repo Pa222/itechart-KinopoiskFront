@@ -11,7 +11,6 @@ const CatalogContainer = props => {
 
     useEffect(() => {
         props.getMovies(1)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const changePage = async (e, pageNumber) => {

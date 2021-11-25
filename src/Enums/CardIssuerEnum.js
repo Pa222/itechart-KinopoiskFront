@@ -1,0 +1,11 @@
+export const Electron = /^(4026|417500|4405|4508|4844|4913|4917)\d+$/;
+export const Maestro = /^(5018|5020|5038|5612|5893|6304|6759|6761|6762|6763|0604|6390)\d+$/;
+export const Dankort = /^(5019)\d+$/;
+export const Interpayment = /^(636)\d+$/;
+export const Unionpay = /^(62|88)\d+$/;
+export const Visa = /^4[0-9]{12}(?:[0-9]{3})?$/;
+export const Mastercard = /^5[1-5][0-9]{14}$/;
+export const Amex = /^3[47][0-9]{13}$/;
+export const Diners = /^3(?:0[0-5]|[68][0-9])[0-9]{11}$/;
+export const Discover = /^6(?:011|5[0-9]{2})[0-9]{12}$/;
+export const Jcb = /^(?:2131|1800|35\d{3})\d{11}$/;

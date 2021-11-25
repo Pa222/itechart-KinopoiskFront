@@ -47,7 +47,6 @@ const ChatContainer = props => {
                 connection.stop();
             }
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [connection])
 
     const toggleChat = () => {

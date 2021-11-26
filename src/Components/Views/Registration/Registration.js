@@ -1,12 +1,11 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import {Formik} from 'formik';
+import {Formik, Form, Field} from 'formik';
 import useStyles from "../Login/styles";
 import {RegistrationValidatationSchema} from '../../../Helpers/ValidationSchemes';
 
-const Registration = props => {
+const Registration = ({message, handleSubmit}) => {
     const classes = useStyles();
-    const {email, password, repeatPassword, name, message, handleChange, handleSubmit} = props;
 
     return (
         <div className={classes.wrapper}>
@@ -18,20 +17,16 @@ const Registration = props => {
                 }}
                 onSubmit={handleSubmit}
             >
-                {({handleChange, handleSubmit, handleBlur, errors, touched}) => (
-                <form onSubmit={handleSubmit}>
+                {({ handleSubmit, handleBlur, errors, touched}) => (
+                <Form onSubmit={handleSubmit}>
                     <div className={classes.wrapper__loginFormContainer}>
-                        <input
+                        <Field
                             className={classes.loginFormContainer__input}
                             type="text"
                             name="name"
                             placeholder="Имя"
-                            value={name}
                             onBlur={handleBlur('name')}
-                            onChange={(e) => {
-                                handleChange(e);
-                                props.handleChange(e);
-                            }}
+                            component="input"
                         />
                         {
                             errors.name && touched.name &&
@@ -39,17 +34,13 @@ const Registration = props => {
                                 {errors.name}
                             </div> 
                         }
-                        <input
+                        <Field
                             className={classes.loginFormContainer__input}
                             type="email"
                             name="email"
                             placeholder="E-mail"
-                            value={email}
                             onBlur={handleBlur('email')}
-                            onChange={(e) => {
-                                handleChange(e);
-                                props.handleChange(e);
-                            }}
+                            component="input"
                         />
                         {
                             errors.email && touched.email &&
@@ -57,17 +48,13 @@ const Registration = props => {
                                 {errors.email}
                             </div> 
                         }
-                        <input
+                        <Field
                             className={classes.loginFormContainer__input}
                             type="password"
                             name="password"
                             placeholder="Password"
-                            value={password}
                             onBlur={handleBlur('password')}
-                            onChange={(e) => {
-                                handleChange(e);
-                                props.handleChange(e);
-                            }}
+                            component="input"
                         />
                         {
                             errors.password && touched.password &&
@@ -75,17 +62,13 @@ const Registration = props => {
                                 {errors.password}
                             </div> 
                         }
-                        <input
+                        <Field
                             className={classes.loginFormContainer__input}
                             type="password"
                             name="repeatPassword"
                             placeholder="Repeat password"
-                            value={repeatPassword}
                             onBlur={handleBlur('repeatPassword')}
-                            onChange={(e) => {
-                                handleChange(e);
-                                props.handleChange(e);
-                            }}
+                            component="input"
                         />
                         {
                             errors.repeatPassword && touched.repeatPassword &&
@@ -99,13 +82,14 @@ const Registration = props => {
                                 {message}
                             </div> 
                         }
-                        <input 
+                        <Field 
                             className={[classes.loginFormContainer__input, classes.loginFormContainer__submitButton].join(" ")} 
                             type="submit" 
                             value="Зарегистрироваться"
+                            component="input"
                         />
                     </div>
-                </form>
+                </Form>
             )}
             </Formik>
         </div>

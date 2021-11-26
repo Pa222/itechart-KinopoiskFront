@@ -93,12 +93,12 @@ const Login = props => {
 }
 
 Login.propTypes = {
-    goToRegisterPage: PropTypes.func,
-    handleChange: PropTypes.func,
-    handleSubmit: PropTypes.func,
-    email: PropTypes.string,
-    password: PropTypes.string,
-    errorMessage: PropTypes.string,
+    goToRegisterPage: PropTypes.func.isRequired,
+    handleChange: PropTypes.func.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
+    email: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+    errorMessage: PropTypes.string.isRequired,
 }
 
 export default Login;

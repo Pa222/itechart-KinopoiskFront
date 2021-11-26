@@ -27,10 +27,10 @@ const mapDispatchToProps = dispatch => {
 }
 
 CreditCardContainer.propTypes = {
-    number: PropTypes.string,
-    expiry: PropTypes.string,
-    image: PropTypes.string,
-    deleteCard: PropTypes.func
+    number: PropTypes.string.isRequired,
+    expiry: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    deleteCard: PropTypes.func.isRequired,
 }
 
 export default connect(null, mapDispatchToProps)(CreditCardContainer);

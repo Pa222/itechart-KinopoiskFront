@@ -18,11 +18,11 @@ const Movie = ({image, title, createYear, openMoviePage, id}) => {
 }
 
 Movie.propTypes = {
-    image: PropTypes.string,
-    title: PropTypes.string,
-    createYear: PropTypes.string,
-    openMoviePage: PropTypes.func,
-    id: PropTypes.number,
+    image: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    createYear: PropTypes.string.isRequired,
+    openMoviePage: PropTypes.func.isRequired,
+    id: PropTypes.number.isRequired,
 }
 
 export default Movie;

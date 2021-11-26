@@ -130,13 +130,13 @@ const Registration = props => {
 };
 
 Registration.propTypes = {
-    email: PropTypes.string,
-    password: PropTypes.string,
-    repeatPassword: PropTypes.string,
-    name: PropTypes.string,
-    message: PropTypes.string,
-    handleChange: PropTypes.func,
-    handleSubmit: PropTypes.func,
+    email: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+    repeatPassword: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    message: PropTypes.string.isRequired,
+    handleChange: PropTypes.func.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
 }
 
 export default Registration;

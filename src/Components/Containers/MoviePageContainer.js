@@ -79,19 +79,19 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 MoviePageContainer.propTypes = {
-    authorized: PropTypes.bool,
-    id: PropTypes.number,
-    title: PropTypes.string,
-    image: PropTypes.string,
-    createYear: PropTypes.string,
-    description: PropTypes.string,
-    genres: PropTypes.arrayOf(PropTypes.string),
-    commets: PropTypes.arrayOf(PropTypes.object),
-    rating: PropTypes.number,
-    getMovie: PropTypes.func,
-    addComment: PropTypes.func,
-    deleteComment: PropTypes.func,
-    updateRating: PropTypes.func,
+    authorized: PropTypes.bool.isRequired,
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    createYear: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+    commets: PropTypes.arrayOf(PropTypes.object).isRequired,
+    rating: PropTypes.number.isRequired,
+    getMovie: PropTypes.func.isRequired,
+    addComment: PropTypes.func.isRequired,
+    deleteComment: PropTypes.func.isRequired,
+    updateRating: PropTypes.func.isRequired,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MoviePageContainer);

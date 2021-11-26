@@ -72,12 +72,12 @@ const AdminPage = props => {
 }
 
 AdminPage.propTypes = {
-    sendMessage: PropTypes.func,
-    pickChat: PropTypes.func,
-    handleChange: PropTypes.func,
-    message: PropTypes.string,
-    chats: PropTypes.arrayOf(PropTypes.object),
-    currentChat: PropTypes.object,
+    sendMessage: PropTypes.func.isRequired,
+    pickChat: PropTypes.func.isRequired,
+    handleChange: PropTypes.func.isRequired,
+    message: PropTypes.string.isRequired,
+    chats: PropTypes.arrayOf(PropTypes.object).isRequired,
+    currentChat: PropTypes.object.isRequired,
 }
 
 export default AdminPage;

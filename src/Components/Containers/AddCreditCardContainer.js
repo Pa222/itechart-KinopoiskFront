@@ -77,7 +77,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 AddCreditCardContainer.propTypes = {
-    addCreditCard: PropTypes.func,
+    addCreditCard: PropTypes.func.isRequired,
 }
 
 

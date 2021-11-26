@@ -1,12 +1,13 @@
 import React from "react";
 import useStyles from "./styles";
 import { useHistory } from "react-router";
+import {root} from '../../../Enums/Routes';
 
 const ErrorPage = () => {
     const history = useHistory();
     
     const goToMainPage = () => {
-        history.push('/');
+        history.push(root);
     }
     
     const classes = useStyles();

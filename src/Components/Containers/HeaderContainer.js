@@ -83,12 +83,12 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 HeaderContainer.propTypes = {
-    avatar: PropTypes.string,
-    authorized: PropTypes.bool,
-    moviesByTitle: PropTypes.array,
-    getMovie: PropTypes.func,
-    getMoviesByTitle: PropTypes.func,
-    logout: PropTypes.func,
+    avatar: PropTypes.string.isRequired,
+    authorized: PropTypes.bool.isRequired,
+    moviesByTitle: PropTypes.array.isRequired,
+    getMovie: PropTypes.func.isRequired,
+    getMoviesByTitle: PropTypes.func.isRequired,
+    logout: PropTypes.func.isRequired,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer);

@@ -99,7 +99,7 @@ const mapStateToProps = state => {
 }
 
 ChatContainer.propTypes = {
-    name: PropTypes.string,
+    name: PropTypes.string.isRequired,
 }
 
 export default connect(mapStateToProps, null)(ChatContainer);

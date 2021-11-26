@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import useStyles from "./styles";
 import 'react-credit-cards/es/styles-compiled.css';
 
-const AddCreditCard = (props) => {
+const AddCreditCard = props => {
     const classes = useStyles();
     const {
         number,
@@ -100,19 +100,19 @@ const AddCreditCard = (props) => {
 }
 
 AddCreditCard.propTypes = {
-    number: PropTypes.string,
-    expiry: PropTypes.string,
-    cardHolderName: PropTypes.string,
-    cvc: PropTypes.string,
-    focus: PropTypes.string,
-    numberMaxLength: PropTypes.number,
-    message: PropTypes.string,
-    setNumberMaxLength: PropTypes.func,
-    handleFocus: PropTypes.func,
-    handleChange: PropTypes.func,
-    addCard: PropTypes.func,
-    validateNumberOnlyInput: PropTypes.func,
-    validateTextOnlyInput: PropTypes.func,
+    number: PropTypes.string.isRequired,
+    expiry: PropTypes.string.isRequired,
+    cardHolderName: PropTypes.string.isRequired,
+    cvc: PropTypes.string.isRequired,
+    focus: PropTypes.string.isRequired,
+    numberMaxLength: PropTypes.number.isRequired,
+    message: PropTypes.string.isRequired,
+    setNumberMaxLength: PropTypes.func.isRequired,
+    handleFocus: PropTypes.func.isRequired,
+    handleChange: PropTypes.func.isRequired,
+    addCard: PropTypes.func.isRequired,
+    validateNumberOnlyInput: PropTypes.func.isRequired,
+    validateTextOnlyInput: PropTypes.func.isRequired,
 }
 
 export default AddCreditCard;

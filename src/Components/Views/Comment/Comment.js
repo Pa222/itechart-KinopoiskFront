@@ -32,11 +32,11 @@ const Comment = props => {
 }
 
 Comment.propTypes = {
-    description: PropTypes.string,
-    userName: PropTypes.string,
-    userAvatar: PropTypes.string,
-    deleteComment: PropTypes.func,
-    id: PropTypes.number,
+    description: PropTypes.string.isRequired,
+    userName: PropTypes.string.isRequired,
+    userAvatar: PropTypes.string.isRequired,
+    deleteComment: PropTypes.func.isRequired,
+    id: PropTypes.number.isRequired,
 }
 
 export default Comment;

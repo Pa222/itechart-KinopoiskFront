@@ -45,12 +45,12 @@ const Catalog = (props) => {
 }
 
 Catalog.propTypes = {
-    openMoviePage: PropTypes.func,
-    movies: PropTypes.array,
-    page: PropTypes.number,
-    totalPages: PropTypes.number,
-    changePage: PropTypes.func,
-    userRole: PropTypes.string,
+    openMoviePage: PropTypes.func.isRequired,
+    movies: PropTypes.array.isRequired,
+    page: PropTypes.number.isRequired,
+    totalPages: PropTypes.number.isRequired,
+    changePage: PropTypes.func.isRequired,
+    userRole: PropTypes.string.isRequired,
 }
 
 export default Catalog;

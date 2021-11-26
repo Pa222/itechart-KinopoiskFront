@@ -53,7 +53,7 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 LoginContainer.propTypes = {
-    updateUser: PropTypes.func,
+    updateUser: PropTypes.func.isRequired,
 }
 
 export default connect(null, mapDispatchToProps)(LoginContainer);

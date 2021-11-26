@@ -15,8 +15,8 @@ const Faq = ({question, answer}) => {
 }
 
 Faq.propTypes = {
-    question: PropTypes.string,
-    answer: PropTypes.string,
+    question: PropTypes.string.isRequired,
+    answer: PropTypes.string.isRequired,
 }
 
 export default Faq;

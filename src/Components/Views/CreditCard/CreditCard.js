@@ -25,10 +25,10 @@ const CreditCard = ({number, expiry, image, handleDeleteCreditCard}) => {
 }
 
 CreditCard.propTypes = {
-    number: PropTypes.string,
-    expiry: PropTypes.string,
-    image: PropTypes.string,
-    handleDeleteCreditCard: PropTypes.func,
+    number: PropTypes.string.isRequired,
+    expiry: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    handleDeleteCreditCard: PropTypes.func.isRequired,
 }
 
 export default CreditCard;

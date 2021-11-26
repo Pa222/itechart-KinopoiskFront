@@ -1,5 +1,6 @@
 import React from "react";
 import useStyles from "./styles";
+import PropTypes from 'prop-types';
 
 const Chat = ({pickChat, sender, isReplied}) => {
     const classes = useStyles();
@@ -19,6 +20,12 @@ const Chat = ({pickChat, sender, isReplied}) => {
             }
         </div>
     );
+}
+
+Chat.propTypes = {
+    pickChat: PropTypes.func.isRequired,
+    sender: PropTypes.string.isRequired,
+    isReplied: PropTypes.bool.isRequired,
 }
 
 export default Chat;

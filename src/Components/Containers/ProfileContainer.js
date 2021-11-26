@@ -82,13 +82,13 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 ProfileContainer.propTypes = {
-    name: PropTypes.string,
-    phoneNumber: PropTypes.string,
-    creditCards: PropTypes.array,
-    gender: PropTypes.string,
-    avatar: PropTypes.string,
-    updateUser: PropTypes.func,
-    uploadAvatar: PropTypes.func,
+    name: PropTypes.string.isRequired,
+    phoneNumber: PropTypes.string.isRequired,
+    creditCards: PropTypes.array.isRequired,
+    gender: PropTypes.string.isRequired,
+    avatar: PropTypes.string.isRequired,
+    updateUser: PropTypes.func.isRequired,
+    uploadAvatar: PropTypes.func.isRequired,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainer);

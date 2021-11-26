@@ -70,18 +70,18 @@ const Header = props => {
 }
 
 Header.propTypes = {
-    menuOpened: PropTypes.bool,
-    moviesByTitle: PropTypes.array,
-    avatar: PropTypes.string,
-    authorized: PropTypes.bool,
-    toggleMenu: PropTypes.func,
-    logout: PropTypes.func,
-    goToMainPage: PropTypes.func,
-    goToFaqPage: PropTypes.func,
-    goToMoviePage: PropTypes.func,
-    goToLoginPage: PropTypes.func,
-    goToProfilePage: PropTypes.func,
-    handleSearchBoxChange: PropTypes.func,
+    menuOpened: PropTypes.bool.isRequired,
+    moviesByTitle: PropTypes.array.isRequired,
+    avatar: PropTypes.string.isRequired,
+    authorized: PropTypes.bool.isRequired,
+    toggleMenu: PropTypes.func.isRequired,
+    logout: PropTypes.func.isRequired,
+    goToMainPage: PropTypes.func.isRequired,
+    goToFaqPage: PropTypes.func.isRequired,
+    goToMoviePage: PropTypes.func.isRequired,
+    goToLoginPage: PropTypes.func.isRequired,
+    goToProfilePage: PropTypes.func.isRequired,
+    handleSearchBoxChange: PropTypes.func.isRequired,
 }
 
 export default Header;

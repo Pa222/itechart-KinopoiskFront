@@ -119,13 +119,13 @@ const mapDispatchToProps = dispatch => {
 }
 
 AdminPageContainer.propTypes = {
-    name: PropTypes.string,
-    chats: PropTypes.arrayOf(PropTypes.object),
-    currentChat: PropTypes.object,
-    setChats: PropTypes.func,
-    setCurrentChat: PropTypes.func,
-    cleanCurrentChat: PropTypes.func,
-    updateMessages: PropTypes.func,
+    name: PropTypes.string.isRequired,
+    chats: PropTypes.arrayOf(PropTypes.object).isRequired,
+    currentChat: PropTypes.object.isRequired,
+    setChats: PropTypes.func.isRequired,
+    setCurrentChat: PropTypes.func.isRequired,
+    cleanCurrentChat: PropTypes.func.isRequired,
+    updateMessages: PropTypes.func.isRequired,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminPageContainer);

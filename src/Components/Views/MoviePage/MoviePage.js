@@ -89,19 +89,19 @@ const MoviePage = props => {
 }
 
 MoviePage.propTypes = {
-    authorized: PropTypes.bool,
-    title: PropTypes.string,
-    image: PropTypes.string,
-    createYear: PropTypes.string,
-    description: PropTypes.string,
-    genres: PropTypes.arrayOf(PropTypes.string),
-    comment: PropTypes.string,
-    comments: PropTypes.arrayOf(PropTypes.object),
-    rating: PropTypes.number,
-    handleSubmit: PropTypes.func,
-    handleChange: PropTypes.func,
-    handleDeleteComment: PropTypes.func,
-    handleRatingChange: PropTypes.func,
+    authorized: PropTypes.bool.isRequired,
+    title: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    createYear: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+    comment: PropTypes.string.isRequired,
+    comments: PropTypes.arrayOf(PropTypes.object).isRequired,
+    rating: PropTypes.number.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
+    handleChange: PropTypes.func.isRequired,
+    handleDeleteComment: PropTypes.func.isRequired,
+    handleRatingChange: PropTypes.func.isRequired,
         
 }
 

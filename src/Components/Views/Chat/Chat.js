@@ -56,12 +56,12 @@ const Chat = props => {
 }
 
 Chat.propTypes = {
-    opened: PropTypes.bool,
-    message: PropTypes.string,
-    messages: PropTypes.arrayOf(PropTypes.object),
-    toggleChat: PropTypes.func,
-    handleChange: PropTypes.func,
-    sendMessage: PropTypes.func,
+    opened: PropTypes.bool.isRequired,
+    message: PropTypes.string.isRequired,
+    messages: PropTypes.arrayOf(PropTypes.object).isRequired,
+    toggleChat: PropTypes.func.isRequired,
+    handleChange: PropTypes.func.isRequired,
+    sendMessage: PropTypes.func.isRequired,
 }
 
 export default Chat;

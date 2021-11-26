@@ -14,8 +14,8 @@ const Message = ({sender, message}) => {
 }
 
 Message.propTypes = {
-    sender: PropTypes.string,
-    message: PropTypes.string,
+    sender: PropTypes.string.isRequired,
+    message: PropTypes.string.isRequired,
 }
 
 export default Message;

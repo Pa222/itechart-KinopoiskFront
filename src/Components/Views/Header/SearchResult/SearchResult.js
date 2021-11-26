@@ -17,10 +17,10 @@ const SearchResult = ({goToMoviePage, title, createYear, id}) => {
 }
 
 SearchResult.propTypes = {
-    goToMoviePage: PropTypes.func,
-    title: PropTypes.string,
-    createYear: PropTypes.string,
-    id: PropTypes.number,
+    goToMoviePage: PropTypes.func.isRequired,
+    title: PropTypes.string.isRequired,
+    createYear: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
 }
 
 export default SearchResult;

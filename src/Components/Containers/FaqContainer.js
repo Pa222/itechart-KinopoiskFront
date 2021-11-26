@@ -35,8 +35,8 @@ const mapDispatchToProps = dispatch => {
 }
 
 FaqContainer.propTypes = {
-    faq: PropTypes.arrayOf(PropTypes.object),
-    getFaq: PropTypes.func,
+    faq: PropTypes.arrayOf(PropTypes.object).isRequired,
+    getFaq: PropTypes.func.isRequired,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(FaqContainer);

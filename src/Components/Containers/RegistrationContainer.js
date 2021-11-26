@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import KinopoiskApi from '../../Api/KinopoiskApi';
+import { EMAIL, NAME, PASSWORD, REPEAT_PASSWORD, REGISTRATION_SUCCESS, REGISTRATION_FAIL } from '../../Enums/StringConsts';
 import Registration from '../Views/Registration/Registration';
 
 const RegistrationContainer = () => {
@@ -12,18 +13,18 @@ const RegistrationContainer = () => {
     const handleChange = (e) => {
         const { name, value } = e.target;
 
-        name === "name" && setName(value);
-        name === "email" && setEmail(value);
-        name === "password" && setPassword(value);
-        name === "repeatPassword" && setRepeatPassword(value);
+        name === NAME && setName(value);
+        name === EMAIL && setEmail(value);
+        name === PASSWORD && setPassword(value);
+        name === REPEAT_PASSWORD && setRepeatPassword(value);
     }
 
     const handleSubmit = async () => {
         if (await KinopoiskApi.register({email, password, name})){
-            setMessage("Регистрация удалась. Перейдите на страницу авторизации, чтобы войти.")
+            setMessage(REGISTRATION_SUCCESS);
             return
         }
-        setMessage("Регистрация не удалась. Пользователь с таким e-mail уже существует.");
+        setMessage(REGISTRATION_FAIL);
     }
 
     const registrationProps = {

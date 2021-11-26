@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 import Profile from "../Views/Profile/Profile";
 import { saveUserChangesRequest, uploadAvatarRequest } from "../../Actions";
+import {CHANGES_SAVED, GENDER, NAME, PHONE_NUMBER} from '../../Enums/StringConsts';
 
 const ProfileContainer = props => {
     const {name: nameProp, phoneNumber: phoneNumberProp, creditCards, gender: genderProp, avatar, updateUser, uploadAvatar} = props;
@@ -16,9 +17,9 @@ const ProfileContainer = props => {
     const handleChange = (e) => {
         const {name, value} = e.target;
         
-        name === "name" && setName(value);
-        name === "phoneNumber" && setPhoneNumber(value);
-        name === "gender" && setGender(value);
+        name === NAME && setName(value);
+        name === PHONE_NUMBER && setPhoneNumber(value);
+        name === GENDER && setGender(value);
     }
 
     const handleFileUpload = async (e) => {
@@ -39,7 +40,7 @@ const ProfileContainer = props => {
             gender,
             creditCards
         })
-        setMessage('Изменения сохранены');
+        setMessage(CHANGES_SAVED);
     }
     
     const toggleAddCreditCardContainer = () => setShowAddCreditCard(!showAddCreditCard);

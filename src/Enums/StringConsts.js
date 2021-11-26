@@ -1,0 +1,15 @@
+export const NUMBER = "number";
+export const EXPIRY = "expiry";
+export const CARD_HOLDER_NAME = "cardHolderName";
+export const CVC = "cvc";
+export const EMAIL = "email";
+export const PASSWORD = "password";
+export const REPEAT_PASSWORD = "repeatPassword";
+export const NAME = "name";
+export const PHONE_NUMBER = "phoneNumber";
+export const GENDER = "gender";
+export const CONNECTION_FAIL = "Connection failed: ";
+export const INCORRECT_AUTH = "Incorrect username or password";
+export const CHANGES_SAVED = "Changes saved";
+export const REGISTRATION_SUCCESS = "Registration success. Go to login page to auth";
+export const REGISTRATION_FAIL = "Registration fail. User with this email does not exists";

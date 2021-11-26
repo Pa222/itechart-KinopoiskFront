@@ -30,10 +30,8 @@ const HeaderContainer = ({getMovie, logout: logoutProp, avatar, authorized}) => 
     const goToMoviePage = (id) => {
         history.push(movie + id);
         
-    getMovie(id);
-
+        getMovie(id);
         setSearchText('');
-        document.querySelector("input[name='searchbox']").value = "";
     }
 
     const goToMainPage = () => history.push(root);

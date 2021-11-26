@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import Login from "../Views/Login/Login";
 import { userRequest } from "../../Actions";
 import {register, root} from '../../Enums/Routes';
+import { EMAIL, INCORRECT_AUTH, PASSWORD } from "../../Enums/StringConsts";
 
 const LoginContainer = ({updateUser}) => {
     const [email, setEmail] = useState('');
@@ -15,13 +16,13 @@ const LoginContainer = ({updateUser}) => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        name === "email" && setEmail(value);
-        name === "password" && setPassword(value);
+        name === EMAIL && setEmail(value);
+        name === PASSWORD && setPassword(value);
     }
 
     const handleSubmit = async () => {
         if (!await KinopoiskApi.auth(email, password)){
-            setErrorMessage("Неверные логин или пароль");
+            setErrorMessage(INCORRECT_AUTH);
             return;
         }
         updateUser();

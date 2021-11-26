@@ -5,6 +5,8 @@ import KinopoiskApi from "../../Api/KinopoiskApi";
 import { connect } from "react-redux";
 import { cleanCurrentChat, setChats, setCurrentChat, updateChatMessages } from "../../Actions";
 import PropTypes from 'prop-types';
+import { CONNECT_AS_ADMIN, GET_ADMIN_INFORMATION, RECEIVE_ADMIN_INFORMATION, RECEIVE_MESSAGES, SEND_MESSAGE_TO_USER, UPDATE_ADMIN_INFORMATION } from "../../Enums/ConnectionHubMethods";
+import { CONNECTION_FAIL } from "../../Enums/StringConsts";
 
 const AdminPageContainer = ({updateMessages, name, currentChat, chats, setChats, setCurrentChat, cleanCurrentChat}) => {
     const [connection, setConnection] = useState(null);
@@ -23,15 +25,15 @@ const AdminPageContainer = ({updateMessages, name, currentChat, chats, setChats,
         if (connection){
             connection.start()
                 .then(() => {
-                    connection.send('ConnectAsAdmin', {token: KinopoiskApi.getToken()});
+                    connection.send(CONNECT_AS_ADMIN, {token: KinopoiskApi.getToken()});
 
-                    connection.send('GetAdminInformation');
+                    connection.send(GET_ADMIN_INFORMATION);
 
-                    connection.on('ReceiveMessages', messages => {
+                    connection.on(RECEIVE_MESSAGES, messages => {
                         updateMessages(messages);
                     })
 
-                    connection.on('ReceiveAdminInformation', info => {
+                    connection.on(RECEIVE_ADMIN_INFORMATION, info => {
                         const updatedChats = [];
                         info.forEach(chat => updatedChats.push(chat));
 
@@ -42,12 +44,12 @@ const AdminPageContainer = ({updateMessages, name, currentChat, chats, setChats,
                         setChats(updatedChats);
                     })
 
-                    connection.on('UpdateAdminInformation', () => {
-                        connection.send('GetAdminInformation');
+                    connection.on(UPDATE_ADMIN_INFORMATION, () => {
+                        connection.send(GET_ADMIN_INFORMATION);
                     })
                 })
                 .catch(e => {
-                    console.log('Connection failed: ', e);
+                    console.log(CONNECTION_FAIL, e);
                 })
         }
     }, [connection])
@@ -71,7 +73,7 @@ const AdminPageContainer = ({updateMessages, name, currentChat, chats, setChats,
         }
 
         if(message !== '' && conn._connectionStarted){
-            await connection.send('SendMessageToUser', newMessage);
+            await connection.send(SEND_MESSAGE_TO_USER, newMessage);
 
             const updatedCurrentChat = currentChat;
             updatedCurrentChat.messages.push(newMessage);
@@ -82,7 +84,6 @@ const AdminPageContainer = ({updateMessages, name, currentChat, chats, setChats,
             messagesBlock.scrollTop = messagesBlock.scrollHeight;
         }
 
-        document.querySelector('input[name="message"]').value = '';
         setMessage('');
     }
 

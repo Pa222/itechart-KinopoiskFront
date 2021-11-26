@@ -5,6 +5,7 @@ import AddCreditCard from "../Views/AddCreditCard/AddCreditCard";
 import { addCreditCardRequest } from "../../Actions";
 import { detectCardIssuer, validateCard } from '../../Helpers/CreditCardHelper';
 import { validateNumberOnlyInput, validateTextOnlyInput } from "../../Helpers/InputHelpers";
+import {CARD_HOLDER_NAME, CVC, EXPIRY, NUMBER} from '../../Enums/StringConsts';
 
 const AddCreditCardContainer = ({addCreditCard}) => {
     const [number, setNumber] = useState('');
@@ -20,10 +21,10 @@ const AddCreditCardContainer = ({addCreditCard}) => {
     const handleChange = e => {
         const { name, value } = e.target;
         
-        name === "number" && setNumber(value);
-        name === "expiry" && setExpiry(value);
-        name === "cardHolderName" && setCardHolderName(value);
-        name === "cvc" && setCvc(value);
+        name === NUMBER && setNumber(value);
+        name === EXPIRY && setExpiry(value);
+        name === CARD_HOLDER_NAME && setCardHolderName(value);
+        name === CVC && setCvc(value);
     }
 
     const addCard = () => {
@@ -42,7 +43,7 @@ const AddCreditCardContainer = ({addCreditCard}) => {
             setCardHolderName('');
             setCvc('');
             setMessage('');
-            setFocus("number")
+            setFocus(NUMBER)
         } else{
             setMessage(errMessage);
         }

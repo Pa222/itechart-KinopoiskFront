@@ -6,7 +6,7 @@ import SearchResult from "./SearchResult/SearchResult";
 const Header = props => {
     const classes = useStyles();
     const {menuOpened,
-        searchResults,
+        moviesByTitle,
         avatar,
         authorized,
         toggleMenu,
@@ -35,8 +35,8 @@ const Header = props => {
                     ></input>
                     <div className={classes.header__searchResults}>
                         {
-                            searchResults !== [] &&
-                            searchResults.map(result => {
+                            moviesByTitle !== [] &&
+                            moviesByTitle.map(result => {
                                 return (
                                     <SearchResult key={result.id} goToMoviePage={goToMoviePage} {...result} />
                                 );
@@ -71,7 +71,7 @@ const Header = props => {
 
 Header.propTypes = {
     menuOpened: PropTypes.bool,
-    searchResults: PropTypes.array,
+    moviesByTitle: PropTypes.array,
     avatar: PropTypes.string,
     authorized: PropTypes.bool,
     toggleMenu: PropTypes.func,

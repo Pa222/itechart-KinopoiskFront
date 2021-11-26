@@ -3,6 +3,8 @@ import { createAction } from 'redux-actions';
 export const moviesRequest = createAction("MOVIES_REQUEST");
 export const getMovies = createAction("MOVIES_SUCCESS");
 export const movieRequest = createAction("MOVIE_REQUEST");
+export const moviesByTitleRequest = createAction("MOVIES_BY_TITLE_REQUEST");
+export const getMoviesByTitle = createAction("MOVIES_BY_TITLE_SUCCESS");
 export const getMovie = createAction("MOVIE_SUCCESS");
 export const faqRequest = createAction("FAQ_REQUEST");
 export const getFaq = createAction("FAQ_SUCCESS");

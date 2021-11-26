@@ -14,6 +14,7 @@ const emptyCurrentMovie = {
 
 const initialState = {
   movies: [],
+  searchMovies: [],
   totalPages: 1,
   currentMovie: emptyCurrentMovie,
 };
@@ -36,7 +37,7 @@ const changeComment = (state, action) => {
 const MovieReducer = handleActions(
   {
     [actions.moviesRequest]: (state, action) => state,
-    [actions.getMovies]: (state, action) => { return {currentMovie: emptyCurrentMovie, ...action.payload} },
+    [actions.getMovies]: (state, action) => { return {currentMovie: emptyCurrentMovie, searchMovies: [], ...action.payload} },
     [actions.movieRequest]: (state, action) => state,
     [actions.getMovie]: getMovie,
     [actions.addCommentRequest]: (state, action) => state,
@@ -45,6 +46,8 @@ const MovieReducer = handleActions(
     [actions.deleteComment]: changeComment,
     [actions.updateRatingRequest]: (state, action) => state,
     [actions.updateRating]: getMovie,
+    [actions.moviesByTitleRequest]: (state, action) => state,
+    [actions.getMoviesByTitle]: (state, action) => { return {...state, searchMovies: action.payload.slice(0, 5)} },
   },
   initialState
 );

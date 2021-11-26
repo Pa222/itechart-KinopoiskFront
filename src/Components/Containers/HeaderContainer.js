@@ -2,26 +2,16 @@ import React, {useState, useEffect} from "react";
 import { useHistory } from "react-router";
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
-import KinopoiskApi from "../../Api/KinopoiskApi";
 import Header from '../Views/Header/Header';
-import { cleanUser, movieRequest } from "../../Actions";
+import { cleanUser, movieRequest, moviesByTitleRequest } from "../../Actions";
 import {faq, login, movie, profile, root} from '../../Enums/Routes';
 
-const HeaderContainer = ({getMovie, logout: logoutProp, avatar, authorized}) => {
+const HeaderContainer = ({getMovie, getMoviesByTitle, moviesByTitle, logout: logoutProp, avatar, authorized}) => {
     const [menuOpened, setMenuOpened] = useState(false);
     const [searchText, setSearchText] = useState('');
-    const [searchResults, setSearchResults] = useState([]);
     const history = useHistory();
 
-    useEffect(() => {
-        (async () => {
-            let response = await KinopoiskApi.getMoviesByTitle(searchText);
-            if (response === null){
-                return;
-            }
-            setSearchResults(response.slice(0, 5));
-        })();
-    }, [searchText]);
+    useEffect(() => { getMoviesByTitle(searchText); }, [searchText]);
 
     const toggleMenu = () => setMenuOpened(!menuOpened);
 
@@ -29,7 +19,6 @@ const HeaderContainer = ({getMovie, logout: logoutProp, avatar, authorized}) => 
 
     const goToMoviePage = (id) => {
         history.push(movie + id);
-        
         getMovie(id);
         setSearchText('');
     }
@@ -59,7 +48,7 @@ const HeaderContainer = ({getMovie, logout: logoutProp, avatar, authorized}) => 
 
     const headerProps = {
         menuOpened,
-        searchResults,
+        moviesByTitle,
         avatar,
         authorized,
         toggleMenu,
@@ -81,12 +70,14 @@ const mapStateToProps = (state) => {
     return {
         avatar: state.userState.avatar,
         authorized: state.userState.authorized,
+        moviesByTitle: state.movieState.searchMovies,
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         getMovie: (id) => dispatch(movieRequest(id)),
+        getMoviesByTitle: (title) => dispatch(moviesByTitleRequest(title)),
         logout: () => dispatch(cleanUser()),
     }
 }
@@ -94,7 +85,9 @@ const mapDispatchToProps = (dispatch) => {
 HeaderContainer.propTypes = {
     avatar: PropTypes.string,
     authorized: PropTypes.bool,
+    moviesByTitle: PropTypes.array,
     getMovie: PropTypes.func,
+    getMoviesByTitle: PropTypes.func,
     logout: PropTypes.func,
 }
 

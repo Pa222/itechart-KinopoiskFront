@@ -7,6 +7,12 @@ export function* moviesRequest(payload){
     })
 }
 
+export function* moviesByTitleRequest(payload){
+    return yield call(() => {
+        return KinopoiskApi.getMoviesByTitle(payload);
+    })
+}
+
 export function* movieRequest(payload){
     return yield call(() => {
         return KinopoiskApi.getMovieById(payload);

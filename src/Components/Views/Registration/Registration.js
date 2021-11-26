@@ -21,8 +21,9 @@ const validatationSchema = Yup.object().shape({
         .required('Обязательно'),
 })
 
-const Registration = (props) => {
+const Registration = props => {
     const classes = useStyles();
+    const {email, password, repeatPassword, name, message, handleChange, handleSubmit} = props;
 
     return (
         <div className={classes.wrapper}>
@@ -32,7 +33,7 @@ const Registration = (props) => {
                     email: '',
                     password: '',
                 }}
-                onSubmit={props.handleSubmit}
+                onSubmit={handleSubmit}
             >
                 {({handleChange, handleSubmit, handleBlur, errors, touched}) => (
                 <form onSubmit={handleSubmit}>
@@ -42,7 +43,7 @@ const Registration = (props) => {
                             type="text"
                             name="name"
                             placeholder="Имя"
-                            value={props.name}
+                            value={name}
                             onBlur={handleBlur('name')}
                             onChange={(e) => {
                                 handleChange(e);
@@ -60,7 +61,7 @@ const Registration = (props) => {
                             type="email"
                             name="email"
                             placeholder="E-mail"
-                            value={props.email}
+                            value={email}
                             onBlur={handleBlur('email')}
                             onChange={(e) => {
                                 handleChange(e);
@@ -78,7 +79,7 @@ const Registration = (props) => {
                             type="password"
                             name="password"
                             placeholder="Password"
-                            value={props.password}
+                            value={password}
                             onBlur={handleBlur('password')}
                             onChange={(e) => {
                                 handleChange(e);
@@ -96,7 +97,7 @@ const Registration = (props) => {
                             type="password"
                             name="repeatPassword"
                             placeholder="Repeat password"
-                            value={props.repeatPassword}
+                            value={repeatPassword}
                             onBlur={handleBlur('repeatPassword')}
                             onChange={(e) => {
                                 handleChange(e);
@@ -110,9 +111,9 @@ const Registration = (props) => {
                             </div> 
                         }
                         {
-                            props.message !== '' &&
+                            message !== '' &&
                             <div className={classes.errorMessage}>
-                                {props.message}
+                                {message}
                             </div> 
                         }
                         <input 

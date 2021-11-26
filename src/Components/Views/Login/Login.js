@@ -14,9 +14,9 @@ const validatationSchema = Yup.object().shape({
         .required(),
 })
 
-const Login = (props) => {
-
+const Login = props => {
     const classes = useStyles();
+    const {goToRegisterPage, handleChange, handleSubmit, email, password, errorMessage} = props;
 
     return (
         <div className={classes.wrapper}>
@@ -26,7 +26,7 @@ const Login = (props) => {
                     email: '',
                     password: '',
                 }}
-                onSubmit={props.handleSubmit}
+                onSubmit={handleSubmit}
             >
                 {({handleChange, handleSubmit, handleBlur, errors, touched}) => (
                 <form onSubmit={handleSubmit}>
@@ -36,7 +36,7 @@ const Login = (props) => {
                             type="email"
                             name="email"
                             placeholder="E-mail"
-                            value={props.email}
+                            value={email}
                             onBlur={handleBlur('email')}
                             onChange={(e) => {
                                 handleChange(e);
@@ -54,7 +54,7 @@ const Login = (props) => {
                             type="password"
                             name="password"
                             placeholder="Password"
-                            value={props.password}
+                            value={password}
                             onBlur={handleBlur('password')}
                             onChange={(e) => {
                                 handleChange(e);
@@ -70,7 +70,7 @@ const Login = (props) => {
                         {
                             props.errorMessage !== '' &&
                             <div className={classes.errorMessage}>
-                                {props.errorMessage}
+                                {errorMessage}
                             </div> 
                         }
                         <input 
@@ -82,7 +82,7 @@ const Login = (props) => {
                             className={classes.loginFormContainer__registerButton}
                             type="button"
                             value="Нет аккаунта? Зарегистрироваться"
-                            onClick={props.goToRegisterPage}
+                            onClick={goToRegisterPage}
                         />
                     </div>
                 </form>

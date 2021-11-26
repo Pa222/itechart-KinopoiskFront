@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { cleanCurrentChat, setChats, setCurrentChat, updateChatMessages } from "../../Actions";
 import PropTypes from 'prop-types';
 
-const AdminPageContainer = props => {
+const AdminPageContainer = ({updateMessages, name, currentChat, chats, setChats, setCurrentChat, cleanCurrentChat}) => {
     const [connection, setConnection] = useState(null);
     const [message, setMessage] = useState('');
 
@@ -28,7 +28,7 @@ const AdminPageContainer = props => {
                     connection.send('GetAdminInformation');
 
                     connection.on('ReceiveMessages', messages => {
-                        props.updateMessages(messages);
+                        updateMessages(messages);
                     })
 
                     connection.on('ReceiveAdminInformation', info => {
@@ -36,10 +36,10 @@ const AdminPageContainer = props => {
                         info.forEach(chat => updatedChats.push(chat));
 
                         if (info.length === 0){
-                            props.cleanCurrentChat();
+                            cleanCurrentChat();
                         }
 
-                        props.setChats(updatedChats);
+                        setChats(updatedChats);
                     })
 
                     connection.on('UpdateAdminInformation', () => {
@@ -65,18 +65,18 @@ const AdminPageContainer = props => {
     const sendMessage = async () => {
         const conn = connection.connection;
         const newMessage = {
-            sender: props.name,
-            receiver: props.currentChat.sender,
+            sender: name,
+            receiver: currentChat.sender,
             message,
         }
 
         if(message !== '' && conn._connectionStarted){
             await connection.send('SendMessageToUser', newMessage);
 
-            const updatedCurrentChat = props.currentChat;
+            const updatedCurrentChat = currentChat;
             updatedCurrentChat.messages.push(newMessage);
 
-            props.setCurrentChat(updatedCurrentChat);
+            setCurrentChat(updatedCurrentChat);
 
             const messagesBlock = document.querySelector("#adminMessages");
             messagesBlock.scrollTop = messagesBlock.scrollHeight;
@@ -87,9 +87,8 @@ const AdminPageContainer = props => {
     }
 
     const pickChat = (sender) => {
-        props.chats.forEach(chat => {
+        chats.forEach(chat => {
             if (chat.sender === sender){
-                props.setCurrentChat(chat);
                 setCurrentChat(chat);
             }
         })
@@ -101,8 +100,8 @@ const AdminPageContainer = props => {
         handleChange,
         handleKeyUp,
         message,
-        chats: props.chats,
-        currentChat: props.currentChat,
+        chats: chats,
+        currentChat: currentChat,
     }
 
     return (<AdminPage {...pageProps} />)

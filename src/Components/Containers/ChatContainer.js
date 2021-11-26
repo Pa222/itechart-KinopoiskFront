@@ -5,7 +5,7 @@ import Chat from "../Views/Chat/Chat";
 import KinopoiskApi from '../../Api/KinopoiskApi';
 import {HubConnectionBuilder} from '@microsoft/signalr';
 
-const ChatContainer = props => {
+const ChatContainer = ({name}) => {
     const [connection, setConnection] = useState(null);
     const [opened, setOpened] = useState(false);
     const [message, setMessage] = useState('');
@@ -68,7 +68,7 @@ const ChatContainer = props => {
             message,
         }
         if(message !== '' && conn._connectionStarted){
-            props.name !== '' ? newMessage.sender = props.name : newMessage.sender = conn.connectionId;
+            name !== '' ? newMessage.sender = name : newMessage.sender = conn.connectionId;
 
             messages.push(newMessage);
             setMessages([...messages]);

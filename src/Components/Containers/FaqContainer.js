@@ -5,19 +5,17 @@ import { faqRequest } from "../../Actions";
 import PropTypes from 'prop-types';
 import Faq from "../Views/Faq/Faq";
 
-const FaqContainer = props => {
-    useEffect(() => {
-        props.getFaq()
-    }, [])
+const FaqContainer = ({faq, getFaq}) => {
+    useEffect(() => { getFaq() }, [])
     
     return (
         <div>
             {
-                props.faq.length > 0 &&
-                props.faq.map(faq => <Faq key={faq.id} {...faq} />)
+                faq.length > 0 &&
+                faq.map(faq => <Faq key={faq.id} {...faq} />)
             }
             {
-                props.faq.length === 0 &&
+                faq.length === 0 &&
                 <ClipLoader color="gray"/>
             }
         </div>

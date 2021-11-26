@@ -6,6 +6,7 @@ import Message from "../Chat/Message/Message";
 
 const AdminPage = props => {
     const classes = useStyles();
+    const {sendMessage, pickChat, handleChange, handleKeyUp, message, chats, currentChat} = props; 
 
     return (
         <div className={classes.wrapper}>
@@ -13,32 +14,32 @@ const AdminPage = props => {
                 <div className={classes.wrapper__adminPanel}>
                     <div className={classes.adminPanel__chats}>
                         {
-                            props.chats.length === 0 &&
+                            chats.length === 0 &&
                             <h2>Нет активных пользователей</h2>
                         }
                         {
-                            props.chats.length > 0 &&
-                            props.chats.map(chat => <Chat 
+                            chats.length > 0 &&
+                            chats.map(chat => <Chat 
                                                         key={Date.now() * Math.random()} 
-                                                        pickChat={props.pickChat} 
+                                                        pickChat={pickChat} 
                                                         {...chat} 
                                                     />)
                         }
                     </div>
                     <div className={classes.adminPanel__currentChatContainer}>
                         {
-                            props.currentChat.sender === '' &&
+                            currentChat.sender === '' &&
                             <h3>Выберите чат из списка</h3>
                         }
                         {
-                            props.currentChat.sender !== '' &&
+                            currentChat.sender !== '' &&
                             <div className={classes.currentChat}>
                                 <div className={classes.currentChat__headerContainer}>
-                                    <p className={classes.currentChat__header}>{props.currentChat.sender}</p>
+                                    <p className={classes.currentChat__header}>{currentChat.sender}</p>
                                 </div>
                                 <div id="adminMessages" className={classes.currentChat__messagesContainer}>
                                     {
-                                        props.currentChat.messages.map((message, i) => <Message key={Date.now() * Math.random()} {...message}/>)
+                                        currentChat.messages.map((message, i) => <Message key={Date.now() * Math.random()} {...message}/>)
                                     }
                                 </div>
                                 <div className={classes.currentChat__inputContainer}>
@@ -49,16 +50,16 @@ const AdminPage = props => {
                                         autoComplete="off"
                                         placeholder="Введите сообщение"
                                         maxLength="255"
-                                        value={props.message}
-                                        onChange={props.handleChange}
-                                        onKeyUp={props.handleKeyUp}
+                                        value={message}
+                                        onChange={handleChange}
+                                        onKeyUp={handleKeyUp}
                                     />
                                     <div className={classes.currentChat__sendImgContainer}>
                                         <img
                                             className={classes.currentChat__sendImg}
                                             src="https://res.cloudinary.com/pa2/image/upload/v1637150966/Static/send_fus324.png" 
                                             alt="Send"
-                                            onClick={props.sendMessage}
+                                            onClick={sendMessage}
                                         />
                                     </div>
                                 </div>

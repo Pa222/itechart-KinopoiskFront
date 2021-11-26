@@ -5,16 +5,16 @@ import { moviesRequest } from "../../Actions";
 import PropTypes from 'prop-types';
 import Catalog from "../Views/Catalog/Catalog";
 
-const CatalogContainer = props => {
+const CatalogContainer = ({getMovies, movies, userRole, totalPages}) => {
     const [page, setPage] = useState(1);
     const history = useHistory();
 
     useEffect(() => {
-        props.getMovies(1)
+        getMovies(1)
     }, [])
 
     const changePage = async (e, pageNumber) => {
-        props.getMovies(pageNumber);
+        getMovies(pageNumber);
         setPage(pageNumber);
     }
 
@@ -23,9 +23,9 @@ const CatalogContainer = props => {
     }
 
     const catalogProps = {
-        movies: props.movies,
-        userRole: props.userRole,
-        totalPages: props.totalPages,
+        movies: movies,
+        userRole: userRole,
+        totalPages: totalPages,
         page,
         changePage,
         openMoviePage,

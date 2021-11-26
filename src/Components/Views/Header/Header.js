@@ -3,13 +3,25 @@ import PropTypes from 'prop-types';
 import useStyles from "./styles";
 import SearchResult from "./SearchResult/SearchResult";
 
-const Header = (props) => {
+const Header = props => {
     const classes = useStyles();
+    const {menuOpened,
+        searchResults,
+        avatar,
+        authorized,
+        toggleMenu,
+        logout,
+        goToMainPage,
+        goToFaqPage,
+        goToMoviePage,
+        goToLoginPage,
+        goToProfilePage,
+        handleSearchBoxChange} = props;
 
     return (
         <header className={classes.header}>
             <div className={classes.header__content}>
-                <div className={classes.header__title} onClick={props.goToMainPage}>
+                <div className={classes.header__title} onClick={goToMainPage}>
                     <p>КиноПоиск</p>
                 </div>
                 <div className={classes.header__searchBoxContainer}>
@@ -19,14 +31,14 @@ const Header = (props) => {
                         name="searchbox"
                         placeholder="Поиск"
                         autoComplete="off"
-                        onChange={props.handleSearchBoxChange}
+                        onChange={handleSearchBoxChange}
                     ></input>
                     <div className={classes.header__searchResults}>
                         {
-                            props.searchResults !== [] &&
-                            props.searchResults.map(result => {
+                            searchResults !== [] &&
+                            searchResults.map(result => {
                                 return (
-                                    <SearchResult key={result.id} goToMoviePage={props.goToMoviePage} {...result} />
+                                    <SearchResult key={result.id} goToMoviePage={goToMoviePage} {...result} />
                                 );
                             })
                         }
@@ -34,21 +46,21 @@ const Header = (props) => {
                 </div>
                 <div>
                     <div>
-                        <img className={classes.header__userImage} src={props.avatar} alt="User" onClick={props.toggleMenu}></img>
+                        <img className={classes.header__userImage} src={avatar} alt="User" onClick={toggleMenu}></img>
                     </div>
                     {
-                        props.menuOpened && !props.authorized &&
+                        menuOpened && !authorized &&
                             <div className={classes.header__menu}>
-                                <input className={classes.header__menuItem} type="button" onClick={props.goToFaqPage} value="FAQ"></input>
-                                <input className={classes.header__menuItem} type="button" value="Войти" onClick={props.goToLoginPage}></input>
+                                <input className={classes.header__menuItem} type="button" onClick={goToFaqPage} value="FAQ"></input>
+                                <input className={classes.header__menuItem} type="button" value="Войти" onClick={goToLoginPage}></input>
                             </div>
                     }
                     {
-                        props.menuOpened && props.authorized &&
+                        menuOpened && authorized &&
                         <div className={classes.header__menu}>
-                            <input className={classes.header__menuItem} type="button" onClick={props.goToProfilePage} value="Профиль"></input>
-                            <input className={classes.header__menuItem} type="button" onClick={props.goToFaqPage} value="FAQ"></input>
-                            <input className={classes.header__menuItem} type="button" value="Выйти" onClick={props.logout}></input>
+                            <input className={classes.header__menuItem} type="button" onClick={goToProfilePage} value="Профиль"></input>
+                            <input className={classes.header__menuItem} type="button" onClick={goToFaqPage} value="FAQ"></input>
+                            <input className={classes.header__menuItem} type="button" value="Выйти" onClick={logout}></input>
                         </div>
                     }
                 </div>
@@ -59,7 +71,6 @@ const Header = (props) => {
 
 Header.propTypes = {
     menuOpened: PropTypes.bool,
-    searchText: PropTypes.string,
     searchResults: PropTypes.array,
     avatar: PropTypes.string,
     authorized: PropTypes.bool,

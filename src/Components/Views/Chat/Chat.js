@@ -5,19 +5,20 @@ import Message from "./Message/Message";
 
 const Chat = props => {
     const classes = useStyles();
+    const {opened, message, messages, toggleChat, handleChange,sendMessage, handleKeyUp} = props;
 
     return (
         <div className={classes.container}>
             {
-                props.opened &&
+                opened &&
                 <div className={classes.container__chat}>
                     <div className={classes.chat__header}>
                         <p className={classes.chat__headerText}>Чат с администрацией</p>
                     </div>
                     <div id="messages" className={classes.chat__messagesContainer}>
                         {
-                            props.messages.length > 0 &&
-                            props.messages.map((message, i) => <Message key={Date.now() * Math.random()} {...message}/>)
+                            messages.length > 0 &&
+                            messages.map((message, i) => <Message key={Date.now() * Math.random()} {...message}/>)
                         }
                     </div>
                     <div className={classes.chat__inputContainer}>
@@ -25,9 +26,9 @@ const Chat = props => {
                             className={classes.chat__input}
                             type="text"
                             name="message" 
-                            value={props.message}
-                            onChange={props.handleChange}
-                            onKeyUp={props.handleKeyUp}
+                            value={message}
+                            onChange={handleChange}
+                            onKeyUp={handleKeyUp}
                             autoComplete="off"
                             placeholder="Введите сообщение"
                             maxLength="255"
@@ -37,7 +38,7 @@ const Chat = props => {
                                 className={classes.chat__sendImg}
                                 src="https://res.cloudinary.com/pa2/image/upload/v1637150966/Static/send_fus324.png" 
                                 alt="Send"
-                                onClick={props.sendMessage}
+                                onClick={sendMessage}
                             />
                         </div>
                     </div>
@@ -48,7 +49,7 @@ const Chat = props => {
                     className={classes.container__image} 
                     src="https://res.cloudinary.com/pa2/image/upload/v1637148195/Static/chat_ved61h.png" 
                     alt="Chat" 
-                    onClick={props.toggleChat}
+                    onClick={toggleChat}
                 />
             </div>
         </div>

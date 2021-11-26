@@ -4,16 +4,14 @@ import CreditCard from "../Views/CreditCard/CreditCard";
 import {connect} from 'react-redux';
 import { deleteCreditCardRequest } from "../../Actions";
 
-const CreditCardContainer = props => {
+const CreditCardContainer = ({number, expiry, image, deleteCard}) => {
     
-    const handleDeleteCreditCard = () => {
-        props.deleteCard(props.number);
-    }
+    const handleDeleteCreditCard = () => { deleteCard(number); }
     
     const creditCardProps = {
-        number: props.number,
-        expiry: props.expiry,
-        image: props.image,
+        number,
+        expiry,
+        image,
         handleDeleteCreditCard,
     }
     return (

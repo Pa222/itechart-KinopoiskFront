@@ -19,28 +19,40 @@ const validationSchema = Yup.object().shape({
         .oneOf(["Male", "Female", "Undefined"])
 });
 
-const Profile = (props) => {
+const Profile = props => {
     const classes = useStyles();
+    const {
+        name, 
+        phoneNumber, 
+        creditCards, 
+        gender, 
+        avatar, 
+        showAddCreditCard, 
+        message, 
+        saveChanges, 
+        handleChange, 
+        toggleAddCreditCardContainer, 
+        handleFileUpload} = props;
 
     return (
         <div className={classes.wrapper}>
             <div className={classes.wrapper__profileContainer}>
                 <div className={classes.profileContainer__avatarContainer}>
-                    <img className={classes.profileContainer__avatar} src={props.avatar} alt="Avatar"></img>
+                    <img className={classes.profileContainer__avatar} src={avatar} alt="Avatar"></img>
                     <input
                         id="avatar"
                         className={classes.profileContainer__editButton} 
                         type="file" 
-                        onChange={props.handleFileUpload}
+                        onChange={handleFileUpload}
                     />
                     <input 
                         className={classes.profileContainer__editButton} 
                         type="button" 
                         value="Сохранить изменения"
-                        onClick={props.saveChanges}
+                        onClick={saveChanges}
                     />
                     <div className={classes.errorMessage}>
-                        {props.message}
+                        {message}
                     </div> 
                 </div>
                 <Formik
@@ -60,7 +72,7 @@ const Profile = (props) => {
                                         className={classes.profileContainer__informationValue}
                                         name="name"
                                         type="text" 
-                                        value={props.name}
+                                        value={name}
                                         onBlur={handleBlur('name')}
                                         onChange={(e) => {
                                             handleChange(e);
@@ -80,7 +92,7 @@ const Profile = (props) => {
                                         className={classes.profileContainer__informationValue} 
                                         name="phoneNumber"
                                         type="text"
-                                        value={props.phoneNumber}
+                                        value={phoneNumber}
                                         onBlur={handleBlur('phoneNumber')}
                                         onChange={(e) => {
                                             handleChange(e);
@@ -99,7 +111,7 @@ const Profile = (props) => {
                                     <select 
                                         className={classes.profileContainer__informationValue}
                                         name="gender"
-                                        value={props.gender}
+                                        value={gender}
                                         onBlur={handleBlur('gender')}
                                         onChange={(e) => {
                                             handleChange(e);
@@ -121,17 +133,17 @@ const Profile = (props) => {
                                     <label className={classes.profileContainer__inforamtionKey}>Кредитные карты: </label>
                                     <div className={classes.profileContainer__cardsContainer}>
                                         {
-                                            props.creditCards.length !== 0 &&
+                                            creditCards.length !== 0 &&
                                             <div>
                                                 {
-                                                    props.creditCards.map((card, i) => <CreditCardContainer key={i} {...card} />)
+                                                    creditCards.map((card, i) => <CreditCardContainer key={i} {...card} />)
                                                 }
                                             </div>
                                         }
                                     </div>
-                                    <input type="button" value="Добавление новой карты" onClick={props.toggleAddCreditCardContainer}></input>
+                                    <input type="button" value="Добавление новой карты" onClick={toggleAddCreditCardContainer}></input>
                                     {
-                                        props.showAddCreditCard && 
+                                        showAddCreditCard && 
                                         <AddCreditCardContainer/>
                                     }
                                 </div>

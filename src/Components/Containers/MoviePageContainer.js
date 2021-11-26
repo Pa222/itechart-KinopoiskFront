@@ -8,46 +8,45 @@ import { addCommentRequest, deleteCommentRequest, movieRequest, updateRatingRequ
 const MoviePageContainer = props => {
     const [comment, setComment] = useState('');
     const history = useHistory();
+    const {authorized, id, title, image, createYear, description, genres, comments, rating, getMovie, addComment, deleteComment, updateRating} = props;
 
     useEffect(() => {
         const id = history.location.pathname.match(/(\d+)/);
         if (id !== null)
-            props.getMovie(id[0]);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+            getMovie(id[0]);
     }, []);
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setComment('');
-        document.querySelector('textarea').value = "";
-        props.addComment({description: comment, movieId: props.id})
+        addComment({description: comment, movieId: id})
     }
     
     const handleChange = (e) => {
         setComment(e.target.value);
     }
 
-    const deleteComment = (id) => {
-        props.deleteComment({id, movieId: props.id})
+    const handleDeleteComment = (id) => {
+        deleteComment({id, movieId: id})
     }
 
     const handleRatingChange = (e) => {
-        props.updateRating({value: e.target.value, movieId: props.id})
+        updateRating({value: e.target.value, movieId: id})
     }
 
     const moviePageProps = {
-        authorized: props.authorized,
-        title: props.title,
-        image: props.image,
-        createYear: props.createYear,
-        description: props.description,
-        genres: props.genres,
-        comments: props.comments,
+        authorized,
+        title,
+        image,
+        createYear,
+        description,
+        genres,
+        comments,
         comment,
-        rating: props.rating,
+        rating,
         handleSubmit,
         handleChange,
-        deleteComment,
+        handleDeleteComment,
         handleRatingChange,
     }
 

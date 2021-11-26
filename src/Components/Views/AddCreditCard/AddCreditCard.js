@@ -6,19 +6,33 @@ import 'react-credit-cards/es/styles-compiled.css';
 
 const AddCreditCard = (props) => {
     const classes = useStyles();
+    const {
+        number,
+        expiry,
+        cardHolderName,
+        cvc, 
+        focus, 
+        numberMaxLength, 
+        message, 
+        setNumberMaxLength, 
+        handleFocus, 
+        handleChange, 
+        addCard, 
+        validateNumberOnlyInput, 
+        validateTextOnlyInput} = props;
 
     return (
         <div className={classes.wrapper}>
             <div className={classes.container}>
                 <div>
                     <Cards
-                        cvc={props.cvc}
-                        expiry={props.expiry}
-                        focused={props.focus}
-                        name={props.cardHolderName}
-                        number={props.number}
+                        cvc={cvc}
+                        expiry={expiry}
+                        focused={focus}
+                        name={cardHolderName}
+                        number={number}
                         callback={(info, isValid) => {
-                            props.setNumberMaxLength(info.maxLength);
+                            setNumberMaxLength(info.maxLength);
                         }}
                     />
                 </div>
@@ -28,11 +42,11 @@ const AddCreditCard = (props) => {
                         type="tel"
                         name="number"
                         placeholder="Номер карты"
-                        maxLength={props.numberMaxLength}
-                        onKeyPress={e => props.validateNumberOnlyInput(e)}
-                        value={props.number}
-                        onChange={props.handleChange}
-                        onFocus={props.handleFocus}
+                        maxLength={numberMaxLength}
+                        onKeyPress={e => validateNumberOnlyInput(e)}
+                        value={number}
+                        onChange={handleChange}
+                        onFocus={handleFocus}
                     />
                     <input
                         className={classes.container__input}
@@ -40,10 +54,10 @@ const AddCreditCard = (props) => {
                         name="cardHolderName"
                         placeholder="Имя держателя карты"
                         maxLength="26"
-                        onKeyPress={e => props.validateTextOnlyInput(e)}
-                        value={props.cardHolderName}
-                        onChange={props.handleChange}
-                        onFocus={props.handleFocus}
+                        onKeyPress={e => validateTextOnlyInput(e)}
+                        value={cardHolderName}
+                        onChange={handleChange}
+                        onFocus={handleFocus}
                     />
                     <input
                         className={classes.container__input}
@@ -51,10 +65,10 @@ const AddCreditCard = (props) => {
                         name="expiry"
                         placeholder="MM/YY Expiry"
                         maxLength="4"
-                        onKeyPress={e => props.validateNumberOnlyInput(e)}
-                        value={props.expiry}
-                        onChange={props.handleChange}
-                        onFocus={props.handleFocus}
+                        onKeyPress={e => validateNumberOnlyInput(e)}
+                        value={expiry}
+                        onChange={handleChange}
+                        onFocus={handleFocus}
                     />
                     <input
                         className={classes.container__input}
@@ -62,21 +76,21 @@ const AddCreditCard = (props) => {
                         name="cvc"
                         placeholder="cvc"
                         maxLength="3"
-                        onKeyPress={e => props.validateNumberOnlyInput(e)}
-                        value={props.cvc}
-                        onChange={props.handleChange}
-                        onFocus={props.handleFocus}
+                        onKeyPress={e => validateNumberOnlyInput(e)}
+                        value={cvc}
+                        onChange={handleChange}
+                        onFocus={handleFocus}
                     />
                     <input
                         className={classes.container__submit__input}
                         type="button"
                         value="Добавить новую карту"
-                        onClick={props.addCreditCard}
+                        onClick={addCard}
                     />
                     {
-                        props.message !== '' &&
+                        message !== '' &&
                         <div className={classes.errorMessage}>
-                            {props.message}
+                            {message}
                         </div> 
                     }
                 </div>
@@ -96,7 +110,7 @@ AddCreditCard.propTypes = {
     setNumberMaxLength: PropTypes.func,
     handleFocus: PropTypes.func,
     handleChange: PropTypes.func,
-    addCreditCard: PropTypes.func,
+    addCard: PropTypes.func,
     validateNumberOnlyInput: PropTypes.func,
     validateTextOnlyInput: PropTypes.func,
 }

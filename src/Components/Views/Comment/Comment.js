@@ -5,26 +5,27 @@ import { useSelector } from "react-redux";
 
 const Comment = props => {
     const classes = useStyles();
+    const {description, userName, userAvatar, deleteComment, id} = props;
     const author = useSelector(state => state.userState.name);
 
     const handleDelete = () => {
-        props.deleteComment(props.id)
+        deleteComment(id)
     }
 
     return (
         <div className={classes.container}>
             <div>
-                <img className={classes.container__image} src={props.userAvatar} alt="UserAvatar"></img>
+                <img className={classes.container__image} src={userAvatar} alt="UserAvatar"></img>
             </div>
             <div className={classes.container__comment}>
                 <div className={classes.container__commentHeader}>
-                    <h3 className={classes.container__commentName}>{props.userName}</h3>
+                    <h3 className={classes.container__commentName}>{userName}</h3>
                     {
-                        props.userName === author &&
+                        userName === author &&
                         <input className={classes.conatiner__deleteCommentButton} type="button" onClick={handleDelete} value="Удалить" />
                     }
                 </div>
-                <p className={classes.container__commentDescription}>{props.description}</p>
+                <p className={classes.container__commentDescription}>{description}</p>
             </div>
         </div>
     );

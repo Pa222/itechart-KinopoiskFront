@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import Login from "../Views/Login/Login";
 import { userRequest } from "../../Actions";
 
-const LoginContainer = props => {
+const LoginContainer = ({updateUser}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
@@ -23,7 +23,7 @@ const LoginContainer = props => {
             setErrorMessage("Неверные логин или пароль");
             return;
         }
-        props.updateUser();
+        updateUser();
         setErrorMessage("");
         history.push("/");
     }

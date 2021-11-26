@@ -5,16 +5,16 @@ import Profile from "../Views/Profile/Profile";
 import { saveUserChangesRequest, uploadAvatarRequest } from "../../Actions";
 
 const ProfileContainer = props => {
-    const [name, setName] = useState(props.name);
-    const [phoneNumber, setPhoneNumber] = useState(props.phoneNumber);
-    const [gender, setGender] = useState(props.gender);
+    const {name: nameProp, phoneNumber: phoneNumberProp, creditCards, gender: genderProp, avatar, updateUser, uploadAvatar} = props;
+    const [name, setName] = useState(nameProp);
+    const [phoneNumber, setPhoneNumber] = useState(phoneNumberProp);
+    const [gender, setGender] = useState(genderProp);
     const [showAddCreditCard, setShowAddCreditCard] = useState(false);
     const [message, setMessage] = useState('');
 
     
     const handleChange = (e) => {
-        const name = e.target.name;
-        const value = e.target.value;
+        const {name, value} = e.target;
         
         name === "name" && setName(value);
         name === "phoneNumber" && setPhoneNumber(value);
@@ -27,17 +27,17 @@ const ProfileContainer = props => {
         const formData = new FormData();
         formData.append('avatar', file, file.name);
 
-        props.uploadAvatar(formData);
+        uploadAvatar(formData);
 
         e.target.files = null;
     }
 
     const saveChanges = () => {
-        props.updateUser({
+        updateUser({
             name,
             phoneNumber,
             gender,
-            creditCards: props.creditCards
+            creditCards
         })
         setMessage('Изменения сохранены');
     }
@@ -47,9 +47,9 @@ const ProfileContainer = props => {
     const profileProps = {
         name,
         phoneNumber,
-        creditCards: props.creditCards,
+        creditCards,
         gender,
-        avatar: props.avatar,
+        avatar,
         showAddCreditCard,
         message,
         saveChanges,

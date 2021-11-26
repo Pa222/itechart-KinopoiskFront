@@ -1,11 +1,8 @@
 import React, {useState} from 'react';
-import {connect} from 'react-redux';
-import { userRequest } from '../../Actions';
 import KinopoiskApi from '../../Api/KinopoiskApi';
-import PropTypes from 'prop-types';
 import Registration from '../Views/Registration/Registration';
 
-const RegistrationContainer = props => {
+const RegistrationContainer = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [repeatPassword, setRepeatPassword] = useState('');
@@ -44,14 +41,4 @@ const RegistrationContainer = props => {
     );
 };
 
-const mapDispatchToProps = dispatch => {
-    return {
-        getUser: () => dispatch(userRequest()),
-    }
-}
-
-RegistrationContainer.propTypes = {
-    getUser: PropTypes.func,
-}
-
-export default connect(null, mapDispatchToProps)(RegistrationContainer);
+export default RegistrationContainer;

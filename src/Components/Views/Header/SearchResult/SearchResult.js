@@ -1,18 +1,26 @@
 import React from "react";
 import useStyles from "./styles";
+import PropTypes from 'prop-types';
 
-const SearchResult = (props) => {
+const SearchResult = ({goToMoviePage, title, createYear, id}) => {
 
     const handleClick = () => {
-        props.goToMoviePage(props.id);
+        goToMoviePage(id);
     }
 
     const classes = useStyles();
     return (
         <div className={classes.searchResult} onClick={handleClick}>
-            <p>{props.title} ({props.createYear})</p>
+            <p>{title} ({createYear})</p>
         </div>
     );
+}
+
+SearchResult.propTypes = {
+    goToMoviePage: PropTypes.func,
+    title: PropTypes.string,
+    createYear: PropTypes.string,
+    id: PropTypes.number,
 }
 
 export default SearchResult;

@@ -6,7 +6,7 @@ import KinopoiskApi from "../../Api/KinopoiskApi";
 import Header from '../Views/Header/Header';
 import { cleanUser, movieRequest } from "../../Actions";
 
-const HeaderContainer = props => {
+const HeaderContainer = ({getMovie, logout: logoutProp, avatar, authorized}) => {
     const [menuOpened, setMenuOpened] = useState(false);
     const [searchText, setSearchText] = useState('');
     const [searchResults, setSearchResults] = useState([]);
@@ -29,7 +29,7 @@ const HeaderContainer = props => {
     const goToMoviePage = (id) => {
         history.push(`/movie/${id}`);
         
-        props.getMovie(id);
+    getMovie(id);
 
         setSearchText('');
         document.querySelector("input[name='searchbox']").value = "";
@@ -54,16 +54,15 @@ const HeaderContainer = props => {
 
     const logout = () => {
         history.push('/');
-        props.logout();
+        logoutProp();
         toggleMenu();
     }
 
     const headerProps = {
         menuOpened,
-        searchText,
         searchResults,
-        avatar: props.avatar,
-        authorized: props.authorized,
+        avatar,
+        authorized,
         toggleMenu,
         logout,
         goToMainPage,

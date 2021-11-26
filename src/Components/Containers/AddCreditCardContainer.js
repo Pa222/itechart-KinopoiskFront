@@ -6,7 +6,7 @@ import { addCreditCardRequest } from "../../Actions";
 import { detectCardIssuer, validateCard } from '../../Helpers/CreditCardHelper';
 import { validateNumberOnlyInput, validateTextOnlyInput } from "../../Helpers/InputHelpers";
 
-const AddCreditCardContainer = props => {
+const AddCreditCardContainer = ({addCreditCard}) => {
     const [number, setNumber] = useState('');
     const [expiry, setExpiry] = useState('');
     const [cardHolderName, setCardHolderName] = useState('');
@@ -26,12 +26,12 @@ const AddCreditCardContainer = props => {
         name === "cvc" && setCvc(value);
     }
 
-    const addCreditCard = () => {
+    const addCard = () => {
         const card = {number, cardHolderName, expiry, cvc};
         const errMessage = validateCard(card);
 
         if (!errMessage){
-            props.addCreditCard({
+            addCreditCard({
                 ...card,
                  expiry: expiry.slice(0, 2) + '/' + expiry.slice(2),
                  issuer: detectCardIssuer(number),
@@ -42,7 +42,7 @@ const AddCreditCardContainer = props => {
             setCardHolderName('');
             setCvc('');
             setMessage('');
-            setFocus('number')
+            setFocus("number")
         } else{
             setMessage(errMessage);
         }
@@ -59,7 +59,7 @@ const AddCreditCardContainer = props => {
         setNumberMaxLength,
         handleFocus,
         handleChange,
-        addCreditCard,
+        addCard,
         validateNumberOnlyInput,
         validateTextOnlyInput,
     }

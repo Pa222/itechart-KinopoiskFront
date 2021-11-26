@@ -8,16 +8,18 @@ import ChatContainer from '../../Containers/ChatContainer';
 
 const Catalog = (props) => {
     const classes = useStyles();
+    const {movies, page, totalPages, changePage, userRole, openMoviePage} = props;
+
     return (
         <div className={classes.wrapper}>
             <div className={classes.wrapper__catalogContainer}>
                 <div className={classes.wrapper__catalog}>
                     {
-                        props.movies.length > 0 &&
-                        props.movies.map(movie => 
+                        movies.length > 0 &&
+                        movies.map(movie => 
                             <Movie 
                                 key={movie.id} 
-                                openMoviePage={props.openMoviePage} 
+                                openMoviePage={openMoviePage} 
                                 {...movie}
                             />)
                     }
@@ -28,14 +30,14 @@ const Catalog = (props) => {
                 </div>
                 <Pagination 
                     className={classes.wrapper__pagination}
-                    count={props.totalPages} 
+                    count={totalPages} 
                     shape="rounded"
-                    page={props.page}
-                    onChange={props.changePage}
+                    page={page}
+                    onChange={changePage}
                 />
             </div>
             {
-                props.userRole !== "Admin" &&
+                userRole !== "Admin" &&
                 <ChatContainer/>
             }
         </div>
@@ -43,7 +45,7 @@ const Catalog = (props) => {
 }
 
 Catalog.propTypes = {
-    isLoading: PropTypes.bool,
+    openMoviePage: PropTypes.func,
     movies: PropTypes.array,
     page: PropTypes.number,
     totalPages: PropTypes.number,

@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { useHistory } from "react-router";
 import MoviePage from "../Views/MoviePage/MoviePage";
 import { addCommentRequest, deleteCommentRequest, movieRequest, updateRatingRequest } from "../../Actions";
+import { NUMBERS } from "../../Enums/Regex";
 
 const MoviePageContainer = props => {
     const [comment, setComment] = useState('');
@@ -11,7 +12,7 @@ const MoviePageContainer = props => {
     const {authorized, id, title, image, createYear, description, genres, comments, rating, getMovie, addComment, deleteComment, updateRating} = props;
 
     useEffect(() => {
-        const id = history.location.pathname.match(/(\d+)/);
+        const id = history.location.pathname.match(NUMBERS);
         if (id !== null)
             getMovie(id[0]);
     }, []);

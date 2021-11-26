@@ -1,18 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types';
 import {Formik} from 'formik';
-import * as Yup from 'yup';
 import useStyles from './styles';
-
-const validatationSchema = Yup.object().shape({
-    email: Yup.string()
-        .min(6, 'Минимальная длина: 6 символов')
-        .matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, 'Введите настоящий e-mail')
-        .required('Обязательно'),
-    password: Yup.string()
-        .min(6, 'Минимальная длина: 6 символоа')
-        .required(),
-})
+import {LoginValidatationSchema} from '../../../Helpers/ValidationSchemes';
 
 const Login = props => {
     const classes = useStyles();
@@ -21,7 +11,7 @@ const Login = props => {
     return (
         <div className={classes.wrapper}>
             <Formik
-                validationSchema={validatationSchema}
+                validationSchema={LoginValidatationSchema}
                 initialValues={{
                     email: '',
                     password: '',

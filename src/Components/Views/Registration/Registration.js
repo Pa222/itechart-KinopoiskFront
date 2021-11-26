@@ -1,25 +1,8 @@
 import React from "react";
-import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 import {Formik} from 'formik';
 import useStyles from "../Login/styles";
-
-const validatationSchema = Yup.object().shape({
-    email: Yup.string()
-        .min(6, 'Минимальная длина: 6 символов')
-        .matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, 'Введите настоящий e-mail')
-        .required('Обязательно'),
-    password: Yup.string()
-        .min(6, 'Минимальная длина: 6 символоа')
-        .required('Обязательно'),
-    repeatPassword: Yup.string()
-        .min(6, 'Минимальная длина: 6 символоа')
-        .required('Обязательно')
-        .oneOf([Yup.ref('password'), null], 'Пароли дожны совпадать'),
-    name: Yup.string()
-        .max(100, 'Слишком длинное имя')
-        .required('Обязательно'),
-})
+import {RegistrationValidatationSchema} from '../../../Helpers/ValidationSchemes';
 
 const Registration = props => {
     const classes = useStyles();
@@ -28,7 +11,7 @@ const Registration = props => {
     return (
         <div className={classes.wrapper}>
             <Formik
-                validationSchema={validatationSchema}
+                validationSchema={RegistrationValidatationSchema}
                 initialValues={{
                     email: '',
                     password: '',

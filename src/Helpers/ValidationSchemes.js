@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
-import { EMAIL } from '../Enums/Regex';
-import { CARD_NUMBER_REQUIRED, CVC_REQUIRED, EXPIRY_REQIURED, INCORRECT_EMAIL, INCORRECT_EXPITY, MINIMUM_LENGTH_6, PASSWORD, PASSWORDS_MUST_MATCH, REQUIRED, FIELD_TOO_LONG } from '../Enums/StringConsts';
+import { EMAIL, PHONE_NUMBER } from '../Enums/Regex';
+import { CARD_NUMBER_REQUIRED, CVC_REQUIRED, EXPIRY_REQIURED, INCORRECT_EMAIL, INCORRECT_EXPITY, MINIMUM_LENGTH_6, PASSWORD, PASSWORDS_MUST_MATCH, REQUIRED, FIELD_TOO_LONG, INCORRECT_PHONE_NUMBER, MALE, FEMALE, UNDEFINED } from '../Enums/StringConsts';
 
 
 export const CreditCardValidationSchema = Yup.object().shape({
@@ -41,3 +41,14 @@ export const RegistrationValidatationSchema = Yup.object().shape({
         .max(100, FIELD_TOO_LONG)
         .required(REQUIRED),
 })
+
+export const ProfileValidationSchema = Yup.object().shape({
+    name: Yup.string()
+        .max(100, FIELD_TOO_LONG)
+        .required(REQUIRED),
+    phoneNumber: Yup.string()
+        .matches(PHONE_NUMBER, INCORRECT_PHONE_NUMBER)
+        .nullable(),
+    gender: Yup.string()
+        .oneOf([MALE, FEMALE, UNDEFINED])
+});

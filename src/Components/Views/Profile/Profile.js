@@ -1,23 +1,10 @@
 import React from "react";
 import PropTypes from 'prop-types';
 import useStyles from "./styles";
-import * as Yup from 'yup';
 import { Formik, Form, Field } from "formik";
 import CreditCardContainer from "../../Containers/CreditCardContainer";
 import AddCreditCardContainer from "../../Containers/AddCreditCardContainer";
-
-const phoneNumberRegex = /^\+\d[\d()]{4,14}\d$/;
-
-const validationSchema = Yup.object().shape({
-    name: Yup.string()
-        .max(100, 'Слишком длинное имя')
-        .required('Обязательно'),
-    phoneNumber: Yup.string()
-        .matches(phoneNumberRegex, 'Проверьте введенный номер телефона')
-        .nullable(),
-    gender: Yup.string()
-        .oneOf(["Male", "Female", "Undefined"])
-});
+import {ProfileValidationSchema} from '../../../Helpers/ValidationSchemes';
 
 const Profile = props => {
     const classes = useStyles();
@@ -49,7 +36,7 @@ const Profile = props => {
                     </div> 
                 </div>
                 <Formik
-                    validationSchema={validationSchema}
+                    validationSchema={ProfileValidationSchema}
                     onSubmit={saveChanges}
                     initialValues={{
                         name: name,

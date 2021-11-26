@@ -24,3 +24,7 @@ export const INCORRECT_EMAIL = "Incorrect email format";
 export const PASSWORDS_MUST_MATCH = "Passwords must match";
 export const FIELD_TOO_LONG = "Field is too long";
 export const INCORRECT_CARD_NUMBER = "Check your card number";
+export const INCORRECT_PHONE_NUMBER = "Check your phone number";
+export const MALE = "Male";
+export const FEMALE = "Female";
+export const UNDEFINED = "Undefined";

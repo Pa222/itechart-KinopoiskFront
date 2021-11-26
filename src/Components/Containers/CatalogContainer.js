@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import { moviesRequest } from "../../Actions";
 import PropTypes from 'prop-types';
 import Catalog from "../Views/Catalog/Catalog";
+import {movie} from '../../Enums/Routes';
 
 const CatalogContainer = ({getMovies, movies, userRole, totalPages}) => {
     const [page, setPage] = useState(1);
@@ -19,7 +20,7 @@ const CatalogContainer = ({getMovies, movies, userRole, totalPages}) => {
     }
 
     const openMoviePage = (id) => {
-        history.push(`movie/${id}`);
+        history.push(movie + id);
     }
 
     const catalogProps = {

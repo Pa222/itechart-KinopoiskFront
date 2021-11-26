@@ -12,6 +12,7 @@ import ProfileContainer from "./Components/Containers/ProfileContainer";
 import ErrorPage from './Components/Views/ErrorPage/ErrorPage';
 import AdminRoute from "./Components/AdminRoute";
 import AdminPageContainer from "./Components/Containers/AdminPageContainer";
+import {admin, faq, index, login, movie, profile, register, root} from './Enums/Routes';
 
 const App = () => {
   return (
@@ -20,41 +21,41 @@ const App = () => {
           <Switch>
                 <Route 
                     exact
-                    path={['/', '/index']}
+                    path={[root, index]}
                     render={() =>
                         <CatalogContainer/>
                     }
                 />
                 <Route 
-                    path={'/movie'}
+                    path={movie}
                     render={() =>
                         <MoviePageContainer/>
                     }
                 />
                 <Route 
-                    path={'/faq'}
+                    path={faq}
                     render={() =>
                         <FaqContainer/>
                     }
                 />
                 <Route
-                    path={'/login'}
+                    path={login}
                     render={() => 
                         <LoginContainer/>
                     }
                 />
                 <Route
-                    path={'/register'}
+                    path={register}
                     render={() => 
                         <RegistrationContainer/>
                     }
                 />
                 <ProtectedRoute
-                    path={'/profile'}
+                    path={profile}
                     component={ProfileContainer}
                 />
                 <AdminRoute
-                    path={'/admin'}
+                    path={admin}
                     component={AdminPageContainer}
                 />
                 <Route 

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import KinopoiskApi from "../../Api/KinopoiskApi";
 import Header from '../Views/Header/Header';
 import { cleanUser, movieRequest } from "../../Actions";
+import {faq, login, movie, profile, root} from '../../Enums/Routes';
 
 const HeaderContainer = ({getMovie, logout: logoutProp, avatar, authorized}) => {
     const [menuOpened, setMenuOpened] = useState(false);
@@ -27,7 +28,7 @@ const HeaderContainer = ({getMovie, logout: logoutProp, avatar, authorized}) => 
     const handleSearchBoxChange = (e) => setSearchText(e.target.value); 
 
     const goToMoviePage = (id) => {
-        history.push(`/movie/${id}`);
+        history.push(movie + id);
         
     getMovie(id);
 
@@ -35,25 +36,25 @@ const HeaderContainer = ({getMovie, logout: logoutProp, avatar, authorized}) => 
         document.querySelector("input[name='searchbox']").value = "";
     }
 
-    const goToMainPage = () => history.push('/');
+    const goToMainPage = () => history.push(root);
 
     const goToFaqPage = () => {
-        history.push('/faq');
+        history.push(faq);
         toggleMenu();
     }
 
     const goToLoginPage = () => {
-        history.push('/login');
+        history.push(login);
         toggleMenu();
     }
 
     const goToProfilePage = () => {
-        history.push('/profile');
+        history.push(profile);
         toggleMenu();
     }
 
     const logout = () => {
-        history.push('/');
+        history.push(root);
         logoutProp();
         toggleMenu();
     }

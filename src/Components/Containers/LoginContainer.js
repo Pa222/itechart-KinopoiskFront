@@ -5,6 +5,7 @@ import KinopoiskApi from "../../Api/KinopoiskApi";
 import PropTypes from 'prop-types';
 import Login from "../Views/Login/Login";
 import { userRequest } from "../../Actions";
+import {register, root} from '../../Enums/Routes';
 
 const LoginContainer = ({updateUser}) => {
     const [email, setEmail] = useState('');
@@ -25,10 +26,10 @@ const LoginContainer = ({updateUser}) => {
         }
         updateUser();
         setErrorMessage("");
-        history.push("/");
+        history.push(root);
     }
 
-    const goToRegisterPage = () => history.push("/register");
+    const goToRegisterPage = () => history.push(register);
 
     const loginProps = {
         goToRegisterPage,

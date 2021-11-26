@@ -5,7 +5,7 @@ import Message from "./Message/Message";
 
 const Chat = props => {
     const classes = useStyles();
-    const {opened, message, messages, toggleChat, handleChange,sendMessage, handleKeyUp} = props;
+    const {opened, message, messages, toggleChat, handleChange,sendMessage} = props;
 
     return (
         <div className={classes.container}>

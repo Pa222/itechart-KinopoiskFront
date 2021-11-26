@@ -17,7 +17,7 @@ const useStyles = makeStyles({
         flexDirection: "column"
     },
     profileContainer__editButton:{
-        marginTop: "20px",
+        marginLeft: "20px",
     },
     profileContainer__avatar: {
         maxWidth: "200px",

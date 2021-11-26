@@ -3,24 +3,13 @@ import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 import Profile from "../Views/Profile/Profile";
 import { saveUserChangesRequest, uploadAvatarRequest } from "../../Actions";
-import {CHANGES_SAVED, GENDER, NAME, PHONE_NUMBER} from '../../Enums/StringConsts';
+import {CHANGES_SAVED} from '../../Enums/StringConsts';
 
 const ProfileContainer = props => {
-    const {name: nameProp, phoneNumber: phoneNumberProp, creditCards, gender: genderProp, avatar, updateUser, uploadAvatar} = props;
-    const [name, setName] = useState(nameProp);
-    const [phoneNumber, setPhoneNumber] = useState(phoneNumberProp);
-    const [gender, setGender] = useState(genderProp);
+    const {name, phoneNumber, creditCards, gender, avatar, updateUser, uploadAvatar} = props;
     const [showAddCreditCard, setShowAddCreditCard] = useState(false);
     const [message, setMessage] = useState('');
 
-    
-    const handleChange = (e) => {
-        const {name, value} = e.target;
-        
-        name === NAME && setName(value);
-        name === PHONE_NUMBER && setPhoneNumber(value);
-        name === GENDER && setGender(value);
-    }
 
     const handleFileUpload = async (e) => {
         const file = e.target.files[0]
@@ -33,7 +22,9 @@ const ProfileContainer = props => {
         e.target.files = null;
     }
 
-    const saveChanges = () => {
+    const saveChanges = (values) => {
+        const {name, phoneNumber, gender, creditCards} = values;
+        console.log({...values});
         updateUser({
             name,
             phoneNumber,
@@ -54,7 +45,6 @@ const ProfileContainer = props => {
         showAddCreditCard,
         message,
         saveChanges,
-        handleChange,
         toggleAddCreditCardContainer,
         handleFileUpload,
     }

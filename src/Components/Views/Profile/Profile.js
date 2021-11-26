@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 import useStyles from "./styles";
 import * as Yup from 'yup';
-import { Formik } from "formik";
+import { Formik, Form, Field } from "formik";
 import CreditCardContainer from "../../Containers/CreditCardContainer";
 import AddCreditCardContainer from "../../Containers/AddCreditCardContainer";
 
@@ -30,7 +30,6 @@ const Profile = props => {
         showAddCreditCard, 
         message, 
         saveChanges, 
-        handleChange, 
         toggleAddCreditCardContainer, 
         handleFileUpload} = props;
 
@@ -45,40 +44,31 @@ const Profile = props => {
                         type="file" 
                         onChange={handleFileUpload}
                     />
-                    <input 
-                        className={classes.profileContainer__editButton} 
-                        type="button" 
-                        value="Сохранить изменения"
-                        onClick={saveChanges}
-                    />
                     <div className={classes.errorMessage}>
                         {message}
                     </div> 
                 </div>
                 <Formik
                     validationSchema={validationSchema}
+                    onSubmit={saveChanges}
                     initialValues={{
-                        name: props.name,
-                        phoneNumber: props.phoneNumber,
-                        cardNumber: props.cardNumber,
-                        gender: props.gender,                        
-                }}>
-                    {({handleChange, handleBlur, errors, touched}) => (
-                        <form>
+                        name: name,
+                        phoneNumber: phoneNumber,
+                        gender: gender,                        
+                    }}
+                >
+                    {({handleBlur, errors, touched}) => (
+                        <Form>
                             <div className={classes.profileContainer__informationContainer}>
                                 <div>
                                     <label className={classes.profileContainer__inforamtionKey}>Имя: </label>
-                                    <input 
+                                    <Field 
                                         className={classes.profileContainer__informationValue}
                                         name="name"
-                                        type="text" 
-                                        value={name}
+                                        type="text"
+                                        autocomplete="off"
                                         onBlur={handleBlur('name')}
-                                        onChange={(e) => {
-                                            handleChange(e);
-                                            props.handleChange(e);
-                                        }}
-                                    ></input>
+                                    />
                                     {
                                         errors.name && touched.name &&
                                         <div className={classes.errorMessage}>
@@ -88,17 +78,13 @@ const Profile = props => {
                                 </div>
                                 <div>
                                     <label className={classes.profileContainer__inforamtionKey}>Номер телефона: </label>
-                                    <input 
+                                    <Field 
                                         className={classes.profileContainer__informationValue} 
                                         name="phoneNumber"
                                         type="text"
-                                        value={phoneNumber}
                                         onBlur={handleBlur('phoneNumber')}
-                                        onChange={(e) => {
-                                            handleChange(e);
-                                            props.handleChange(e);
-                                        }}
-                                    ></input>
+                                        component="input"
+                                    />
                                     {
                                         errors.phoneNumber && touched.phoneNumber &&
                                         <div className={classes.errorMessage}>
@@ -108,20 +94,16 @@ const Profile = props => {
                                 </div>
                                 <div>
                                     <label className={classes.profileContainer__inforamtionKey}>Пол: </label>
-                                    <select 
+                                    <Field 
                                         className={classes.profileContainer__informationValue}
                                         name="gender"
-                                        value={gender}
                                         onBlur={handleBlur('gender')}
-                                        onChange={(e) => {
-                                            handleChange(e);
-                                            props.handleChange(e);
-                                        }}
+                                        component="select"
                                     >
                                         <option value="Female">Female</option>
                                         <option value="Male">Male</option>
                                         <option value="Undefined">Undefined</option>
-                                    </select>
+                                    </Field>
                                     {
                                         errors.gender && touched.gender &&
                                         <div className={classes.errorMessage}>
@@ -141,14 +123,25 @@ const Profile = props => {
                                             </div>
                                         }
                                     </div>
-                                    <input type="button" value="Добавление новой карты" onClick={toggleAddCreditCardContainer}></input>
+                                    <Field 
+                                        type="button" 
+                                        value="Добавление новой карты" 
+                                        onClick={toggleAddCreditCardContainer}
+                                        component="input"
+                                    />
                                     {
                                         showAddCreditCard && 
                                         <AddCreditCardContainer/>
                                     }
+                                    <Field 
+                                        className={classes.profileContainer__editButton} 
+                                        type="submit" 
+                                        value="Сохранить изменения"
+                                        component="input"
+                                    />
                                 </div>
                             </div>
-                        </form>
+                        </Form>
                     )}
                 </Formik>
             </div>
@@ -157,17 +150,16 @@ const Profile = props => {
 }
 
 Profile.propTypes = {
-    name: PropTypes.string,
-    phoneNumber: PropTypes.string,
-    creditCards: PropTypes.array,
-    gender: PropTypes.string,
-    avatar: PropTypes.string,
-    showAddCreditCard: PropTypes.bool,
-    message: PropTypes.string,
-    saveChanges: PropTypes.func,
-    handleChange: PropTypes.func,
-    toggleAddCreditCardContainer: PropTypes.func,
-    handleFileUpload: PropTypes.func,
+    name: PropTypes.string.isRequired,
+    phoneNumber: PropTypes.string.isRequired,
+    creditCards: PropTypes.array.isRequired,
+    gender: PropTypes.string.isRequired,
+    avatar: PropTypes.string.isRequired,
+    showAddCreditCard: PropTypes.bool.isRequired,
+    message: PropTypes.string.isRequired,
+    saveChanges: PropTypes.func.isRequired,
+    toggleAddCreditCardContainer: PropTypes.func.isRequired,
+    handleFileUpload: PropTypes.func.isRequired,
 }
 
 export default Profile;

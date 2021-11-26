@@ -18,7 +18,7 @@ const Chat = props => {
                     <div id="messages" className={classes.chat__messagesContainer}>
                         {
                             messages.length > 0 &&
-                            messages.map((message, i) => <Message key={Date.now() * Math.random()} {...message}/>)
+                            messages.map(message => <Message key={Date.now() * Math.random()} {...message}/>)
                         }
                     </div>
                     <div className={classes.chat__inputContainer}>
@@ -28,7 +28,6 @@ const Chat = props => {
                             name="message" 
                             value={message}
                             onChange={handleChange}
-                            onKeyUp={handleKeyUp}
                             autoComplete="off"
                             placeholder="Введите сообщение"
                             maxLength="255"
@@ -63,7 +62,6 @@ Chat.propTypes = {
     toggleChat: PropTypes.func,
     handleChange: PropTypes.func,
     sendMessage: PropTypes.func,
-    handleKeyUp: PropTypes.func,
 }
 
 export default Chat;

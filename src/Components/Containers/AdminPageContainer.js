@@ -58,12 +58,6 @@ const AdminPageContainer = ({updateMessages, name, currentChat, chats, setChats,
         setMessage(e.target.value);
     }
 
-    const handleKeyUp = e => {
-        if (e.code === "Enter"){
-            sendMessage();
-        }
-    }
-
     const sendMessage = async () => {
         const conn = connection.connection;
         const newMessage = {
@@ -99,7 +93,6 @@ const AdminPageContainer = ({updateMessages, name, currentChat, chats, setChats,
         sendMessage,
         pickChat,
         handleChange,
-        handleKeyUp,
         message,
         chats: chats,
         currentChat: currentChat,

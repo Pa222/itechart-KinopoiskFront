@@ -6,7 +6,7 @@ import Message from "../Chat/Message/Message";
 
 const AdminPage = props => {
     const classes = useStyles();
-    const {sendMessage, pickChat, handleChange, handleKeyUp, message, chats, currentChat} = props; 
+    const {sendMessage, pickChat, handleChange, message, chats, currentChat} = props; 
 
     return (
         <div className={classes.wrapper}>
@@ -39,7 +39,7 @@ const AdminPage = props => {
                                 </div>
                                 <div id="adminMessages" className={classes.currentChat__messagesContainer}>
                                     {
-                                        currentChat.messages.map((message, i) => <Message key={Date.now() * Math.random()} {...message}/>)
+                                        currentChat.messages.map(message => <Message key={Date.now() * Math.random()} {...message}/>)
                                     }
                                 </div>
                                 <div className={classes.currentChat__inputContainer}>
@@ -52,7 +52,6 @@ const AdminPage = props => {
                                         maxLength="255"
                                         value={message}
                                         onChange={handleChange}
-                                        onKeyUp={handleKeyUp}
                                     />
                                     <div className={classes.currentChat__sendImgContainer}>
                                         <img
@@ -76,7 +75,6 @@ AdminPage.propTypes = {
     sendMessage: PropTypes.func,
     pickChat: PropTypes.func,
     handleChange: PropTypes.func,
-    handleKeyUp: PropTypes.func,
     message: PropTypes.string,
     chats: PropTypes.arrayOf(PropTypes.object),
     currentChat: PropTypes.object,

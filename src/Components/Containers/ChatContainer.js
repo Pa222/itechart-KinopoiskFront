@@ -63,15 +63,14 @@ const ChatContainer = ({name}) => {
             sender: '',
             message,
         }
-        if(message !== '' && conn._connectionStarted){
+        if(message && conn._connectionStarted){
             newMessage.sender = name || conn.connectionId;
 
-            messages.push(newMessage);
-            setMessages([...messages]);
+            setMessages([...messages, newMessage]);
+         
+            chatContainer.current.scrollTop = chatContainer.current.scrollHeight;
 
             await connection.send(SEND_MESSAGE_TO_ADMIN, newMessage);
-
-            chatContainer.current.scrollTop = chatContainer.current.scrollHeight;
         }
 
         setMessage('');

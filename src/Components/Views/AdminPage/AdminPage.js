@@ -37,7 +37,7 @@ const AdminPage = props => {
                                 <div className={classes.currentChat__headerContainer}>
                                     <p className={classes.currentChat__header}>{currentChat.sender}</p>
                                 </div>
-                                <div id="adminMessages" className={classes.currentChat__messagesContainer}>
+                                <div className={classes.currentChat__messagesContainer}>
                                     {
                                         currentChat.messages.map(message => <Message key={Date.now() * Math.random()} {...message}/>)
                                     }

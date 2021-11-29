@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import AdminPage from '../Views/AdminPage/AdminPage';
 import {HubConnectionBuilder} from '@microsoft/signalr';
 import KinopoiskApi from "../../Api/KinopoiskApi";
@@ -73,9 +73,6 @@ const AdminPageContainer = ({updateMessages, name, currentChat, chats, setChats,
             updatedCurrentChat.messages.push(newMessage);
 
             setCurrentChat(updatedCurrentChat);
-
-            const messagesBlock = document.querySelector("#adminMessages");
-            messagesBlock.scrollTop = messagesBlock.scrollHeight;
         }
 
         setMessage('');
@@ -94,8 +91,8 @@ const AdminPageContainer = ({updateMessages, name, currentChat, chats, setChats,
         pickChat,
         handleChange,
         message,
-        chats: chats,
-        currentChat: currentChat,
+        chats,
+        currentChat,
     }
 
     return (<AdminPage {...pageProps} />)

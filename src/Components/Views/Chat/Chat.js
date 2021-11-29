@@ -5,7 +5,7 @@ import Message from "./Message/Message";
 
 const Chat = props => {
     const classes = useStyles();
-    const {opened, message, messages, toggleChat, handleChange,sendMessage} = props;
+    const {opened, message, messages, toggleChat, handleChange,sendMessage, chatContainer} = props;
 
     return (
         <div className={classes.container}>
@@ -15,7 +15,7 @@ const Chat = props => {
                     <div className={classes.chat__header}>
                         <p className={classes.chat__headerText}>Чат с администрацией</p>
                     </div>
-                    <div id="messages" className={classes.chat__messagesContainer}>
+                    <div ref={chatContainer} className={classes.chat__messagesContainer}>
                         {
                             messages.length > 0 &&
                             messages.map(message => <Message key={Date.now() * Math.random()} {...message}/>)
@@ -62,6 +62,7 @@ Chat.propTypes = {
     toggleChat: PropTypes.func.isRequired,
     handleChange: PropTypes.func.isRequired,
     sendMessage: PropTypes.func.isRequired,
+    chatContainer: PropTypes.object.isRequired,
 }
 
 export default Chat;

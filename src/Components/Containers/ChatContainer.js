@@ -12,6 +12,7 @@ const ChatContainer = ({name}) => {
     const [opened, setOpened] = useState(false);
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
+    const chatContainer = useRef(null);
     const latestChat = useRef(null)
 
     latestChat.current = messages;
@@ -36,8 +37,7 @@ const ChatContainer = ({name}) => {
 
                         setMessages(updatedMessages);
 
-                        const messagesBlock = document.querySelector("#messages");
-                        messagesBlock.scrollTop = messagesBlock.scrollHeight;
+                        chatContainer.current.scrollTop = chatContainer.current.scrollHeight;
                     });
                 })
                 .catch(e => {
@@ -71,8 +71,7 @@ const ChatContainer = ({name}) => {
 
             await connection.send(SEND_MESSAGE_TO_ADMIN, newMessage);
 
-            const messagesBlock = document.querySelector("#messages");
-            messagesBlock.scrollTop = messagesBlock.scrollHeight;
+            chatContainer.current.scrollTop = chatContainer.current.scrollHeight;
         }
 
         setMessage('');
@@ -82,6 +81,7 @@ const ChatContainer = ({name}) => {
         opened,
         message,
         messages,
+        chatContainer,
         toggleChat,
         handleChange,
         sendMessage,

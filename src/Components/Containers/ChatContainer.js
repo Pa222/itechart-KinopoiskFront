@@ -64,7 +64,7 @@ const ChatContainer = ({name}) => {
             message,
         }
         if(message !== '' && conn._connectionStarted){
-            name !== '' ? newMessage.sender = name : newMessage.sender = conn.connectionId;
+            newMessage.sender = name || conn.connectionId;
 
             messages.push(newMessage);
             setMessages([...messages]);

@@ -60,12 +60,10 @@ const ChatContainer = ({name}) => {
     const sendMessage = async () => {
         const conn = connection.connection;
         const newMessage = {
-            sender: '',
+            sender: name || conn.connectionId,
             message,
         }
         if(message && conn._connectionStarted){
-            newMessage.sender = name || conn.connectionId;
-
             setMessages([...messages, newMessage]);
          
             chatContainer.current.scrollTop = chatContainer.current.scrollHeight;

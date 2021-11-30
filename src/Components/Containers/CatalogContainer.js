@@ -24,9 +24,9 @@ const CatalogContainer = ({getMovies, movies, userRole, totalPages}) => {
     }
 
     const catalogProps = {
-        movies: movies,
-        userRole: userRole,
-        totalPages: totalPages,
+        movies,
+        userRole,
+        totalPages,
         page,
         changePage,
         openMoviePage,

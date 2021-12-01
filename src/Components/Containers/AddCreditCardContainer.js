@@ -5,7 +5,7 @@ import AddCreditCard from "../Views/AddCreditCard/AddCreditCard";
 import { addCreditCardRequest } from "../../Actions";
 import { detectCardIssuer, validateCard } from '../../Helpers/CreditCardHelper';
 import { validateNumberOnlyInput, validateTextOnlyInput } from "../../Helpers/InputHelpers";
-import {CARD_HOLDER_NAME, CVC, EXPIRY, NUMBER} from '../../Enums/StringConsts';
+import {CARD_HOLDER_NAME, CVC, EXPIRY, NUMBER} from '../../Enums/Constants';
 
 const AddCreditCardContainer = ({addCreditCard}) => {
     const [number, setNumber] = useState('');

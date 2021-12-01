@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import KinopoiskApi from '../../Api/KinopoiskApi';
-import { REGISTRATION_SUCCESS, REGISTRATION_FAIL } from '../../Enums/StringConsts';
+import { REGISTRATION_SUCCESS, REGISTRATION_FAIL } from '../../Enums/Constants';
 import Registration from '../Views/Registration/Registration';
 
 const RegistrationContainer = () => {

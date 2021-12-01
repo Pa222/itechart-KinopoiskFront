@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Chat from "../Views/Chat/Chat";
 import KinopoiskApi from '../../Api/KinopoiskApi';
 import {HubConnectionBuilder} from '@microsoft/signalr';
-import { CONNECTION_FAIL } from "../../Enums/StringConsts";
+import { CONNECTION_FAIL } from "../../Enums/Constants";
 import { RECEIVE_MESSAGE, SEND_MESSAGE_TO_ADMIN } from "../../Enums/ConnectionHubMethods";
 
 const ChatContainer = ({name}) => {

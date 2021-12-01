@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import Login from "../Views/Login/Login";
 import { userRequest } from "../../Actions";
 import {register, root} from '../../Enums/Routes';
-import { INCORRECT_AUTH } from "../../Enums/StringConsts";
+import { INCORRECT_AUTH } from "../../Enums/Constants";
 
 const LoginContainer = ({updateUser}) => {
     const [errorMessage, setErrorMessage] = useState('');

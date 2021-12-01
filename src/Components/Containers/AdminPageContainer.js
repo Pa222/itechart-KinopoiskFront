@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { cleanCurrentChat, setChats, setCurrentChat, updateChatMessages } from "../../Actions";
 import PropTypes from 'prop-types';
 import { CONNECT_AS_ADMIN, GET_ADMIN_INFORMATION, RECEIVE_ADMIN_INFORMATION, RECEIVE_MESSAGES, SEND_MESSAGE_TO_USER, UPDATE_ADMIN_INFORMATION } from "../../Enums/ConnectionHubMethods";
-import { CONNECTION_FAIL } from "../../Enums/StringConsts";
+import { CONNECTION_FAIL } from "../../Enums/Constants";
 
 const AdminPageContainer = ({updateMessages, name, currentChat, chats, setChats, setCurrentChat, cleanCurrentChat}) => {
     const [connection, setConnection] = useState(null);

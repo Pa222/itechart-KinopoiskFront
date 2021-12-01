@@ -1,5 +1,5 @@
 import * as issuersRegex from '../Enums/CardIssuerRegex';
-import { INCORRECT_CARD_NUMBER } from '../Enums/StringConsts';
+import { INCORRECT_CARD_NUMBER } from '../Enums/Constants';
 import {CreditCardValidationSchema} from '../Helpers/ValidationSchemes';
 
 export const detectCardIssuer = (number) => {

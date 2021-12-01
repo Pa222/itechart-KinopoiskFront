@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 import Profile from "../Views/Profile/Profile";
 import { saveUserChangesRequest, uploadAvatarRequest } from "../../Actions";
-import {CHANGES_SAVED} from '../../Enums/StringConsts';
+import {CHANGES_SAVED} from '../../Enums/Constants';
 
 const ProfileContainer = props => {
     const {name, phoneNumber, creditCards, gender, avatar, updateUser, uploadAvatar} = props;

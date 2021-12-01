@@ -27,8 +27,8 @@ const MoviePageContainer = props => {
         setComment(e.target.value);
     }
 
-    const handleDeleteComment = (id) => {
-        deleteComment({id, movieId: id})
+    const handleDeleteComment = (commentId) => {
+        deleteComment({id: commentId, movieId: id})
     }
 
     const handleRatingChange = (e) => {

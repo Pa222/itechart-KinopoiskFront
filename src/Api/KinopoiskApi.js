@@ -1,4 +1,5 @@
 import { addCookie, getCookie, removeCookie } from "../Utils/Cookies";
+import _ from 'lodash';
 
 const ip = "localhost";
 const port = 4000;
@@ -42,7 +43,7 @@ class KinopoiskApi{
 
     static getMoviesByTitle = async title => {
         try{
-            if (typeof title === "string"){
+            if (_.isString(title)){
                 const response = await fetch(`http://${ip}:${port}/api/Catalog/get-by-title?title=${title}`);
                 return await response.json();
             }

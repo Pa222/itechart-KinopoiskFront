@@ -1,6 +1,7 @@
 import React from "react";
 import useStyles from "./styles";
 import PropTypes from 'prop-types';
+import { redDot } from "../../../../Enums/Pictures";
 
 const Chat = ({pickChat, sender, isReplied}) => {
     const classes = useStyles();
@@ -15,7 +16,7 @@ const Chat = ({pickChat, sender, isReplied}) => {
             {
                 !isReplied &&
                 <div>
-                    <img className={classes.container__redDot} src="https://res.cloudinary.com/pa2/image/upload/v1637317957/Static/Red_dot_i3v3oi.png" alt="New message"/>
+                    <img className={classes.container__redDot} src={redDot} alt="New message"/>
                 </div>
             }
         </div>

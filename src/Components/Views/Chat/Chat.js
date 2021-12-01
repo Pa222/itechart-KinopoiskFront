@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 import useStyles from "./styles";
 import Message from "./Message/Message";
+import { chatPicture, sendButton } from "../../../Enums/Pictures";
 
 const Chat = props => {
     const classes = useStyles();
@@ -35,7 +36,7 @@ const Chat = props => {
                         <div className={classes.chat__sendImgContainer}>
                             <img
                                 className={classes.chat__sendImg}
-                                src="https://res.cloudinary.com/pa2/image/upload/v1637150966/Static/send_fus324.png" 
+                                src={sendButton}
                                 alt="Send"
                                 onClick={sendMessage}
                             />
@@ -46,7 +47,7 @@ const Chat = props => {
             <div className={classes.container__imgContainer}>
                 <img 
                     className={classes.container__image} 
-                    src="https://res.cloudinary.com/pa2/image/upload/v1637148195/Static/chat_ved61h.png" 
+                    src={chatPicture}
                     alt="Chat" 
                     onClick={toggleChat}
                 />

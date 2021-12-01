@@ -3,6 +3,7 @@ import useStyles from "./styles";
 import PropTypes from 'prop-types';
 import Chat from "./Chat/Chat";
 import Message from "../Chat/Message/Message";
+import { sendButton } from "../../../Enums/Pictures";
 
 const AdminPage = props => {
     const classes = useStyles();
@@ -56,7 +57,7 @@ const AdminPage = props => {
                                     <div className={classes.currentChat__sendImgContainer}>
                                         <img
                                             className={classes.currentChat__sendImg}
-                                            src="https://res.cloudinary.com/pa2/image/upload/v1637150966/Static/send_fus324.png" 
+                                            src={sendButton} 
                                             alt="Send"
                                             onClick={sendMessage}
                                         />

@@ -16,7 +16,7 @@ const Profile = props => {
         avatar, 
         showAddCreditCard, 
         message, 
-        saveChanges, 
+        handleSubmit, 
         toggleAddCreditCardContainer, 
         handleFileUpload} = props;
 
@@ -37,15 +37,15 @@ const Profile = props => {
                 </div>
                 <Formik
                     validationSchema={ProfileValidationSchema}
-                    onSubmit={saveChanges}
+                    onSubmit={handleSubmit}
                     initialValues={{
                         name: name,
                         phoneNumber: phoneNumber,
                         gender: gender,                        
                     }}
                 >
-                    {({handleBlur, errors, touched}) => (
-                        <Form>
+                    {({handleSubmit, handleBlur, errors, touched}) => (
+                        <Form onSubmit={handleSubmit}>
                             <div className={classes.profileContainer__informationContainer}>
                                 <div>
                                     <label className={classes.profileContainer__inforamtionKey}>Имя: </label>
@@ -53,7 +53,7 @@ const Profile = props => {
                                         className={classes.profileContainer__informationValue}
                                         name="name"
                                         type="text"
-                                        autocomplete="off"
+                                        autoComplete="off"
                                         onBlur={handleBlur('name')}
                                     />
                                     {
@@ -144,7 +144,7 @@ Profile.propTypes = {
     avatar: PropTypes.string.isRequired,
     showAddCreditCard: PropTypes.bool.isRequired,
     message: PropTypes.string.isRequired,
-    saveChanges: PropTypes.func.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
     toggleAddCreditCardContainer: PropTypes.func.isRequired,
     handleFileUpload: PropTypes.func.isRequired,
 }

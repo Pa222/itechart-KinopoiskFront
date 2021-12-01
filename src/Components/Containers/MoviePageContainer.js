@@ -87,7 +87,7 @@ MoviePageContainer.propTypes = {
     createYear: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-    commets: PropTypes.arrayOf(PropTypes.object).isRequired,
+    comments: PropTypes.arrayOf(PropTypes.object).isRequired,
     rating: PropTypes.number.isRequired,
     getMovie: PropTypes.func.isRequired,
     addComment: PropTypes.func.isRequired,

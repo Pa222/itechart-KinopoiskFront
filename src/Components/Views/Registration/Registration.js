@@ -12,8 +12,10 @@ const Registration = ({message, handleSubmit}) => {
             <Formik
                 validationSchema={RegistrationValidatationSchema}
                 initialValues={{
+                    name: '',
                     email: '',
                     password: '',
+                    repeatPassword: '',
                 }}
                 onSubmit={handleSubmit}
             >
@@ -97,12 +99,7 @@ const Registration = ({message, handleSubmit}) => {
 };
 
 Registration.propTypes = {
-    email: PropTypes.string.isRequired,
-    password: PropTypes.string.isRequired,
-    repeatPassword: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
     message: PropTypes.string.isRequired,
-    handleChange: PropTypes.func.isRequired,
     handleSubmit: PropTypes.func.isRequired,
 }
 

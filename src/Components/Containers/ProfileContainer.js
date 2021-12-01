@@ -22,9 +22,9 @@ const ProfileContainer = props => {
         e.target.files = null;
     }
 
-    const saveChanges = (values) => {
+    const handleSubmit = (values) => {
         const {name, phoneNumber, gender, creditCards} = values;
-        console.log({...values});
+        console.log(values);
         updateUser({
             name,
             phoneNumber,
@@ -44,7 +44,7 @@ const ProfileContainer = props => {
         avatar,
         showAddCreditCard,
         message,
-        saveChanges,
+        handleSubmit,
         toggleAddCreditCardContainer,
         handleFileUpload,
     }

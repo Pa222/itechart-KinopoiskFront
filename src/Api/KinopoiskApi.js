@@ -1,5 +1,6 @@
 import { addCookie, getCookie, removeCookie } from "../Utils/Cookies";
-import _ from 'lodash';
+import _, { method } from 'lodash';
+import axios from 'axios';
 
 const ip = "localhost";
 const port = 4000;
@@ -14,230 +15,260 @@ class KinopoiskApi{
         return `Bearer ${getCookie("AuthToken")}`;
     }
 
-    static getMoviesPage = async (page, size = 8) => {
-        try{
-            const response = await fetch(`http://${ip}:${port}/api/Catalog/get-page?page=${page}&size=${size}`);
-            return await response.json();
-        } catch(e){
-            return null;
-        }
-    }
-
-    static getFaqs = async () => {
-        try{
-            const response = await fetch(`http://${ip}:${port}/api/Faq`);
-            return await response.json();
-        } catch(e){
-            return null;
-        }
-    }
-
-    static getMovieById = async id => {
-        try{
-            const response = await fetch(`http://${ip}:${port}/api/Catalog/get?id=${id}`);
-            return await response.json();
-        } catch(e){
-            return null;
-        }
-    }
-
-    static getMoviesByTitle = async title => {
-        try{
-            if (_.isString(title)){
-                const response = await fetch(`http://${ip}:${port}/api/Catalog/get-by-title?title=${title}`);
-                return await response.json();
+    static getMoviesPage = (page, size = 8) => {
+        return axios.get(`http://${ip}:${port}/api/Catalog/get-page`, {
+            params: {
+                page,
+                size,
             }
-        } catch(e){
+        })
+        .then(response => {
+            if (response.status !== 200){
+                return null;
+            }
+            return response.data;
+        })
+        .catch(() => {
             return null;
-        }
+        })
     }
 
-    static auth = async (email, password) => {
-        try{
-            const response = await fetch(`http://${ip}:${port}/api/User/auth`, {
-                    method: "POST",
-                    headers:{
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({email, password}),
-                });
+    static getFaqs = () => {
+        return axios.get(`http://${ip}:${port}/api/Faq`)
+        .then(response => {
+            if (response.status !== 200){
+                return null;
+            }
+            return response.data;
+        })
+        .catch(() => {
+            return null;
+        })
+    }
+
+    static getMovieById = id => {
+        return axios.get(`http://${ip}:${port}/api/Catalog/get`, {
+            params: {
+                id,
+            }
+        })
+        .then(response => {
+            if (response.status !== 200){
+                return null;
+            }
+            return response.data;
+        })
+        .catch(() => {
+            return null;
+        })
+    }
+
+    static getMoviesByTitle = title => {
+        return axios.get(`http://${ip}:${port}/api/Catalog/get-by-title`, {
+            params: {
+                title,
+            }
+        })
+        .then(response => {
+            if (response.status !== 200){
+                return null;
+            }
+            return response.data;
+        })
+    }
+
+    static auth = (email, password) => {
+        return axios({
+            method: "post",
+            url: `http://${ip}:${port}/api/User/auth`,
+            data: {email, password}
+        })
+        .then(response => {
             if (response.status !== 200){
                 return false;
             }
-            const token = await response.text();
+            const token = response.data;
             addCookie("AuthToken", token);
             return true;
-        } catch(e){
+        })
+        .catch(() => {
             return null;
-        }
+        })
     }
     
     static logout = () => {
         removeCookie("AuthToken");
     }
 
-    static register = async user => {
-        try{
-            const response = await fetch(`http://${ip}:${port}/api/User/register`, {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(user),
-            })
+    static register = user => {
+        return axios({
+            method: "post",
+            url: `http://${ip}:${port}/api/User/register`,
+            data: user,
+        })
+        .then(response => {
             return response.status === 200;
-        } catch(e){
+        })
+        .catch(() => {
             return null;
-        }
+        })
     }
 
-    static getUser = async () => {
-        try{
-            const response = await fetch(`http://${ip}:${port}/api/User/get-user`, {
-                method: "GET",
-                headers: {
-                    'Authorization': `Bearer ${getCookie("AuthToken")}`
-                }
-            });
+    static getUser = () => {
+        return axios.get(`http://${ip}:${port}/api/User/get-user`, {
+            headers: {
+                Authorization: `Bearer ${getCookie("AuthToken")}`
+            }
+        })
+        .then(response => {
             if (response.status !== 200){
                 return null;
             }
-            return await response.json();
-        } catch(e){
+            return response.data;
+        })
+        .catch(() => {
             return null;
-        }
+        })
     }
 
-    static saveUserChanges = async user => {
-        try{
-            const response = await fetch(`http://${ip}:${port}/api/Profile/update-user-profile`, {
-                method: "PUT",
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${getCookie("AuthToken")}`
-                },
-                body: JSON.stringify(user),
-            });
+    static saveUserChanges = user => {
+        return axios({
+            method: 'put',
+            url: `http://${ip}:${port}/api/Profile/update-user-profile`,
+            data: user,
+            headers: {
+                Authorization: `Bearer ${getCookie("AuthToken")}`
+            }
+        })
+        .then(response => {
             if (response.status !== 200){
                 return null;
             }
-            return await response.json();
-        } catch(e){
+            return response.data;
+        })
+        .catch(() => {
             return null;
-        }
+        })
     }
 
-    static addCreditCard = async card => {
-        try{
-            const response = await fetch(`http://${ip}:${port}/api/Profile/add-credit-card`, {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${getCookie("AuthToken")}`,
-                },
-                body: JSON.stringify(card),
-            })
+    static addCreditCard = card => {
+        return axios({
+            method: 'POST',
+            url: `http://${ip}:${port}/api/Profile/add-credit-card`,
+            headers: {
+                Authorization: `Bearer ${getCookie("AuthToken")}`
+            },
+            data: card,
+        })
+        .then(response => {
             if (response.status !== 200){
                 return null;
             }
-            return await response.json();
-        } catch(e){
+            return response.data;
+        })
+        .catch(() => {
             return null;
-        }
+        })
     }
 
-    static deleteCreditCard = async number => {
-        try{
-            const response = await fetch(`http://${ip}:${port}/api/Profile/delete-credit-card`, {
-                method: "DELETE",
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${getCookie("AuthToken")}`,
-                },
-                body: JSON.stringify({number}),
-            })
+    static deleteCreditCard = number => {
+        return axios({
+            method: 'DELETE',
+            url: `http://${ip}:${port}/api/Profile/delete-credit-card`,
+            headers: {
+                Authorization: `Bearer ${getCookie("AuthToken")}`
+            },
+            data: number,
+        })
+        .then(response => {
             if (response.status !== 200){
                 return null;
             }
-            return await response.json();
-        } catch(e){
+            return response.data;
+        })
+        .catch(() => {
             return null;
-        }
+        })
     }
 
-    static uploadUserAvatar = async formData => {
-        try{
-            const response = await fetch(`http://${ip}:${port}/api/User/upload-avatar`, {
-                method: "POST",
-                headers: {
-                    'Authorization': `Bearer ${getCookie("AuthToken")}`,
-                },
-                body: formData,
-            })
+    static uploadUserAvatar = formData => {
+        return axios({
+            method: "post",
+            url: `http://${ip}:${port}/api/User/upload-avatar`,
+            headers: {
+                Authorization: `Bearer ${getCookie("AuthToken")}`
+            },
+            data: formData,
+        })
+        .then(response => {
             if (response.status !== 200){
                 return null;
             }
-            return await response.json();
-        } catch(e){
+            return response.data;
+        })
+        .catch(() => {
             return null;
-        }
+        })
     }
 
     static addComment = async comment => {
-        try{
-            const response = await fetch(`http://${ip}:${port}/api/Comments/add-comment`, {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${getCookie("AuthToken")}`,
-                },
-                body: JSON.stringify(comment),
-            })
+        return axios({
+            method: "post",
+            url: `http://${ip}:${port}/api/Comments/add-comment`,
+            headers: {
+                'Authorization': `Bearer ${getCookie("AuthToken")}`,
+            },
+            data: comment,
+        })
+        .then(response => {
             if (response.status !== 200){
                 return null;
             }
-            return await response.json();
-        } catch(e){
+            return response.data;
+        })
+        .catch(() => {
             return null;
-        }
+        })
     }
 
     static deleteComment = async comment => {
-        try{
-            const response = await fetch(`http://${ip}:${port}/api/Comments/delete-comment`, {
-                method: "DELETE",
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${getCookie("AuthToken")}`,
-                },
-                body: JSON.stringify(comment),
-            })
+        return axios({
+            method: "delete",
+            url: `http://${ip}:${port}/api/Comments/delete-comment`,
+            headers: {
+                'Authorization': `Bearer ${getCookie("AuthToken")}`,
+            },
+            data: comment,
+        })
+        .then(response => {
             if (response.status !== 200){
                 return null;
             }
-            return await response.json();
-        } catch(e){
+            return response.data;
+        })
+        .catch(() => {
             return null;
-        }
+        })
     }
 
     static updateRating = async rating => {
-        try{
-            const response = await fetch(`http://${ip}:${port}/api/Rating/update-rating`, {
-                method: "POST",
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${getCookie("AuthToken")}`,
-                },
-                body: JSON.stringify(rating),
-            })
+        return axios({
+            method: "post",
+            url: `http://${ip}:${port}/api/Rating/update-rating`,
+            headers: {
+                'Authorization': `Bearer ${getCookie("AuthToken")}`,
+            },
+            data: rating,
+        })
+        .then(response => {
             if (response.status !== 200){
                 return null;
             }
-            return await response.json();
-        } catch(e){
+            return response.data;
+        })
+        .catch(() => {
             return null;
-        }
+        })
     }
 }
 

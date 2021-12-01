@@ -7,6 +7,7 @@ const useStyles = makeStyles({
         cursor: "pointer",
     },
     movie__poster: {
+        margin: "0 auto",
         maxWidth: "200px",
         height: "294px",
     },

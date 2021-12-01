@@ -1,6 +1,7 @@
 import React from "react";
 import useStyles from "./styles";
 import PropTypes from 'prop-types';
+import {Card, CardContent, Typography} from '@material-ui/core';
 
 const SearchResult = ({goToMoviePage, title, createYear, id}) => {
 
@@ -10,9 +11,11 @@ const SearchResult = ({goToMoviePage, title, createYear, id}) => {
 
     const classes = useStyles();
     return (
-        <div className={classes.searchResult} onClick={handleClick}>
-            <p>{title} ({createYear})</p>
-        </div>
+        <Card className={classes.searchResult} onClick={handleClick}>
+            <CardContent classes={{root: classes.p5}}>
+                <Typography>{title} ({createYear})</Typography>
+            </CardContent>
+        </Card>
     );
 }
 

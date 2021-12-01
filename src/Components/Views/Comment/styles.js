@@ -7,6 +7,7 @@ const useStyles = makeStyles({
         flexDirection: "row"
     },
     container__image: {
+        margin: "10px 0 10px 10px",
         maxWidth: "70px",
         borderRadius: "50%",
     },
@@ -20,17 +21,16 @@ const useStyles = makeStyles({
     },
     conatiner__deleteCommentButton: {
         marginLeft: "20px",
-        fontSize: "12px",
-        backgroundColor: "transparent",
+        padding: "0",
+        fontSize: "11px",
         border: "1px solid gray",
         borderRadius: "5px",
         cursor: "pointer"
     },
     container__commentName:{
-        margin: "0 0 0 10px",
+        fontStyle: "italic"
     },
     container__commentDescription:{
-        margin: "0 0 0 10px",
         wordBreak: "break-word",
     }
 });

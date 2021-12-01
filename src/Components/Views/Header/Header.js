@@ -2,6 +2,9 @@ import React from "react";
 import PropTypes from 'prop-types';
 import useStyles from "./styles";
 import SearchResult from "./SearchResult/SearchResult";
+import ListItemButton from '@mui/material/ListItemButton';
+import {withStyles} from '@material-ui/core/styles';
+import { TextField, Typography, Avatar, List, ListItem } from "@material-ui/core";
 
 const Header = props => {
     const classes = useStyles();
@@ -18,21 +21,28 @@ const Header = props => {
         goToProfilePage,
         handleSearchBoxChange} = props;
 
+    const WhiteTextTypography = withStyles({
+        root: {
+            color: "#FFFFFF"
+        }
+        })(Typography);
+
     return (
         <header className={classes.header}>
             <div className={classes.header__content}>
-                <div className={classes.header__title} onClick={goToMainPage}>
-                    <p>КиноПоиск</p>
-                </div>
+                <Typography className={classes.header__title} onClick={goToMainPage}>КиноПоиск</Typography>
                 <div className={classes.header__searchBoxContainer}>
-                    <input 
+                    <TextField 
                         className={classes.header__searchBox} 
-                        type="text" 
-                        name="searchbox"
                         placeholder="Поиск"
                         autoComplete="off"
                         onChange={handleSearchBoxChange}
-                    ></input>
+                        InputProps={{
+                            classes: {
+                                input: classes.header__searchBoxText,
+                            }
+                        }}
+                    />
                     <div className={classes.header__searchResults}>
                         {
                             moviesByTitle !== [] &&
@@ -46,22 +56,42 @@ const Header = props => {
                 </div>
                 <div>
                     <div>
-                        <img className={classes.header__userImage} src={avatar} alt="User" onClick={toggleMenu}></img>
+                        <Avatar className={classes.header__userImage} src={avatar} alt="User" onClick={toggleMenu}/>
                     </div>
                     {
                         menuOpened && !authorized &&
-                            <div className={classes.header__menu}>
-                                <input className={classes.header__menuItem} type="button" onClick={goToFaqPage} value="FAQ"></input>
-                                <input className={classes.header__menuItem} type="button" value="Войти" onClick={goToLoginPage}></input>
-                            </div>
+                        <List className={classes.header__menu}>
+                            <ListItem classes={{root: classes.p0}}>
+                                <ListItemButton onClick={goToFaqPage}>
+                                    <WhiteTextTypography>Faq</WhiteTextTypography>
+                                </ListItemButton>
+                            </ListItem>
+                            <ListItem classes={{root: classes.p0}}>
+                                <ListItemButton onClick={goToLoginPage}>
+                                    <WhiteTextTypography>Login</WhiteTextTypography>
+                                </ListItemButton>
+                            </ListItem>
+                        </List>
                     }
                     {
                         menuOpened && authorized &&
-                        <div className={classes.header__menu}>
-                            <input className={classes.header__menuItem} type="button" onClick={goToProfilePage} value="Профиль"></input>
-                            <input className={classes.header__menuItem} type="button" onClick={goToFaqPage} value="FAQ"></input>
-                            <input className={classes.header__menuItem} type="button" value="Выйти" onClick={logout}></input>
-                        </div>
+                        <List className={classes.header__menu}>
+                            <ListItem classes={{root: classes.p0}}>
+                                <ListItemButton onClick={goToProfilePage}>
+                                    <WhiteTextTypography>Профиль</WhiteTextTypography>
+                                </ListItemButton>
+                            </ListItem>
+                            <ListItem classes={{root: classes.p0}}>
+                                <ListItemButton onClick={goToFaqPage}>
+                                    <WhiteTextTypography>Faq</WhiteTextTypography>
+                                </ListItemButton>
+                            </ListItem>
+                            <ListItem classes={{root: classes.p0}}>
+                                <ListItemButton onClick={logout}>
+                                    <WhiteTextTypography>Выйти</WhiteTextTypography>
+                                </ListItemButton>
+                            </ListItem>
+                        </List>
                     }
                 </div>
             </div>

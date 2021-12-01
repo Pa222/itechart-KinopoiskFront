@@ -1,6 +1,9 @@
 import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles({
+    p0: {
+        padding: "0",
+    },
     header: {
         width: "100%",
         height: "72px",
@@ -17,8 +20,6 @@ const useStyles = makeStyles({
     },
     header__userImage: {
         marginRight: "20px",
-        width: "50px",
-        borderRadius: "50%",
         cursor: "pointer",
     },
     header__title: {
@@ -47,15 +48,9 @@ const useStyles = makeStyles({
     },
     header__searchBox: {
         padding: "5px",
-        maxWidth: "350px",
-        border: "0",
-        backgroundColor: "transparent",
-        fontSize: "20px",
+    },
+    header__searchBoxText: {
         color: "white",
-        "&:focus, &:hover": {
-            outline: "none",
-            boxShadow: "none",
-        },
     },
     header__searchButton: {
         padding: "7px 5px 5px 5px",
@@ -64,10 +59,8 @@ const useStyles = makeStyles({
     },
     header__menu: {
         position: "absolute",
-        display: "flex",
-        flexDirection: "column",
         backgroundColor: "#1f1f1f",
-        borderRadius: "5px",
+        borderRadius: "15px",
     },
     header__menuItem: {
         margin: "2px 0 2px 0",

@@ -1,6 +1,11 @@
 import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles({
+    p5: {
+        "&:last-child": {
+            padding: "7px",
+        }
+    },
     searchResult: {
         padding: "0 10px",
         display: "flex",

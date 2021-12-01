@@ -2,6 +2,7 @@ import React from "react";
 import useStyles from "./styles";
 import PropTypes from 'prop-types';
 import { useSelector } from "react-redux";
+import { Card, CardContent, Typography, CardMedia, Button } from "@material-ui/core";
 
 const Comment = props => {
     const classes = useStyles();
@@ -13,21 +14,19 @@ const Comment = props => {
     }
 
     return (
-        <div className={classes.container}>
-            <div>
-                <img className={classes.container__image} src={userAvatar} alt="UserAvatar"></img>
-            </div>
-            <div className={classes.container__comment}>
+        <Card className={classes.container}>
+            <CardMedia className={classes.container__image} image={userAvatar} component="img"/>
+            <CardContent className={classes.container__comment}>
                 <div className={classes.container__commentHeader}>
-                    <h3 className={classes.container__commentName}>{userName}</h3>
+                    <Typography className={classes.container__commentName}>{userName}</Typography>
                     {
                         userName === author &&
-                        <input className={classes.conatiner__deleteCommentButton} type="button" onClick={handleDelete} value="Удалить" />
+                        <Button className={classes.conatiner__deleteCommentButton} onClick={handleDelete} >Удалить</Button>
                     }
                 </div>
-                <p className={classes.container__commentDescription}>{description}</p>
-            </div>
-        </div>
+                <Typography className={classes.container__commentDescription}>{description}</Typography>
+            </CardContent>
+        </Card>
     );
 }
 

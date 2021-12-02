@@ -79,7 +79,7 @@ const Registration = ({message, handleSubmit}) => {
                             </div> 
                         }
                         {
-                            message !== '' &&
+                            message.trim().length !== 0 &&
                             <div className={classes.errorMessage}>
                                 {message}
                             </div> 

@@ -88,7 +88,7 @@ const AddCreditCard = props => {
                         onClick={addCard}
                     />
                     {
-                        message !== '' &&
+                        message.trim().length !== 0 &&
                         <div className={classes.errorMessage}>
                             {message}
                         </div> 

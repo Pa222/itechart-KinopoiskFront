@@ -66,7 +66,7 @@ const AdminPageContainer = ({updateMessages, name, currentChat, chats, setChats,
             message,
         }
 
-        if(message !== '' && conn._connectionStarted){
+        if(message.trim().length !== 0 && conn._connectionStarted){
             await connection.send(ConnectionHubMethods.SendMessageToUser, newMessage);
 
             const updatedCurrentChat = currentChat;

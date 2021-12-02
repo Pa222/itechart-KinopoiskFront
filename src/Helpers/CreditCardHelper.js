@@ -16,7 +16,7 @@ export const validateCard = (card) => {
     
     CreditCardValidationSchema.validate(card)
         .catch(err => e = err.message);
-    if (e !== '')
+    if (e.trim().length !== 0)
         return e;
 
     const issuer = detectCardIssuer(card.number);

@@ -29,11 +29,11 @@ const AdminPage = props => {
                     </div>
                     <div className={classes.adminPanel__currentChatContainer}>
                         {
-                            currentChat.sender === '' &&
+                            currentChat.sender.trim().length === 0 &&
                             <h3>Выберите чат из списка</h3>
                         }
                         {
-                            currentChat.sender !== '' &&
+                            currentChat.sender.trim().length !== 0 &&
                             <div className={classes.currentChat}>
                                 <div className={classes.currentChat__headerContainer}>
                                     <p className={classes.currentChat__header}>{currentChat.sender}</p>

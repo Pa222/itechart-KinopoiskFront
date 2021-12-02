@@ -20,7 +20,7 @@ const CatalogContainer = ({getMovies, movies, userRole, totalPages}) => {
     }
 
     const openMoviePage = (id) => {
-        history.push(movie + id);
+        history.push(`${movie}${id}`);
     }
 
     const catalogProps = {

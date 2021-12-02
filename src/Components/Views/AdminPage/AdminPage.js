@@ -3,7 +3,7 @@ import useStyles from "./styles";
 import PropTypes from 'prop-types';
 import Chat from "./Chat/Chat";
 import Message from "../Chat/Message/Message";
-import { sendButton } from "../../../Enums/Pictures";
+import { sendButton } from "../../../Constants/Pictures";
 
 const AdminPage = props => {
     const classes = useStyles();

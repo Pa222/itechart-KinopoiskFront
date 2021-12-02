@@ -5,6 +5,7 @@ import { ClipLoader } from 'react-spinners';
 import useStyles from "./styles";
 import Movie from "../Movie/Movie";
 import ChatContainer from '../../Containers/ChatContainer';
+import { UserRoles } from "../../../Enums/Enums";
 
 const Catalog = (props) => {
     const classes = useStyles();
@@ -37,7 +38,7 @@ const Catalog = (props) => {
                 />
             </div>
             {
-                userRole !== "Admin" &&
+                userRole !== UserRoles.Admin &&
                 <ChatContainer/>
             }
         </div>

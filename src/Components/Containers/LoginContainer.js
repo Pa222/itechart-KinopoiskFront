@@ -5,8 +5,8 @@ import KinopoiskApi from "../../Api/KinopoiskApi";
 import PropTypes from 'prop-types';
 import Login from "../Views/Login/Login";
 import { userRequest } from "../../Actions";
-import {register, root} from '../../Enums/Routes';
-import { INCORRECT_AUTH } from "../../Enums/Constants";
+import {register, root} from '../../Constants/Routes';
+import { InfoMessages } from "../../Enums/Enums";
 
 const LoginContainer = ({updateUser}) => {
     const [errorMessage, setErrorMessage] = useState('');
@@ -14,7 +14,7 @@ const LoginContainer = ({updateUser}) => {
 
     const handleSubmit = async (values) => {
         if (!await KinopoiskApi.auth(values.email, values.password)){
-            setErrorMessage(INCORRECT_AUTH);
+            setErrorMessage(InfoMessages.IncorrectAuth);
             return;
         }
         updateUser();

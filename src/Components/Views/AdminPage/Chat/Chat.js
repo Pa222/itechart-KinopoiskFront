@@ -1,7 +1,7 @@
 import React from "react";
 import useStyles from "./styles";
 import PropTypes from 'prop-types';
-import { redDot } from "../../../../Enums/Pictures";
+import { redDot } from "../../../../Constants/Pictures";
 
 const Chat = ({pickChat, sender, isReplied}) => {
     const classes = useStyles();

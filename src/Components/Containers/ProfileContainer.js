@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 import Profile from "../Views/Profile/Profile";
 import { saveUserChangesRequest, uploadAvatarRequest } from "../../Actions";
-import {CHANGES_SAVED} from '../../Enums/Constants';
+import { InfoMessages } from "../../Enums/Enums";
 
 const ProfileContainer = props => {
     const {name, phoneNumber, creditCards, gender, avatar, updateUser, uploadAvatar} = props;
@@ -31,7 +31,7 @@ const ProfileContainer = props => {
             gender,
             creditCards
         })
-        setMessage(CHANGES_SAVED);
+        setMessage(InfoMessages.ChangesSaved);
     }
     
     const toggleAddCreditCardContainer = () => setShowAddCreditCard(!showAddCreditCard);

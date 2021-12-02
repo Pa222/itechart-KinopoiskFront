@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from 'prop-types';
 import useStyles from "./styles";
 import Message from "./Message/Message";
-import { chatPicture, sendButton } from "../../../Enums/Pictures";
+import { chatPicture, sendButton } from "../../../Constants/Pictures";
 
 const Chat = props => {
     const classes = useStyles();

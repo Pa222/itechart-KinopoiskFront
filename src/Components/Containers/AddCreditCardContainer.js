@@ -5,7 +5,7 @@ import AddCreditCard from "../Views/AddCreditCard/AddCreditCard";
 import { addCreditCardRequest } from "../../Actions";
 import { detectCardIssuer, validateCard } from '../../Helpers/CreditCardHelper';
 import { validateNumberOnlyInput, validateTextOnlyInput } from "../../Helpers/InputHelpers";
-import {CARD_HOLDER_NAME, CVC, EXPIRY, NUMBER} from '../../Enums/Constants';
+import { FieldNames } from "../../Enums/Enums";
 
 const AddCreditCardContainer = ({addCreditCard}) => {
     const [number, setNumber] = useState('');
@@ -21,10 +21,10 @@ const AddCreditCardContainer = ({addCreditCard}) => {
     const handleChange = e => {
         const { name, value } = e.target;
         
-        name === NUMBER && setNumber(value);
-        name === EXPIRY && setExpiry(value);
-        name === CARD_HOLDER_NAME && setCardHolderName(value);
-        name === CVC && setCvc(value);
+        name === FieldNames.Number && setNumber(value);
+        name === FieldNames.Expiry && setExpiry(value);
+        name === FieldNames.CardHolderName && setCardHolderName(value);
+        name === FieldNames.Cvc && setCvc(value);
     }
 
     const addCard = () => {
@@ -43,7 +43,7 @@ const AddCreditCardContainer = ({addCreditCard}) => {
             setCardHolderName('');
             setCvc('');
             setMessage('');
-            setFocus(NUMBER)
+            setFocus(FieldNames.Number)
         } else{
             setMessage(errMessage);
         }

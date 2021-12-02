@@ -12,7 +12,7 @@ import ProfileContainer from "./Components/Containers/ProfileContainer";
 import ErrorPage from './Components/Views/ErrorPage/ErrorPage';
 import AdminRoute from "./Components/AdminRoute";
 import AdminPageContainer from "./Components/Containers/AdminPageContainer";
-import {admin, faq, index, login, movie, profile, register, root} from './Enums/Routes';
+import {admin, faq, index, login, movie, profile, register, root} from './Constants/Routes';
 
 const App = () => {
   return (

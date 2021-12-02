@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import KinopoiskApi from '../../Api/KinopoiskApi';
-import { REGISTRATION_SUCCESS, REGISTRATION_FAIL } from '../../Enums/Constants';
 import Registration from '../Views/Registration/Registration';
+import { InfoMessages } from '../../Enums/Enums';
 
 const RegistrationContainer = () => {
     const [message, setMessage] = useState('');
@@ -9,10 +9,10 @@ const RegistrationContainer = () => {
     const handleSubmit = async (values) => {
         const {email, password, name} = values;
         if (await KinopoiskApi.register({email, password, name})){
-            setMessage(REGISTRATION_SUCCESS);
+            setMessage(InfoMessages.RegistrationSuccess);
             return
         }
-        setMessage(REGISTRATION_FAIL);
+        setMessage(InfoMessages.RegistrationFail);
     }
 
     const registrationProps = {

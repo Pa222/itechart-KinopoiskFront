@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 import Header from '../Views/Header/Header';
 import { cleanUser, movieRequest, moviesByTitleRequest } from "../../Actions";
-import {faq, login, movie, profile, root} from '../../Enums/Routes';
+import {faq, login, movie, profile, root} from '../../Constants/Routes';
 
 const HeaderContainer = ({getMovie, getMoviesByTitle, moviesByTitle, logout: logoutProp, avatar, authorized}) => {
     const [menuOpened, setMenuOpened] = useState(false);

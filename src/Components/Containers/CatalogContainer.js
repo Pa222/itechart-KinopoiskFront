@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import { moviesRequest } from "../../Actions";
 import PropTypes from 'prop-types';
 import Catalog from "../Views/Catalog/Catalog";
-import {movie} from '../../Enums/Routes';
+import {movie} from '../../Constants/Routes';
 
 const CatalogContainer = ({getMovies, movies, userRole, totalPages}) => {
     const [page, setPage] = useState(1);

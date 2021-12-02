@@ -1,7 +1,7 @@
 import React from "react";
 import useStyles from "./styles";
 import { useHistory } from "react-router";
-import {root} from '../../../Enums/Routes';
+import {root} from '../../../Constants/Routes';
 
 const ErrorPage = () => {
     const history = useHistory();

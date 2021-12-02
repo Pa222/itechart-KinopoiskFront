@@ -1,6 +1,6 @@
-import * as issuersRegex from '../Enums/CardIssuerRegex';
-import { INCORRECT_CARD_NUMBER } from '../Enums/Constants';
+import * as issuersRegex from '../Constants/CardIssuerRegex';
 import {CreditCardValidationSchema} from '../Helpers/ValidationSchemes';
+import {InfoMessages} from '../Enums/Enums';
 
 export const detectCardIssuer = (number) => {
     for(var key in issuersRegex) {
@@ -21,5 +21,5 @@ export const validateCard = (card) => {
 
     const issuer = detectCardIssuer(card.number);
     if (issuer === null)
-        return INCORRECT_CARD_NUMBER;
+        return InfoMessages.IncorrectCardNumber;
 }

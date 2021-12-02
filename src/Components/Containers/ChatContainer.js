@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import Chat from "../Views/Chat/Chat";
 import KinopoiskApi from '../../Api/KinopoiskApi';
 import {HubConnectionBuilder} from '@microsoft/signalr';
-import { CONNECTION_FAIL } from "../../Enums/Constants";
-import { RECEIVE_MESSAGE, SEND_MESSAGE_TO_ADMIN } from "../../Enums/ConnectionHubMethods";
+import { InfoMessages } from "../../Enums/Enums";
+import { ConnectionHubMethods } from "../../Enums/Enums";
 
 const ChatContainer = ({name}) => {
     const [connection, setConnection] = useState(null);
@@ -31,7 +31,7 @@ const ChatContainer = ({name}) => {
         if (connection){
             connection.start()
                 .then(() => {
-                    connection.on(RECEIVE_MESSAGE, message => {
+                    connection.on(ConnectionHubMethods.ReceiveMessage, message => {
                         const updatedMessages = [...latestChat.current];
                         updatedMessages.push(message);
 
@@ -41,7 +41,7 @@ const ChatContainer = ({name}) => {
                     });
                 })
                 .catch(e => {
-                    console.log(CONNECTION_FAIL, e);
+                    console.log(InfoMessages.ConnectionFail, e);
                 })
         }
         return () => {
@@ -68,7 +68,7 @@ const ChatContainer = ({name}) => {
          
             chatContainer.current.scrollTop = chatContainer.current.scrollHeight;
 
-            await connection.send(SEND_MESSAGE_TO_ADMIN, newMessage);
+            await connection.send(ConnectionHubMethods.SendMessageToAdmin, newMessage);
         }
 
         setMessage('');

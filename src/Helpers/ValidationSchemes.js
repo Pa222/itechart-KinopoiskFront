@@ -1,54 +1,54 @@
 import * as Yup from 'yup';
-import { EMAIL, PHONE_NUMBER } from '../Enums/Regex';
-import { CARD_NUMBER_REQUIRED, CVC_REQUIRED, EXPIRY_REQIURED, INCORRECT_EMAIL, INCORRECT_EXPITY, MINIMUM_LENGTH_6, PASSWORD, PASSWORDS_MUST_MATCH, REQUIRED, FIELD_TOO_LONG, INCORRECT_PHONE_NUMBER, MALE, FEMALE, UNDEFINED } from '../Enums/Constants';
+import { EMAIL, PHONE_NUMBER } from '../Constants/Regex';
+import { InfoMessages, FieldNames, Sex } from '../Enums/Enums';
 
 
 export const CreditCardValidationSchema = Yup.object().shape({
     number: Yup.string()
-        .required(CARD_NUMBER_REQUIRED),
+        .required(InfoMessages.CardNumberRequierd),
     cardHolderName: Yup.string()
-        .required(CARD_NUMBER_REQUIRED),
+        .required(InfoMessages.CardHolderRequired),
     expiry: Yup.string()
-        .min(4, INCORRECT_EXPITY)
-        .required(EXPIRY_REQIURED),
+        .min(4, InfoMessages.IncorrectExpiry)
+        .required(InfoMessages.ExpiryRequired),
     cvc: Yup.string()
-        .required(CVC_REQUIRED),
+        .required(InfoMessages.CvcRequired),
 });
 
 export const LoginValidatationSchema = Yup.object().shape({
     email: Yup.string()
-        .min(6, MINIMUM_LENGTH_6)
-        .matches(EMAIL, INCORRECT_EMAIL)
-        .required(REQUIRED),
+        .min(6, InfoMessages.MinimumLength6)
+        .matches(EMAIL, InfoMessages.IncorrectEmail)
+        .required(InfoMessages.Required),
     password: Yup.string()
-        .min(6, MINIMUM_LENGTH_6)
+        .min(6, InfoMessages.MinimumLength6)
         .required(),
 })
 
 export const RegistrationValidatationSchema = Yup.object().shape({
     email: Yup.string()
-        .min(6, MINIMUM_LENGTH_6)
-        .matches(EMAIL, INCORRECT_EMAIL)
-        .required(REQUIRED),
+        .min(6, InfoMessages.MinimumLength6)
+        .matches(EMAIL, InfoMessages.IncorrectEmail)
+        .required(InfoMessages.Required),
     password: Yup.string()
-        .min(6, MINIMUM_LENGTH_6)
-        .required(REQUIRED),
+        .min(6, InfoMessages.MinimumLength6)
+        .required(InfoMessages.Required),
     repeatPassword: Yup.string()
-        .min(6, MINIMUM_LENGTH_6)
-        .required(REQUIRED)
-        .oneOf([Yup.ref(PASSWORD), null], PASSWORDS_MUST_MATCH),
+        .min(6, InfoMessages.MinimumLength6)
+        .required(InfoMessages.Required)
+        .oneOf([Yup.ref(FieldNames.Password), null], InfoMessages.PasswordsMustMatch),
     name: Yup.string()
-        .max(100, FIELD_TOO_LONG)
-        .required(REQUIRED),
+        .max(100, InfoMessages.FieldTooLong)
+        .required(InfoMessages.Required),
 })
 
 export const ProfileValidationSchema = Yup.object().shape({
     name: Yup.string()
-        .max(100, FIELD_TOO_LONG)
-        .required(REQUIRED),
+        .max(100, InfoMessages.FieldTooLong)
+        .required(InfoMessages.Required),
     phoneNumber: Yup.string()
-        .matches(PHONE_NUMBER, INCORRECT_PHONE_NUMBER)
+        .matches(PHONE_NUMBER, InfoMessages.IncorrectPhoneNumber)
         .nullable(),
     gender: Yup.string()
-        .oneOf([MALE, FEMALE, UNDEFINED])
+        .oneOf([Sex.Male, Sex.Female, Sex.Undefined])
 });

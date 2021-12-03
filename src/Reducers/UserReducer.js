@@ -28,9 +28,13 @@ const UserReducer = handleActions(
       [actions.getUserFail]: (state, action) => {return {...initialState}},
       [actions.cleanUser]: cleanUser,
       [actions.addCreditCardSuccess]: changeCreditCard,
+      [actions.addCreditCardFail]: (state, action) => state,
       [actions.deleteCreditCardSuccess]: changeCreditCard,
+      [actions.deleteCommentFail]: (state, action) => state,
       [actions.saveUserChangesSuccess]: (state, action) => {return {authorized: true, ...action.payload}},
+      [actions.saveUserChangesFail]: (state, action) => state,
       [actions.uploadAvatarSuccess]: (state, action) => {return {authorized: true, ...action.payload}},
+      [actions.uploadAvatarFail]: (state, action) => state,
     },
     initialState
 );

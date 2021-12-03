@@ -25,17 +25,17 @@ const changeCreditCard = (state, action) => {
 const UserReducer = handleActions(
     {
       [actions.userRequest]: (state, action) => state,
-      [actions.getUser]: (state, action) => {return {authorized: true, ...action.payload}},
+      [actions.getUserSuccess]: (state, action) => {return {authorized: true, ...action.payload}},
       [actions.getUserFail]: (state, action) => {return {...initialState}},
       [actions.cleanUser]: cleanUser,
       [actions.addCreditCardRequest]: (state, action) => state,
-      [actions.addCreditCard]: changeCreditCard,
+      [actions.addCreditCardSuccess]: changeCreditCard,
       [actions.deleteCreditCardRequest]: (state, action) => state,
-      [actions.deleteCreditCard]: changeCreditCard,
+      [actions.deleteCreditCardSuccess]: changeCreditCard,
       [actions.saveUserChangesRequest]: (state, action) => state,
-      [actions.saveUserChanges]: (state, action) => {return {authorized: true, ...action.payload}},
+      [actions.saveUserChangesSuccess]: (state, action) => {return {authorized: true, ...action.payload}},
       [actions.uploadAvatarRequest]: (state, action) => state,
-      [actions.uploadAvatar]: (state, action) => {return {authorized: true, ...action.payload}},
+      [actions.uploadAvatarSuccess]: (state, action) => {return {authorized: true, ...action.payload}},
     },
     initialState
 );

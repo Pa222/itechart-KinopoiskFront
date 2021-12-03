@@ -37,17 +37,17 @@ const changeComment = (state, action) => {
 const MovieReducer = handleActions(
   {
     [actions.moviesRequest]: (state, action) => state,
-    [actions.getMovies]: (state, action) => { return {currentMovie: emptyCurrentMovie, searchMovies: [], ...action.payload} },
+    [actions.getMoviesSuccess]: (state, action) => { return {currentMovie: emptyCurrentMovie, searchMovies: [], ...action.payload} },
     [actions.movieRequest]: (state, action) => state,
-    [actions.getMovie]: getMovie,
+    [actions.getMovieSuccess]: getMovie,
     [actions.addCommentRequest]: (state, action) => state,
-    [actions.addComment]: changeComment,
+    [actions.addCommentSuccess]: changeComment,
     [actions.deleteCommentRequest]: (state, action) => state,
-    [actions.deleteComment]: changeComment,
+    [actions.deleteCommentSuccess]: changeComment,
     [actions.updateRatingRequest]: (state, action) => state,
-    [actions.updateRating]: getMovie,
+    [actions.updateRatingSuccess]: getMovie,
     [actions.moviesByTitleRequest]: (state, action) => state,
-    [actions.getMoviesByTitle]: (state, action) => { return {...state, searchMovies: action.payload.slice(0, 5)} },
+    [actions.getMoviesByTitleSuccess]: (state, action) => { return {...state, searchMovies: action.payload.slice(0, 5)} },
   },
   initialState
 );

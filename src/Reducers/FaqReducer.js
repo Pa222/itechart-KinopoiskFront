@@ -6,7 +6,7 @@ const initialState = [];
 const FaqReducer = handleActions(
     {
       [actions.faqRequest]: (state, action) => state,
-      [actions.getFaq]: (state, action) => [...action.payload],
+      [actions.getFaqSuccess]: (state, action) => [...action.payload],
     },
     initialState
 );

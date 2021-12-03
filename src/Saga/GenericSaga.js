@@ -12,6 +12,10 @@ function* saga(action) {
     const successType = action.type.replace('_REQUEST', '_SUCCESS');
     yield put({ type: successType, payload: response });
   }
+  else{
+    const failedType = action.type.replace('_REQUEST', '_FAIL');
+    yield put({ type: failedType, payload: {} });
+  }
 }
 
 export function* genericSaga(action) {

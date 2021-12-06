@@ -16,7 +16,7 @@ class KinopoiskApi{
     }
 
     static getMoviesPage = (page, size = 8) => {
-        return axios.get(`http://${ip}:${port}/api/Catalog/get-page`, {
+        return axios.get(`http://${ip}:${port}/api/Catalog/getPage`, {
             params: {
                 page,
                 size,
@@ -64,7 +64,7 @@ class KinopoiskApi{
     }
 
     static getMoviesByTitle = title => {
-        return axios.get(`http://${ip}:${port}/api/Catalog/get-by-title`, {
+        return axios.get(`http://${ip}:${port}/api/Catalog/getByTitle`, {
             params: {
                 title,
             }
@@ -115,7 +115,7 @@ class KinopoiskApi{
     }
 
     static getUser = () => {
-        return axios.get(`http://${ip}:${port}/api/User/get-user`, {
+        return axios.get(`http://${ip}:${port}/api/User/getUser`, {
             headers: {
                 Authorization: `Bearer ${getCookie("AuthToken")}`
             }
@@ -134,7 +134,7 @@ class KinopoiskApi{
     static saveUserChanges = user => {
         return axios({
             method: 'put',
-            url: `http://${ip}:${port}/api/Profile/update-user-profile`,
+            url: `http://${ip}:${port}/api/Profile/updateUserProfile`,
             data: user,
             headers: {
                 Authorization: `Bearer ${getCookie("AuthToken")}`
@@ -154,7 +154,7 @@ class KinopoiskApi{
     static addCreditCard = card => {
         return axios({
             method: 'POST',
-            url: `http://${ip}:${port}/api/Profile/add-credit-card`,
+            url: `http://${ip}:${port}/api/Profile/addCreditCard`,
             headers: {
                 Authorization: `Bearer ${getCookie("AuthToken")}`
             },
@@ -174,7 +174,7 @@ class KinopoiskApi{
     static deleteCreditCard = number => {
         return axios({
             method: 'DELETE',
-            url: `http://${ip}:${port}/api/Profile/delete-credit-card`,
+            url: `http://${ip}:${port}/api/Profile/deleteCreditCard`,
             headers: {
                 Authorization: `Bearer ${getCookie("AuthToken")}`
             },
@@ -194,7 +194,7 @@ class KinopoiskApi{
     static uploadUserAvatar = formData => {
         return axios({
             method: "post",
-            url: `http://${ip}:${port}/api/User/upload-avatar`,
+            url: `http://${ip}:${port}/api/User/uploadAvatar`,
             headers: {
                 Authorization: `Bearer ${getCookie("AuthToken")}`
             },
@@ -214,7 +214,7 @@ class KinopoiskApi{
     static addComment = async comment => {
         return axios({
             method: "post",
-            url: `http://${ip}:${port}/api/Comments/add-comment`,
+            url: `http://${ip}:${port}/api/Comments/addComment`,
             headers: {
                 'Authorization': `Bearer ${getCookie("AuthToken")}`,
             },
@@ -234,7 +234,7 @@ class KinopoiskApi{
     static deleteComment = async comment => {
         return axios({
             method: "delete",
-            url: `http://${ip}:${port}/api/Comments/delete-comment`,
+            url: `http://${ip}:${port}/api/Comments/deleteComment`,
             headers: {
                 'Authorization': `Bearer ${getCookie("AuthToken")}`,
             },
@@ -254,7 +254,7 @@ class KinopoiskApi{
     static updateRating = async rating => {
         return axios({
             method: "post",
-            url: `http://${ip}:${port}/api/Rating/update-rating`,
+            url: `http://${ip}:${port}/api/Rating/updateRating`,
             headers: {
                 'Authorization': `Bearer ${getCookie("AuthToken")}`,
             },
